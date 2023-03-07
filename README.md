@@ -1,34 +1,10 @@
 # CS122_9301Team8
 
 
-
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.com/dalosmiguel/cs122_9301team8.git
-git branch -M main
-git push -uf origin main
-```
-
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
 ## Suggestions for a good README
 Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
 
-## Name
+## Group Project 2 - MixedFractionArithmetic
 Choose a self-explaining name for your project.
 
 ## Description
@@ -60,7 +36,14 @@ For people who want to make changes to your project, it's helpful to have some d
 You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
 
 ## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+GROUP 8
+
+Lacanilao, Marvin Patrick D. -2230153
+De Torres, John Rey I. -2234944
+Delizo, John Marco -2234758
+Limboc, Trixie Mae W. - 2233674
+Ragudos, Hannah - 2233361
+Roxas, Johan Rickardo A. - 2233375
 
 ## License
 For open source projects, say how it is licensed.
