@@ -1,14 +1,17 @@
 # CS122_9301Team8
-
+A group programming project for the course CS 122 - Computer Programming 2 (AY 2022-2023) - Midterms. 
+DeTorresDelizoLacanilaoLimbocRagudosRoxas9301
 
 ## Suggestions for a good README
 Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
 
 ## Group Project 2 - MixedFractionArithmetic
-Choose a self-explaining name for your project.
+MixedFractionCalculator
 
 ## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+The MixedFractionArithmetic class is a programming class that performs arithmetic operations on mixed fractions. In mathematics, a mixed fraction is a combination of a whole number and a fraction. The MixedFractionArithmetic class is designed to accept mixed fraction inputs and perform arithmetic operations such as addition, subtraction, multiplication, and division.
+
+The class typically contains methods that allow for the addition, subtraction, multiplication, and division of mixed fractions. These methods usually take in two or more mixed fractions as input and return a mixed fraction as the result of the arithmetic operation. Additionally, the class may contain methods for simplifying the mixed fraction, converting it to an improper fraction or a decimal, and comparing two mixed fractions for equality or magnitude.
 
 ## Badges
 On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
