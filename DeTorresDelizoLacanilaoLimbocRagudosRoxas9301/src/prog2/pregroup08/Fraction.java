@@ -14,7 +14,7 @@
  * A template for a fraction that has the form numerator/denominator.
  */
 
-package fraction;
+package prog2.pregroup08;
 
 public class Fraction {
     public int numerator; // holds the numerator for Fraction

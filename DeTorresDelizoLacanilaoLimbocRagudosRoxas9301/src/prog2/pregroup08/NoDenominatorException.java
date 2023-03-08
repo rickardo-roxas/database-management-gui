@@ -10,23 +10,23 @@
  *     RAGUDOS, Hannah T.- 2233361
  *     ROXAS, Johan Rickardo A. - 2233375
  * </p>
- * The NoNumeratorException exception.
- * An exception that throws when a Fraction's numerator is null.
+ * The NoDenominatorException exception.
+ * An exception that throws when a Fraction's denominator is null.
  * The default constructed Fraction will be instantiated.
  */
-package fraction;
+package prog2.pregroup08;
 
 import javax.swing.*;
 
-public class NoNumeratorException extends RuntimeException {
-    private NoNumeratorException() {
+public class NoDenominatorException extends RuntimeException {
+    private NoDenominatorException () {
         String outputString = "";
 
         // exception message
-        outputString = "NoNumeratorException occurred. Default fraction value 0/1 will be used";
+        outputString = "NoDenominatorException occurred. Default fraction value 0/1 will be used";
         JOptionPane.showMessageDialog(null, outputString);
         // additional message
         outputString = "You may still change it using the main menu";
         JOptionPane.showMessageDialog(null, outputString);
-    } // end of NoNumeratorException method
-} // end of exception NoNumeratorException
+    } // end of NoDenominatorException
+} // end of exception NoDenominatorException

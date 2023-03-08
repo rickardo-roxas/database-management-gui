@@ -165,7 +165,7 @@
  * </p>
  */
 
-package fraction;
+package prog2.pregroup08;
 
 import javax.swing.*;
 import java.lang.*;
