@@ -1,13 +1,14 @@
 /**
- * Group 8
+ * Team 8
  * Class Code and Course Number: 9301 - CS 122
  * Schedule: TF 9:00 - 10:30 AM
  * <p>
- *     RABANG, Gebreyl Isaac P.
- *     RAGUDOS, Hannah T.
- *     RAMOS, Jerwin Kyle R.
- *     ROQUE, Rey Daniel L.
- *     ROXAS, Johan Rickardo A.
+ *     LACANILAO, Marvin Patrick D. -2230153
+ *     DE TORRES, John Rey I. -2234944
+ *     DELIZO, John Marco -2234758
+ *     LIMBOC, Trixie Mae W. - 2233674
+ *     RAGUDOS, Hannah - 2233361
+ *     ROXAS, Johan Rickardo A. - 2233375
  * </p>
  * The FractionArithmetic Class.
  * An executable class that computes the sum, difference, product, and quotient of two fractions.
@@ -163,6 +164,7 @@
  *     Process finished with exit code 0
  * </p>
  */
+
 package fraction;
 
 import javax.swing.*;
@@ -398,20 +400,23 @@ public class FractionArithmetic {
      */
      static void showIntroduction() {
         JDialog.setDefaultLookAndFeelDecorated(true);
+
         // first page
         outputString = """
-                 Welcome to our Fraction Calculator by Group 9
+                 Welcome to our Fraction Calculator by Team 8
                 ------------------------------------------------------------------------------------------------- \s
                  Programmers:\s
-                 -> RABANG, Gebreyl Isaac P.\s
+                 -> LACANILAO, Marvin Patrick D.\s
+                 -> DE TORRES, John Rey I.\s
+                 -> DELIZO, John Marco\s
+                 -> LIMBOC, Trixie Mae W.
                  -> RAGUDOS, Hannah T.\s
-                 -> RAMOS, Jerwin Kyle R.\s
-                 -> ROQUE, Rey Daniel L.\s
                  -> ROXAS, Johan Rickardo A.\s
                 -------------------------------------------------------------------------------------------------\s
                  9301 CS 122 - Computer Programming 2\s
                  AY 2022-2023\s""";
         JOptionPane.showMessageDialog(null, outputString);
+
         // second page
         outputString = """
                 This program will ask for your following inputs:\s
@@ -510,5 +515,6 @@ public class FractionArithmetic {
 
     protected static void showUserChoice(int userChoice) {
         System.out.println("User choice: " + userChoice);
+
     } // end of showUserChoice method
 } // end of class FractionArithmetic

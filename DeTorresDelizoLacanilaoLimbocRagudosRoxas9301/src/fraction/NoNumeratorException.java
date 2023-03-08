@@ -3,11 +3,12 @@
  * Class code and course number: 9301B - CS 122
  * Schedule: TF 9:00 - 10:30 AM
  * <p>
- *     RABANG, Gebreyl Isaac P.
- *     RAGUDOS, Hannah T.
- *     RAMOS, Jerwin Kyle R.
- *     ROQUE, Rey Daniel L.
- *     ROXAS, Johan Rickardo A.
+ *     LACANILAO, Marvin Patrick D. -2230153
+ *     DE TORRES, John Rey I. -2234944
+ *     DELIZO, John Marco -2234758
+ *     LIMBOC, Trixie Mae W. - 2233674
+ *     RAGUDOS, Hannah T.- 2233361
+ *     ROXAS, Johan Rickardo A. - 2233375
  * </p>
  * The NoNumeratorException exception.
  * An exception that throws when a Fraction's numerator is null.

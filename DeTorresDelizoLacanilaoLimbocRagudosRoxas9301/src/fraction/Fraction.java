@@ -1,17 +1,19 @@
 /**
- * Group 9
+ * Team 8
  * Class code and course number: 9301B - CS 122
  * Schedule: TF 9:00 - 10:30 AM
  * <p>
- *     RABANG, Gebreyl Isaac P.
- *     RAGUDOS, Hannah T.
- *     RAMOS, Jerwin Kyle R.
- *     ROQUE, Rey Daniel L.
- *     ROXAS, Johan Rickardo A.
+ *     LACANILAO, Marvin Patrick D. -2230153
+ *     DE TORRES, John Rey I. -2234944
+ *     DELIZO, John Marco -2234758
+ *     LIMBOC, Trixie Mae W. - 2233674
+ *     RAGUDOS, Hannah T.- 2233361
+ *     ROXAS, Johan Rickardo A. - 2233375
  * </p>
  * The Fraction class.
  * A template for a fraction that has the form numerator/denominator.
  */
+
 package fraction;
 
 public class Fraction {
@@ -48,6 +50,7 @@ public class Fraction {
      * @param num given numerator
      **/
     public void setNumerator(int num) {
+
         numerator = num;
     } // end of setNumerator mutator method
 
@@ -200,5 +203,6 @@ public class Fraction {
         int reducedNumerator = numerator / GCD; // reduces the numerator with the greatest common divisor
         int reducedDenominator = denominator / GCD; // reduces the denominator with the greatest common divisor
         return new Fraction(reducedNumerator, reducedDenominator);
+
     } // end of reduce method
 } // end of class Fraction
