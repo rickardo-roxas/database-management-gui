@@ -11,6 +11,11 @@
  *     ROXAS, Johan Rickardo A. - 2233375
  * </p>
  * The Fraction class.
+ * This class was made by:
+ * <p>
+ *     LACANILAO, Marvin Patrick D. -2230153
+ *     ROXAS, Johan Rickardo A. - 2233375
+ * </p>
  * A template for a fraction that has the form numerator/denominator.
  */
 
@@ -46,7 +51,7 @@ public class Fraction {
 
     /**
      * Mutator method for the numerator attribute.
-     * Sets the value of the numerator of Fraction to n.
+     * Sets the value of the numerator of Fraction to num.
      * @param num given numerator
      **/
     public void setNumerator(int num) {
@@ -65,7 +70,7 @@ public class Fraction {
 
     /**
      * Mutator method for the denominator attribute.
-     * Sets the value of the denominator of Fraction to d.
+     * Sets the value of the denominator of Fraction to den.
      * @param den given denominator.
      */
     public void setDenominator(int den) {
