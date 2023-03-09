@@ -96,9 +96,10 @@ public class Fraction {
 
     /**
      * Converts the Fraction by dividing the numerator and denominator.
+     *
      * @return reduced fraction converted to decimal
      */
-    public double toDouble() {
+    public String toDouble() {
         return (double) getNumerator() / getDenominator();
     } // end of toDouble method
 
@@ -201,6 +202,7 @@ public class Fraction {
 
     /**
      * Reduces the Fraction to its simplest form using its common greatest divisor
+     *
      * @return Fraction in its simplest form
      */
     public Fraction reduce() {

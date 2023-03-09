@@ -28,33 +28,60 @@ public class MixedFraction extends Fraction {
     /**
      * Construct a default mixed fraction with whole = 0
      */
-
-    public MixedFraction(Fraction fraction) {
-        super(fraction.getNumerator(), fraction.getDenominator());
+    public MixedFraction() {
+        super();
         wholeNumber = 0; // numerator and denominator are already from Fraction class
-    } // end of MixedFraction default constructor
+    }
 
     /**
-     * Construct a mixed fraction with a given whole number part and fraction part
+     * Constructs a mixed fraction with a given whole number part and fraction part
      * @param wholeNumber The whole number of the mixed fraction
      * @param fraction The fraction part of the mixed fraction
      */
     public MixedFraction(int wholeNumber, Fraction fraction) {
-        super(fraction.getNumerator(), fraction.getDenominator());
+        setNumerator(fraction.getNumerator());
+        setDenominator(fraction.getDenominator());
+        this.wholeNumber = wholeNumber;
+    }
+
+    /**
+     * Constructs a Mixed Fraction using the explicit whole, numerator and denominator values
+     * @param wholeNumber The whole number of the mixed fraction
+     * @param numerator The numerator of the mixed fraction
+     * @param denominator The denominator of the mixed fraction
+     */
+    public MixedFraction(int wholeNumber, int numerator, int denominator) {
+        super(numerator, denominator);
         this.wholeNumber = wholeNumber;
     } // end of MixedFraction default constructor
 
-    public MixedFraction(int wholeNumber, int numerator, int denominator) {
-    }
+    /**
+     * Constructs a Mixed Fraction using an explicit fraction value
+     * @param fraction The value of the mixed fraction without a whole number
+     */
+    public MixedFraction(Fraction fraction) {
+        super(fraction.getNumerator(), fraction.getDenominator());
+        this.wholeNumber = 0;
+    } // end of MixedFraction default constructor
 
     /**
      * Setter/Mutator Method
      * Sets the value of the whole of this mixed fraction to whole
-     * @param wholeNum The whole number to be assigned
+     * @param wholeNumber The whole number to be assigned
      */
-    public void setWholeNumber(int wholeNum) {
-        wholeNumber = wholeNum;
+    public void setWholeNumber(int wholeNumber) {
+        this.wholeNumber = wholeNumber;
     } // end of setWholeNumber mutator method
+
+    /**
+     * Setter/Mutator Method
+     * Sets the value of the numerator and denominator to fraction part
+     * @param fraction The fraction to be assigned
+     */
+    public void setFractionPart(Fraction fraction) {
+        super.setNumerator(fraction.getNumerator());
+        super.setDenominator(fraction.getDenominator());
+    } // end of setFractionPart mutator method
 
 
     /**
@@ -65,55 +92,28 @@ public class MixedFraction extends Fraction {
         return wholeNumber;
     } // end of getWholeNumber accessor method
 
-    /*
+    /**
      * Accessor/Getter Method
-     * return The fraction part of this mixed fraction
-
-    public Fraction getFractionPart(int wholeNumVal) {
-        Fraction result = new Fraction(wholeNumVal);
-        result.setNumerator(getNumerator());
-        result.setDenominator(getDenominator());
-        return result;
-    }
-    /*
-     * Accessor/Getter Method
-     * return The value of the fraction part of this mixed fraction
-
-    public Fraction toFraction(int wholeNumVal) {
-        Fraction result = new Fraction(wholeNumVal);
-        result.setNumerator(getWhole() * getDenominator() + getNumerator());
-        result.setDenominator(getDenominator());
-        return result;
-
-        */
-    /*
-     * Setter/Mutator Method
-     * Sets the value of the numerator and denominator to fraction part
-     * fraction The fraction to be assigned
-
-    public void setFractionPart(Fraction fraction) {
-        super.setNumerator(fraction.getNumerator());
-        super.setDenominator(fraction.getDenominator());
-        */
+     * @return The fraction part of this mixed fraction
+     */
+    public Fraction getFractionPart() {
+        Fraction value = new Fraction();
+        value.setNumerator(getNumerator());
+        value.setDenominator(getDenominator());
+        return value;
+    } // end of getFractionPart accessor method
 
     /**
-     * Concatenates the whole number, numerator, and denominator of Fraction.
-     * Stringifies the mixed fraction
-     * @return fraction as String
+     * Accessor/Getter Method
+     * @return The value of the fraction part of this mixed fraction
      */
-    public String toString() {
-        return getWholeNumber() + " " + getNumerator() + "/" + getDenominator();
-    } // end of toString method
+    public Fraction toFraction() {
+        Fraction value = new Fraction();
+        value.setNumerator(getWholeNumber() * getDenominator() + getNumerator());
+        value.setDenominator(getDenominator());
+        return value;
+    } // end of toFraction accessor method
 
-    /**
-     * Computes the Mixed Fraction by multiplying the whole number with the denominator and
-     * adding its product to the numerator.
-     * Converts the mixed fraction to decimal form
-     * @return mixed fraction converted to decimal
-     */
-    public double toDouble() {
-        return (double) (getNumerator() / getDenominator()) + getWholeNumber();
-    } // end of toDouble method
 
     /**
      * Takes a MixedFraction object and returns an equivalent Fraction object in improper form.
@@ -151,7 +151,6 @@ public class MixedFraction extends Fraction {
     } // end of convertToMixedNumbers method
 
     /**
-     * This method was made on 4 March 2023 by ROXAS, Johan Rickardo.
      * Adds the Fraction1 addend and Fraction2 addend.
      * Method overridden from FractionArithmetic.
      * @param addend Fraction 2
@@ -165,14 +164,16 @@ public class MixedFraction extends Fraction {
     /**
      * Adds a MixedFraction object and a Fraction object and returns a new MixedFraction object as the sum.
      * @param addend the MixedFraction object to be added
-     * @param fractionAddend the Fraction object to be added
      * @return the sum of the two numbers as a new MixedFraction object
      */
-    protected MixedFraction add(MixedFraction addend, Fraction fractionAddend) {
-        int sumWholeNumber = this.wholeNumber + addend.getWholeNumber();
-        Fraction sumFraction = add(fractionAddend);
-        MixedFraction sum = new MixedFraction(sumWholeNumber, sumFraction);
-        return sum;
+    public MixedFraction add(MixedFraction addend) {
+        MixedFraction result = new MixedFraction(); //creating a new object
+        result.setWholeNumber(getWholeNumber() + addend.getWholeNumber());
+        Fraction fPart;
+        fPart = getFractionPart().add(addend.getFractionPart());
+        result.setDenominator(fPart.getDenominator());
+        result.setNumerator(fPart.getNumerator());
+        return result;
     } // end of add method
 
     /**
@@ -190,14 +191,20 @@ public class MixedFraction extends Fraction {
      * Subtracts a MixedFraction object and a Fraction object from this MixedFraction
      * object, and returns the result as a new MixedFraction object.
      * @param subtrahend the MixedFraction object to subtract from this MixedFraction object
-     * @param fractionSubtrahend the Fraction object to subtract from this MixedFraction object
      * @return the result of the subtraction as a new MixedFraction object
      */
-    protected MixedFraction subtract(MixedFraction subtrahend, Fraction fractionSubtrahend) {
-        int differenceWholeNumber = this.wholeNumber - subtrahend.getWholeNumber();
-        Fraction differenceFraction = subtract(fractionSubtrahend);
-        MixedFraction difference = new MixedFraction(differenceWholeNumber, differenceFraction);
-        return difference;
+    public MixedFraction subtract(MixedFraction subtrahend) {
+        MixedFraction result = new MixedFraction(); //creating a new object
+        Fraction fraction1 = toFraction();
+        Fraction fraction2 = subtrahend.toFraction();
+        result.setNumerator(fraction1.getNumerator() * fraction2.getDenominator() -
+                fraction1.getDenominator() * fraction2.getNumerator());
+        result.setDenominator(fraction1.getDenominator() * fraction2.getDenominator());
+        result.setWholeNumber(result.getNumerator() / result.getDenominator());
+        result.setNumerator(result.getNumerator() - result.getWholeNumber() *
+                result.getDenominator());
+        result.setNumerator(Math.abs(result.getNumerator()));
+        return result;
     } // end of subtract method
 
     /**
@@ -215,13 +222,18 @@ public class MixedFraction extends Fraction {
      * Multiplies two MixedFraction objects and returns the result as a MixedFraction object.
      * Assumes valid input with non-negative whole number, and positive numerator and denominator values.
      * @param multiplier the first MixedFraction to multiply
-     * @param multiplicand the second MixedFraction to multiply
      * @return the product of the two MixedFraction objects as a new MixedFraction object
      */
-    protected MixedFraction multiplyBy(MixedFraction multiplier, MixedFraction multiplicand) {
-        Fraction multiplierFraction = convertToImproper(multiplier);
-        Fraction multiplicandFraction = convertToImproper(multiplicand);
-        multiplierFraction.
+    public MixedFraction multiplyBy (MixedFraction multiplier) {
+        MixedFraction result = new MixedFraction(); //creating a new object
+        Fraction fraction1 = toFraction();
+        Fraction fraction2 = multiplier.toFraction();
+        result.setNumerator(fraction1.getNumerator() * fraction2.getNumerator());
+        result.setDenominator(fraction1.getDenominator() * fraction2.getDenominator());
+        result.setWholeNumber(result.getNumerator() / result.getDenominator());
+        result.setFractionPart(new Fraction(result.getNumerator() -
+                result.getWholeNumber() * result.getDenominator(), result.getDenominator()).reduce());
+        return result;
     } // end of multiplyBy method
 
     /**
@@ -236,6 +248,24 @@ public class MixedFraction extends Fraction {
     } // end of overridden divideBy method
 
     /**
+     * Divides two MixedFraction objects and returns the result as a MixedFraction object.
+     * Assumes valid input with non-negative whole number, and positive numerator and denominator values.
+     * @param divisor  the first MixedFraction to divide
+     * @return the quotient of the two MixedFraction objects as a new MixedFraction object
+     */
+    public MixedFraction divideBy(MixedFraction divisor) {
+        MixedFraction result = new MixedFraction(); //creating a new object
+        Fraction fraction1 = toFraction();
+        Fraction fraction2 = divisor.toFraction();
+        result.setNumerator(fraction1.getNumerator() * fraction2.getDenominator());
+        result.setDenominator(fraction1.getDenominator() * fraction2.getNumerator());
+        result.setWholeNumber(result.getNumerator() / result.getDenominator());
+        result.setFractionPart(new Fraction(result.getNumerator() -
+                result.getWholeNumber() * result.getDenominator(), result.getDenominator()).reduce());
+        return result;
+    }
+
+    /**
      * Overrides the reduce method of the superclass Fraction, and returns a reduced Fraction object.
      * @return a reduced Fraction object
      */
@@ -244,81 +274,33 @@ public class MixedFraction extends Fraction {
         return super.reduce();
 
     } // end of overridden reduce method
+
+    /**
+     * Computes the Mixed Fraction by multiplying the whole number with the denominator and
+     * adding its product to the numerator.
+     * Converts the mixed fraction to decimal form
+     *
+     * @return mixed fraction converted to decimal
+     */
+    public String toDouble() {
+        Fraction result = toFraction(); //get the fraction part
+        return result.toDouble();
+        } // end of toDouble method
+
+        /**
+         * Concatenates the whole number, numerator, and denominator of Fraction.
+         * Stringifies the mixed fraction
+         * @return the mixed fraction in String form
+         */
+        public String toString() {
+            if(getWholeNumber() == 0) return super.toString();
+            String result = super.toString();
+            if(getDenominator() == 1){
+                setWholeNumber(getWholeNumber() + getNumerator());
+                return " "+getWholeNumber();
+            }
+            return(getWholeNumber()+" "+super.toString());
+
+        } // end of toString method
 } // end of class MixedFraction
 
-
-    /*
-    protected MixedFraction divideBy(MixedFraction dividend, Fraction fractionDividend) {
-        int quotientWholeNumber = this
-    }
-    */
-
-    /*
-    /**
-     * Adds two mixed fractions
-     * other An addend mixed fraction
-     * return The sum of this mixed fraction and another mixed fraction
-
-    public MixedFraction add(MixedFraction other) {
-        MixedFraction result = new MixedFraction(wholeNumVal); //creating a new object
-        result.setWholeNumber(getWholeNumber() + other.getWholeNumber());
-        Fraction fPart;
-        fPart = get().add(other.getFractionPart(wholeNumVal));
-        result.setDenominator(fPart.getDenominator());
-        result.setNumerator(fPart.getNumerator());
-        return result;
-    }
-    */
-    /*
-     * Subtracts two mixed fractions
-     * other The subtrahend mixed fraction
-     * return The difference of this mixed fraction and another mixed fraction
-
-    public MixedFraction subtract(MixedFraction other) {
-        MixedFraction result = new MixedFraction(wholeNumVal); //creating a new object
-        Fraction f1 = toFraction(wholeNumVal);
-        Fraction f2 = other.toFraction(wholeNumVal);
-        result.setNumerator(f1.getNumerator() * f2.getDenominator() -
-                f1.getDenominator() * f2.getNumerator());
-        result.setDenominator(f1.getDenominator() * f2.getDenominator());
-        result.setWholePart(result.getNumerator() / result.getDenominator());
-        result.setNumerator(result.getNumerator() - result.getWhole() *
-                result.getDenominator());
-        result.setNumerator(Math.abs(result.getNumerator()));
-        return result;
-    }
-    */
-    /*
-     * Multiplies two mixed fractions
-     * other The multiplier mixed fraction
-     * return The product of this mixed fraction and another mixed fraction
-
-    public MixedFraction multiplyBy(MixedFraction other, int wholeNumVal) {
-        MixedFraction result = new MixedFraction(wholeNumVal); // creating a new objec
-        Fraction f1 = toFraction(wholeNumVal);
-        Fraction f2 = other.toFraction(wholeNumVal);
-        result.setNumerator(f1.getNumerator() * f2.getNumerator());
-        result.setDenominator(f1.getDenominator() * f2.getDenominator());
-        result.setWholePart(result.getNumerator() / result.getDenominator());
-        result.setFractionPart(new Fraction(result.getNumerator() -
-                result.getWhole() * result.getDenominator(), result.getDenominator()).reduce());
-        return result;
-    }
-    */
-    /*
-     * Divides two mixed fractions
-     * other The divisor mixed fraction
-     * return The quotient of this mixed fraction and another mixed fraction
-     *
-    public MixedFraction divideBy(MixedFraction other, int wholeNumVal) {
-        MixedFraction result = new MixedFraction(wholeNumVal); //creating a new object
-        Fraction f1 = toFraction(wholeNumVal);
-        Fraction f2 = other.toFraction(wholeNumVal);
-        result.setNumerator(f1.getNumerator() * f2.getDenominator());
-        result.setDenominator(f1.getDenominator() * f2.getNumerator());
-        result.setWholePart(result.getNumerator() / result.getDenominator());
-        result.setFractionPart(new Fraction(result.getNumerator() - result.getWhole() *
-                result.getDenominator(), result.getDenominator()).reduce(wholeNumVal));
-        return result;
-    }
-    */
