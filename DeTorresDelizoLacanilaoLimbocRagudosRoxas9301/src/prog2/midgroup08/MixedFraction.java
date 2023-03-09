@@ -135,18 +135,14 @@ public class MixedFraction extends Fraction {
      * @param improperFraction the 'Fraction' object to be converted to a 'MixedFraction' object
      * @return the resulting 'MixedFraction' object
      */
-
     public MixedFraction convertToMixedNumbers(Fraction improperFraction) {
         int wholeNumber = 0;
         int numerator = improperFraction.getNumerator();
         int denominator = improperFraction.getDenominator();
-
         wholeNumber = numerator / denominator;
         numerator = numerator % denominator;
-
         Fraction fraction = new Fraction(numerator, denominator);
         MixedFraction mixedNumbers = new MixedFraction(wholeNumber, fraction);
-
         return mixedNumbers;
     } // end of convertToMixedNumbers method
 
@@ -263,7 +259,7 @@ public class MixedFraction extends Fraction {
         result.setFractionPart(new Fraction(result.getNumerator() -
                 result.getWholeNumber() * result.getDenominator(), result.getDenominator()).reduce());
         return result;
-    }
+    } // end of divideBy method
 
     /**
      * Overrides the reduce method of the superclass Fraction, and returns a reduced Fraction object.
@@ -300,7 +296,6 @@ public class MixedFraction extends Fraction {
                 return " "+getWholeNumber();
             }
             return(getWholeNumber()+" "+super.toString());
-
         } // end of toString method
 } // end of class MixedFraction
 
