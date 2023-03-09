@@ -23,7 +23,7 @@ import edu.slu.prog2.pregroup08.Fraction;
 public class MixedFraction extends Fraction {
 
     // object field
-    private int wholeNumber; // holds the whole number for MixedFraction
+    private int wholeNumber; // holds the whole number for MixedFraction class
 
     /**
      * Construct a default mixed fraction with whole = 0
