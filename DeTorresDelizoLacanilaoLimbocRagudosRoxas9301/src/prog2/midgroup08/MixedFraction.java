@@ -74,7 +74,7 @@ public class MixedFraction extends Fraction {
     } // end of setWholeNumber mutator method
 
     /**
-     * Setter/Mutator Methodd
+     * Setter/Mutator Method
      * Sets the value of the numerator and denominator to fraction part
      * @param fraction The fraction to be assigned
      */
