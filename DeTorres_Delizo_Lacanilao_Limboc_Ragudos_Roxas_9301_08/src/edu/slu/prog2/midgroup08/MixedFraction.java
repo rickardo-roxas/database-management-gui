@@ -16,9 +16,9 @@
  *     RAGUDOS, Hannah T.- 2233361
  */
 
-package prog2.midgroup08;
+package edu.slu.prog2.midgroup08;
 
-import prog2.pregroup08.Fraction;
+import edu.slu.prog2.pregroup08.Fraction;
 
 public class MixedFraction extends Fraction {
 
@@ -278,7 +278,7 @@ public class MixedFraction extends Fraction {
      *
      * @return mixed fraction converted to decimal
      */
-    public String toDouble() {
+    public double toDouble() {
         Fraction result = toFraction(); //get the fraction part
         return result.toDouble();
         } // end of toDouble method

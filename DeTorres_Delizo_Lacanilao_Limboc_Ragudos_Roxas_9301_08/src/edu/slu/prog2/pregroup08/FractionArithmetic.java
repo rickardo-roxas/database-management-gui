@@ -165,7 +165,7 @@
  * </p>
  */
 
-package prog2.pregroup08;
+package edu.slu.prog2.pregroup08;
 
 import javax.swing.*;
 import java.lang.*;

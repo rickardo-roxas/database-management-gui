@@ -14,7 +14,7 @@
  * An exception that throws when a Fraction's numerator is null.
  * The default constructed Fraction will be instantiated.
  */
-package prog2.pregroup08;
+package edu.slu.prog2.pregroup08;
 
 import javax.swing.*;
 public class NoNumeratorException extends RuntimeException {

@@ -14,7 +14,7 @@
  * An exception that throws when a Fraction's denominator is null.
  * The default constructed Fraction will be instantiated.
  */
-package prog2.pregroup08;
+package edu.slu.prog2.pregroup08;
 
 import javax.swing.*;
 

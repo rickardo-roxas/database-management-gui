@@ -19,7 +19,7 @@
  * A template for a fraction that has the form numerator/denominator.
  */
 
-package prog2.pregroup08;
+package edu.slu.prog2.pregroup08;
 
 public class Fraction {
     public int numerator; // holds the numerator for Fraction
@@ -99,7 +99,7 @@ public class Fraction {
      *
      * @return reduced fraction converted to decimal
      */
-    public String toDouble() {
+    public double toDouble() {
         return (double) getNumerator() / getDenominator();
     } // end of toDouble method
 
