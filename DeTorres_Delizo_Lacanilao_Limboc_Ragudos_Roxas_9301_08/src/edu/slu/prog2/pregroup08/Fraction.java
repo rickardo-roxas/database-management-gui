@@ -149,7 +149,7 @@ public class Fraction {
      * @param subtrahend Fraction 2
      * @return simplified difference of Fraction 1 and Fraction 2
      */
-    protected Fraction subtract(Fraction subtrahend) {
+    public Fraction subtract(Fraction subtrahend) {
         int lCM = computeLCM(getDenominator(), subtrahend.getDenominator()); // least common multiple
         int differenceDenominator = lCM; // sets denominator of difference as the least common multiple
         int differenceNumerator = (lCM / this.denominator) * (this.numerator) -
@@ -163,7 +163,7 @@ public class Fraction {
      * @param multiplicand Fraction 2
      * @return simplified product of Fraction 1 and Fraction 2
      */
-    protected Fraction multiplyBy(Fraction multiplicand) {
+    public Fraction multiplyBy(Fraction multiplicand) {
         int productDenominator = this.denominator * multiplicand.getDenominator();
         int productNumerator = this.numerator * multiplicand.getNumerator();
         Fraction product = new Fraction(productNumerator, productDenominator);
