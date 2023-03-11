@@ -291,19 +291,30 @@ public class MixedFraction extends Fraction {
         return result.toDouble();
         } // end of toDouble method
 
-        /**
-         * Concatenates the whole number, numerator, and denominator of Fraction.
-         * Stringifies the mixed fraction
-         * @return the mixed fraction in String form
-         */
-        public String toString() {
-            if(getWholeNumber() == 0) return super.toString();
-            String result = super.toString();
-            if(getDenominator() == 1){
-                setWholeNumber(getWholeNumber() + getNumerator());
-                return " "+getWholeNumber();
-            }
-            return(getWholeNumber()+" "+super.toString());
-        } // end of toString method
+
+    /**
+     * Concatenates the whole number, numerator, and denominator of Fraction.
+     * Returns a string representation of this mixed fraction.
+     * @return a string representation of this mixed fraction
+     */
+    @Override
+    public String toString() {
+        String result;
+        if (getNumerator() == 0) {
+            result = Integer.toString(wholeNumber);
+        } else if (Math.abs(wholeNumber) > 0) {
+            result = wholeNumber + "_" + getFractionPart().toString();
+        } else {
+            result = super.toString();
+        }
+
+        // wholeNumEval type of code
+        if (getNumerator() >= getDenominator()) {
+            int wholeNum = getNumerator() / getDenominator();
+            int newNum = getNumerator() % getDenominator();
+            result = wholeNum + "_" + new MixedFraction(new Fraction(newNum, getDenominator())).toString();
+        }
+        return result;
+    } // end of toString method
 } // end of class MixedFraction
 
