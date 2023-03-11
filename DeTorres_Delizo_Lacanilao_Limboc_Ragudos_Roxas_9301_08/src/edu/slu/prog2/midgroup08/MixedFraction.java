@@ -124,34 +124,56 @@ public class MixedFraction extends Fraction {
 
 
     /**
-     * Takes a MixedFraction object and returns an equivalent Fraction object in improper form.
-     * Assumes valid input with non-negative whole number, and positive numerator and denominator values.
-     * @param mixedFraction the mixed fraction to convert
-     * @return an equivalent Fraction object in improper form
+     * Converts the given improper fraction string to a mixed fraction string.
+     * @param mixedFraction the improper fraction string to be converted to a mixed fraction string
+     * @return the resulting mixed fraction string
+     * @throws IllegalArgumentException if the given string is not a valid improper fraction
      */
-    public Fraction convertToImproper(MixedFraction mixedFraction) {
-        int wholeNumber = getWholeNumber();
-        int numerator = mixedFraction.getNumerator();
-        int denominator = mixedFraction.getDenominator();
-        numerator = denominator * wholeNumber + numerator;
-
-        return new Fraction(numerator,denominator);
+    public static String convertToImproper(String mixedFraction) throws IllegalArgumentException {
+        String[] parts = mixedFraction.split("/");
+        if (parts.length != 2) {
+            throw new IllegalArgumentException("Invalid fraction: " + mixedFraction);
+        }
+        try {
+            int wholeNumber = Integer.parseInt(parts[0]);
+            int numerator = Integer.parseInt(parts[1]);
+            int denominator = 1;
+            if (wholeNumber < 0) {
+                numerator *= -1;
+            }
+            numerator += (Math.abs(wholeNumber) * denominator);
+            return numerator + "/" + denominator;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Invalid fraction: " + mixedFraction, e);
+        }
     } // end of convertToImproper method
 
     /**
-     * Converts the given 'Fraction' object to a 'MixedFraction' object.
-     * @param improperFraction the 'Fraction' object to be converted to a 'MixedFraction' object
-     * @return the resulting 'MixedFraction' object
+     * Converts the given improper fraction string to a mixed fraction string.
+     * @param improperFraction the improper fraction string to be converted to a mixed fraction string
+     * @return the resulting mixed fraction string
+     * @throws IllegalArgumentException if the given string is not a valid improper fraction or if the denominator is zero
      */
-    public MixedFraction convertToMixedNumbers(Fraction improperFraction) {
-        int wholeNumber = 0;
-        int numerator = improperFraction.getNumerator();
-        int denominator = improperFraction.getDenominator();
-        wholeNumber = numerator / denominator;
-        numerator = numerator % denominator;
-        Fraction fraction = new Fraction(numerator, denominator);
-        MixedFraction mixedNumbers = new MixedFraction(wholeNumber, fraction);
-        return mixedNumbers;
+    public static String convertToMixedNumbers(String improperFraction) throws IllegalArgumentException {
+        String[] parts = improperFraction.split("/");  // split the fraction into numerator and denominator
+        if (parts.length != 2) {  // check that the fraction is in the correct format
+            throw new IllegalArgumentException("Invalid fraction format: " + improperFraction);
+        }
+        int numerator = Integer.parseInt(parts[0]);
+        int denominator = Integer.parseInt(parts[1]);
+
+        if (denominator == 0) {  // check for division by zero
+            throw new IllegalArgumentException("Cannot divide by zero.");
+        }
+
+        int wholeNumber = numerator / denominator;
+        int remainder = numerator % denominator;
+
+        if (remainder == 0) {  // check for whole number fraction
+            return Integer.toString(wholeNumber);
+        } else {
+            return wholeNumber + " " + Math.abs(remainder) + "/" + denominator;
+        }
     } // end of convertToMixedNumbers method
 
     /**
