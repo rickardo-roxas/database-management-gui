@@ -45,15 +45,22 @@ public class MixedFraction extends Fraction {
     }
 
     /**
-     * Constructs a Mixed Fraction using the explicit whole, numerator and denominator values
+     * Constructs a Mixed Fraction using the explicit whole, numerator, and denominator values
      * @param wholeNumber The whole number of the mixed fraction
      * @param numerator The numerator of the mixed fraction
      * @param denominator The denominator of the mixed fraction
+     * @throws IllegalArgumentException if wholeNumber is negative or if numerator and denominator have different signs
      */
-    public MixedFraction(int wholeNumber, int numerator, int denominator) {
+    public MixedFraction(int wholeNumber, int numerator, int denominator) throws IllegalArgumentException {
         super(numerator, denominator);
+        if (wholeNumber < 0) {
+            throw new IllegalArgumentException("Whole number must be non-negative.");
+        }
+        if ((numerator >= 0 && denominator < 0) || (numerator < 0 && denominator >= 0)) {
+            throw new IllegalArgumentException("Numerator and denominator must have the same sign.");
+        }
         this.wholeNumber = wholeNumber;
-    } // end of MixedFraction default constructor
+    } // end of MixedFraction constructor
 
     /**
      * Constructs a Mixed Fraction using an explicit fraction value
@@ -63,6 +70,7 @@ public class MixedFraction extends Fraction {
         super(fraction.getNumerator(), fraction.getDenominator());
         this.wholeNumber = 0;
     } // end of MixedFraction default constructor
+
 
     /**
      * Setter/Mutator Method
@@ -179,7 +187,7 @@ public class MixedFraction extends Fraction {
      * @return the result of the subtraction as a Fraction object
      */
     @Override
-    protected Fraction subtract(Fraction subtrahend) {
+    public Fraction subtract(Fraction subtrahend) {
         return super.subtract(subtrahend);
     } // end of overridden subtract method
 
@@ -210,7 +218,7 @@ public class MixedFraction extends Fraction {
      * @return a Fraction object that is the product of this Fraction and the given multiplicand
      */
     @Override
-    protected Fraction multiplyBy(Fraction multiplicand) {
+    public Fraction multiplyBy(Fraction multiplicand) {
         return super.multiplyBy(multiplicand);
     } // end of overridden multiplyBy method
 
