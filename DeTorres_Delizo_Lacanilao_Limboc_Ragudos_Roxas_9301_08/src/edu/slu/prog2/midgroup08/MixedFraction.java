@@ -333,7 +333,8 @@ public class MixedFraction extends Fraction {
         // wholeNumEval type of code
 
 
-        /* This code block is checking if the fraction is an improper fraction (where the numerator is greater than or equal to the denominator), and if so, it converts it into a mixed fraction format. 
+        /**
+        *This code block is checking if the fraction is an improper fraction (where the numerator is greater than or equal to the denominator), and if so, it converts it into a mixed fraction format. 
         *It does this by calculating the whole number portion of the mixed fraction and the new numerator (the remainder) after dividing the numerator by the denominator. 
         *It then creates a new MixedFraction object using the new numerator and the original denominator, and converts it to a string to be concatenated with the whole number portion and an underscore. 
         */
