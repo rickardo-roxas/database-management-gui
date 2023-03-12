@@ -7,11 +7,17 @@ import edu.slu.prog2.pregroup08.NoNumeratorException;
 import javax.swing.*;
 import java.util.InputMismatchException;
 
-/* Fraction calculator that allows users to perform basic arithmetic operations on fractions (i.e., addition, subtraction, multiplication, and division). The program uses a Fraction class to represent fractions, and it includes methods for reducing fractions and converting them to decimal form.
+/* 
+Fraction calculator that allows users to perform basic arithmetic operations on 
+fractions (i.e., addition, subtraction, multiplication, and division). 
+The program uses a Fraction class to represent fractions, and it includes methods for reducing fractions and converting them to decimal form.
 
-The program starts by introducing the user to the program and then displays a menu of options for performing various operations on fractions. The user can choose to input values for two fractions, add or subtract the two fractions, multiply or divide them, reduce either fraction or both fractions, or exit the program.
+The program starts by introducing the user to the program and then 
+displays a menu of options for performing various operations on fractions. 
+The user can choose to input values for two fractions, add or subtract the two fractions, multiply or divide them, reduce either fraction or both fractions, or exit the program.
 
-The program uses a switch statement to handle the user's input and performs the appropriate operation based on the user's choice. It also includes methods for displaying the results of the operations in both fraction and decimal form, as well as showing the solution to the user.
+The program uses a switch statement to handle the user's input and performs the appropriate operation based on the user's choice. 
+It also includes methods for displaying the results of the operations in both fraction and decimal form, as well as showing the solution to the user.
 */
 
 public class FractionTester {
