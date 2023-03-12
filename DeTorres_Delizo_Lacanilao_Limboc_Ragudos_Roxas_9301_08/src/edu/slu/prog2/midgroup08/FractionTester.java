@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.util.InputMismatchException;
 
 /**
-Fraction calculator that allows users to perform basic arithmetic operations on 
+Fraction Tester that allows users to perform basic arithmetic operations on 
 fractions (i.e., addition, subtraction, multiplication, and division). 
 The program uses a Fraction class to represent fractions, and it includes methods for reducing fractions and converting them to decimal form.
 
