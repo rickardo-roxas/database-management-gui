@@ -64,19 +64,74 @@ public class MixedFraction extends Fraction {
         super(fraction.numerator, fraction.denominator);
     } // end of MixedFraction constructor
 
+    /**
+     * Mutator method for the whole number attribute.
+     * Sets the value of the whole number of MixedFraction to given whole number
+     * @param wholeNumber given whole number.
+     */
     public void setWholeNumber(int wholeNumber) {
         this.wholeNumber = wholeNumber;
     } // end of setWholeNumber mutator method
 
+    /**
+     * Mutator method for Fraction.
+     * Sets the value of the numerator and denominator of Fraction.
+     * @param fraction given Fraction
+     */
     public void setFractionPart(Fraction fraction) {
-
+        super.setNumerator(fraction.numerator); // invokes setNumerator of the parent class
+        super.setDenominator(fraction.denominator); // invokes setDenominator of the parent class
     } // end of setFractionPart mutator method
 
+    /**
+     * Accessor method for the whole number attribute.
+     * Returns the value of the whole number of MixedFraction.
+     * @return value/state of whole number.
+     */
     public int getWholeNumber() {
         return wholeNumber;
     } // end of getWholeNumber accessor method
 
+    /**
+     * Accessor method for Fraction.
+     * Returns the respective value of numerator and denominator of Fraction.
+     * @return value/state of whole number
+     */
     public Fraction getFractionPart() {
-        return
-    }
+        Fraction fraction = new Fraction();
+        fraction.numerator = getNumerator();
+        fraction.denominator = getDenominator();
+        return fraction;
+    } // end of getFractionPart accessor method
+
+    /**
+     * Converts the MixedFraction to an improper fraction in the form:
+     * <p>
+     *     wholeNumber numerator/denominator = numerator/denominator.
+     * </p>
+     * Formula:
+     * <p>
+     *     numerator = (whole number * denominator) + numerator
+     * </p>
+     * @return improper from Fraction of MixedFraction
+     */
+    public Fraction toFraction() {
+        MixedFraction mixedFraction = new MixedFraction(); // instantiates new MixedFraction
+        Fraction fraction = new Fraction(); // instantiates new Fraction
+
+        int wholeNumber = mixedFraction.getWholeNumber(); // gets the whole number of mixedFraction
+        int numerator = mixedFraction.getNumerator(); // gets the numerator of mixedFraction
+        int denominator = mixedFraction.getDenominator(); // gets the denominator of mixedFraction
+
+        numerator = (wholeNumber * denominator) + numerator; // computes for the numerator of Fraction
+        fraction.setNumerator(numerator); // sets the numerator of Fraction
+        fraction.setDenominator(denominator); // sets the denominator of Fraction
+
+        return fraction;
+    } // end of toFraction method
+
+    public MixedFraction add(MixedFraction addend) {
+        int sumWholeNumber = this.wholeNumber + addend.getWholeNumber();
+        Fraction
+    } // end of overriden add method
 } // end of class MixedFraction
