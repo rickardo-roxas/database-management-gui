@@ -7,6 +7,7 @@
     </constraints>
     <properties>
       <background color="-210789"/>
+      <foreground color="-16777216"/>
     </properties>
     <border type="none"/>
     <children>
@@ -15,6 +16,8 @@
           <grid row="10" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-41054"/>
+          <foreground color="-210789"/>
           <text value="DELETE"/>
         </properties>
       </component>
@@ -23,6 +26,8 @@
           <grid row="11" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-41054"/>
+          <foreground color="-210789"/>
           <text value="EXIT"/>
         </properties>
       </component>
@@ -125,6 +130,8 @@
           <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-41054"/>
+          <foreground color="-1"/>
           <text value="MULTIPLY"/>
         </properties>
       </component>
@@ -133,6 +140,8 @@
           <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <background color="-41054"/>
+          <foreground color="-1"/>
           <text value="DIVIDE"/>
         </properties>
       </component>
@@ -144,6 +153,8 @@
           </grid>
         </constraints>
         <properties>
+          <background color="-41054"/>
+          <foreground color="-1"/>
           <text value="ADD"/>
         </properties>
       </component>
@@ -155,6 +166,8 @@
           </grid>
         </constraints>
         <properties>
+          <background color="-41054"/>
+          <foreground color="-1"/>
           <text value="SUBTRACT"/>
         </properties>
       </component>
