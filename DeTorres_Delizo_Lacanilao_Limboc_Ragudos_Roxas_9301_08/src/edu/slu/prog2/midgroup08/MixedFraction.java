@@ -42,7 +42,7 @@ public class MixedFraction extends Fraction {
         setNumerator(fraction.getNumerator());
         setDenominator(fraction.getDenominator());
         this.wholeNumber = wholeNumber;
-    }
+    } // end of MixedFraction constructor
 
     /**
      * Constructs a Mixed Fraction using the explicit whole, numerator, and denominator values
@@ -55,10 +55,9 @@ public class MixedFraction extends Fraction {
         super(numerator, denominator);
         if (wholeNumber < 0) {
             throw new IllegalArgumentException("Whole number must be non-negative.");
-        }
-        if ((numerator >= 0 && denominator < 0) || (numerator < 0 && denominator >= 0)) {
+        } else if ((numerator >= 0 && denominator < 0) || (numerator < 0 && denominator >= 0)) {
             throw new IllegalArgumentException("Numerator and denominator must have the same sign.");
-        }
+        } // end of if-else
         this.wholeNumber = wholeNumber;
     } // end of MixedFraction constructor
 
@@ -90,7 +89,6 @@ public class MixedFraction extends Fraction {
         super.setNumerator(fraction.getNumerator());
         super.setDenominator(fraction.getDenominator());
     } // end of setFractionPart mutator method
-
 
     /**
      * Accessor/Getter Method
@@ -193,13 +191,13 @@ public class MixedFraction extends Fraction {
      * @return the sum of the two numbers as a new MixedFraction object
      */
     public MixedFraction add(MixedFraction addend) {
-        MixedFraction result = new MixedFraction(); //creating a new object
-        result.setWholeNumber(getWholeNumber() + addend.getWholeNumber());
+        MixedFraction sum = new MixedFraction(); //creating a new object
+        sum.setWholeNumber(getWholeNumber() + addend.getWholeNumber());
         Fraction fPart;
         fPart = getFractionPart().add(addend.getFractionPart());
-        result.setDenominator(fPart.getDenominator());
-        result.setNumerator(fPart.getNumerator());
-        return result;
+        sum.setDenominator(fPart.getDenominator());
+        sum.setNumerator(fPart.getNumerator());
+        return sum;
     } // end of add method
 
     /**
