@@ -132,6 +132,8 @@ public class MixedFraction extends Fraction {
 
     public MixedFraction add(MixedFraction addend) {
         int sumWholeNumber = this.wholeNumber + addend.getWholeNumber();
-        Fraction
+        //Fraction
+        MixedFraction bla = new MixedFraction();
+        return bla;
     } // end of overriden add method
 } // end of class MixedFraction
