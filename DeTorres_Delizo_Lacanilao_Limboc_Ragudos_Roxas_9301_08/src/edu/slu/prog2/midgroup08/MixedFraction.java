@@ -1,4 +1,3 @@
-// Duplicate class to clean up MixedFraction class
 /**
  * Group 8
  * Class Code and Course Number: CS 122
