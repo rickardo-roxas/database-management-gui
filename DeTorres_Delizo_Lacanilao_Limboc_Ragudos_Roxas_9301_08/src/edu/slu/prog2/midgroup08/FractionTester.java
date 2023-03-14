@@ -33,16 +33,28 @@ public class FractionTester {
         runGUI();
     } // end of main method
 
+    /** This method is responsible for running the GUIFractionCalculator.
+     * It creates an instance of the GUIFractionCalculator and calls its constructor to create the GUI.
+     * There are no input parameters, and the method does not return anything.
+     */
     public static void runGUI() {
         GUIFractionCalculator guiFractionCalculator = new GUIFractionCalculator();
     } // end of runGUI method
 
+    /**
+     * This method reads and accepts user input of a mixed fraction and returns it.
+     * @return MixedFraction object with user-given whole number, numerator, and denominator.
+     */
     public static MixedFraction fraction1() {
         MixedFraction fraction1;
         fraction1 = readFraction();
         return fraction1;
     } // end of fraction1 method
 
+    /**
+     * This method reads and accepts user input of a mixed fraction and returns it.
+     * @return MixedFraction object with user-given whole number, numerator, and denominator.
+     */
     public static MixedFraction fraction2() {
         MixedFraction fraction2;
         fraction2 = readFraction();
@@ -99,11 +111,10 @@ public class FractionTester {
     }
 
     /**
-
-     Converts an improper fraction to a mixed number.
-     @param improperFraction the improper fraction to convert
-     @return the mixed number as a string
-     @throws IllegalArgumentException if the input is not in the correct format
+     * Converts an improper fraction to a mixed number.
+     * @param improperFraction the improper fraction to convert
+     * @return the mixed number as a string
+     * @throws IllegalArgumentException if the input is not in the correct format
      */
     public static String convertToMixedNumbers(String improperFraction) throws IllegalArgumentException {
         String[] parts = improperFraction.split("/");
