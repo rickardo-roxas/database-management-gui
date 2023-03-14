@@ -21,6 +21,8 @@
 
 package edu.slu.prog2.pregroup08;
 
+import edu.slu.prog2.midgroup08.MixedFraction;
+
 public class Fraction {
     public int numerator; // holds the numerator for Fraction
     public int denominator; // holds the denominator for Fraction
@@ -104,6 +106,24 @@ public class Fraction {
     } // end of toDouble method
 
     /**
+     * Converts a Fraction to MixedFraction.
+     * Fraction must be an improper fraction for this method to work properly.
+     * @return Fraction in mixed number form (n a/b)
+     */
+    public MixedFraction toMixedFraction() {
+
+        int wholeNumber = 0; // to hold whole number of MixedFraction
+        int numerator = this.getNumerator(); // numerator from Mixed Fraction
+        int denominator = this.getDenominator(); // denominator from Mixed Fraction
+
+        wholeNumber = numerator / denominator;
+        numerator = numerator % denominator;
+
+        MixedFraction mixedFraction = new MixedFraction(wholeNumber, numerator, denominator);
+        return mixedFraction;
+    } // end of toMixedFraction method
+
+    /**
      * Computes for the greatest common divisor of two numbers.
      * This method uses the Euclid's Algorithm and iteration:
      * <p>
@@ -172,7 +192,7 @@ public class Fraction {
 
     /**
      * Divides the Fraction dividend by the Fraction divisor.
-     * @param dividend second Fraction
+     * @param dividend Fraction 2
      * @return simplified quotient of Fraction 1 and Fraction 2
      */
     public Fraction divideBy(Fraction dividend) {
