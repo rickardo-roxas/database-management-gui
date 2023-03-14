@@ -1,6 +1,6 @@
 /**
  * Group 8
- * Class Code and Course Number: CS 122
+ * Class Code and Course Number: 9301 - CS 122
  * Schedule: TF 9:00 - 10:30 AM
  * <p>
  *     LACANILAO, Marvin Patrick D. - 2230153
