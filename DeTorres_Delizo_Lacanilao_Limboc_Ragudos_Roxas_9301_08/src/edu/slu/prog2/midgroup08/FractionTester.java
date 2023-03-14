@@ -30,10 +30,12 @@ public class FractionTester {
      */
     public static void main(String[] args) {
         showIntroduction(); // introduces the user to the program
-        runGUI();
+        fraction1();
+        // runGUI();
     } // end of main method
 
-    /** This method is responsible for running the GUIFractionCalculator.
+    /**
+     * This method is responsible for running the GUIFractionCalculator.
      * It creates an instance of the GUIFractionCalculator and calls its constructor to create the GUI.
      * There are no input parameters, and the method does not return anything.
      */
@@ -82,15 +84,13 @@ public class FractionTester {
         } catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e) {
             System.out.println("Invalid input. Please try again.");
             return readFraction();
-        }
-    }
+        } // end of readFraction method
 
-    /**
+    /*
      * Converts a mixed fraction to an improper fraction.
      * @param mixedFraction the mixed fraction to convert
      * @return the improper fraction as a string
      * @throws IllegalArgumentException if the input is not in the correct format
-     */
     public static String convertToImproper(String mixedFraction) throws IllegalArgumentException {
         String[] parts = mixedFraction.split("/");
         if (parts.length != 2) {
@@ -115,7 +115,7 @@ public class FractionTester {
      * @param improperFraction the improper fraction to convert
      * @return the mixed number as a string
      * @throws IllegalArgumentException if the input is not in the correct format
-     */
+
     public static String convertToMixedNumbers(String improperFraction) throws IllegalArgumentException {
         String[] parts = improperFraction.split("/");
         if (parts.length != 2) {
@@ -135,4 +135,6 @@ public class FractionTester {
             throw new IllegalArgumentException("Invalid fraction: " + improperFraction);
         }
     } // end of readFraction method
+     */
+    }
 } // end of class FractionTester
