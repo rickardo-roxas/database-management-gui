@@ -18,7 +18,6 @@
  * </p>
  * A template for a fraction that has the form numerator/denominator.
  */
-
 package edu.slu.prog2.pregroup08;
 
 import edu.slu.prog2.midgroup08.MixedFraction;

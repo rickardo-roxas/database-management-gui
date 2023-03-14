@@ -17,9 +17,9 @@ package edu.slu.prog2.midgroup08;
 
 import javax.swing.*;
 import java.lang.*;
+
 public class FractionTester {
-    // TO DO by:
-    // ROXAS, Johan Rickardo
-    // LACANILAO, Patrick
-    // DE TORRES, John Rey
+    public static void main(String[] args) {
+
+    } // end of main method
 } // end of class FractionTester
