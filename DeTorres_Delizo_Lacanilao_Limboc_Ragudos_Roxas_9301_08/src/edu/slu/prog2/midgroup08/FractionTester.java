@@ -19,7 +19,9 @@ import javax.swing.*;
 import java.lang.*;
 import java.util.Scanner;
 
-public class FractionTester extends GUIFractionCalculator {
+import static edu.slu.prog2.pregroup08.FractionArithmetic.showIntroduction;
+
+public class FractionTester {
     static String inputString = ""; // static object of String for user input
     static Scanner keyboard = new Scanner(System.in); // static Scanner object of keyboard
     /**
@@ -27,8 +29,13 @@ public class FractionTester extends GUIFractionCalculator {
      * @param args command line arguments
      */
     public static void main(String[] args) {
-        readFraction();
+        showIntroduction(); // introduces the user to the program
+        runGUI();
     } // end of main method
+
+    public static void runGUI() {
+        GUIFractionCalculator guiFractionCalculator = new GUIFractionCalculator();
+    } // end of runGUI method
 
     public static MixedFraction fraction1() {
         MixedFraction fraction1;
@@ -47,6 +54,7 @@ public class FractionTester extends GUIFractionCalculator {
      * @return Mixed Fraction with user given whole number, numerator, and denominator.
      */
     public static MixedFraction readFraction() {
-
+        MixedFraction mixedFraction = new MixedFraction();
+        return mixedFraction;
     } // end of readFraction method
 } // end of class FractionTester

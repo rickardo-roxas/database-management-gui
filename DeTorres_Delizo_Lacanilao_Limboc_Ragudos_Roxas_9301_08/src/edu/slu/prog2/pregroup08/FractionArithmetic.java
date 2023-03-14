@@ -243,7 +243,7 @@ public class FractionArithmetic {
     /**
      * Introduces the user to the program
      */
-    static void showIntroduction() {
+    public static void showIntroduction() {
         JDialog.setDefaultLookAndFeelDecorated(true);
 
         // first page
@@ -360,6 +360,5 @@ public class FractionArithmetic {
 
     protected static void showUserChoice(int userChoice) {
         System.out.println("User choice: " + userChoice);
-
     } // end of showUserChoice method
 } // end of class FractionTester

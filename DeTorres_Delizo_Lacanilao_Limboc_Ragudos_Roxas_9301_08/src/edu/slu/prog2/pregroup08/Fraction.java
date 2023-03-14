@@ -118,6 +118,10 @@ public class Fraction {
         wholeNumber = numerator / denominator;
         numerator = numerator % denominator;
 
+        if (numerator == 0) {
+
+        }
+
         MixedFraction mixedFraction = new MixedFraction(wholeNumber, numerator, denominator);
         return mixedFraction;
     } // end of toMixedFraction method
