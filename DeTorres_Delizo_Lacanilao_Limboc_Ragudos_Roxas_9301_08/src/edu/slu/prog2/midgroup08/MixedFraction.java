@@ -130,8 +130,126 @@ public class MixedFraction extends Fraction {
         return fraction;
     } // end of toFraction method
 
+    /**
+     * Concatenates the attributes of MixedFraction to String.
+     * String form:
+     * <p>
+     *     wholeNumber numerator/denominator
+     * </p>
+     * @return mixed number
+     */
+    public String toString() {
+        return getWholeNumber() + " " + getNumerator() + "/" + getDenominator();
+    } // end of overridden toString method
+
+    /**
+     * Converts MixedFraction to decimal.
+     * MixedFraction is converted to
+     * @return MixedFraction as decimal
+     */
+    public double toDouble() {
+        int wholeNumber = this.wholeNumber;
+        double decimal = getNumerator() / getDenominator();
+        return (double) wholeNumber + decimal;
+    } // end of overridden toDouble method
+
+    /**
+     * Adds the Fraction1 addend and Fraction2 addend.
+     * Method from Fraction class.
+     * @param addend Fraction 2
+     * @return simplified sum of Fraction1 and Fraction2
+     */
+    @Override
+    public Fraction add(Fraction addend) {
+        return super.add(addend);
+    } // end of add method
+
+    /**
+     * Adds the MixedFraction addend to the MixedFraction addend.
+     * MixedFraction1 and MixedFraction2 are converted to improper fractions.
+     * Invokes the Override add method from Fraction class.
+     * @param addend MixedFraction 2
+     * @return sum in mixed number form.
+     */
     public MixedFraction add(MixedFraction addend) {
-        int sumWholeNumber = this.wholeNumber + addend.getWholeNumber();
-        Fraction
-    } // end of overriden add method
+        Fraction fraction1 = this.toFraction(); // converts MixedFraction1 to improper fraction
+        Fraction fraction2 = addend.toFraction(); // converts MixedFraction2 to improper fraction
+        Fraction sum = fraction1.add(fraction2); // invokes add method from Fraction class
+        return sum.toMixedFraction(); // converts sum to mixed number
+    } // end of overridden add method
+
+    /**
+     * Subtracts Fraction1 and Fraction2 using the subtract method from Fraction class
+     * Method from Fraction class.
+     * @param subtrahend Fraction 2
+     * @return simplified/reduced difference of Fraction1 and Fraction2
+     */
+    @Override
+    public Fraction subtract(Fraction subtrahend) {
+        return super.subtract(subtrahend);
+    } // end of subtract method
+
+    /**
+     * Subtracts the MixedFraction minuend to the MixedFraction subtrahend.
+     * MixedFraction1 and MixedFraction2 are converted to improper fractions.
+     * Invokes the Override subtract method from Fraction class.
+     * @param subtrahend MixedFraction2.
+     * @return difference in mixed number form.
+     */
+    public MixedFraction subtract(MixedFraction subtrahend) {
+        Fraction fraction1 = this.toFraction(); // converts MixedFraction1 to improper fraction
+        Fraction fraction2 = subtrahend.toFraction(); // converts MixedFraction2 to improper fraction
+        Fraction difference = fraction1.subtract(fraction2); // invokes add method from Fraction class
+        return difference.toMixedFraction(); // converts difference to mixed number
+    } // end of overridden subtract method
+
+    /**
+     * Multiplies the Fraction multiplier by the Fraction multiplicand.
+     * Method from Fraction class.
+     * @param multiplicand Fraction 2
+     * @return simplified product of Fraction1 and Fraction2
+     */
+    @Override
+    public Fraction multiplyBy(Fraction multiplicand) {
+        return super.multiplyBy(multiplicand);
+    } // end of multiplyBy method
+
+    /**
+     * Multiplies the MixedFraction multiplier to the MixedFraction multiplicand.
+     * MixedFraction1 and MixedFraction2 are converted to improper fractions.
+     * Invokes the Override multiplyBy method from Fraction class.
+     * @param multiplicand MixedFraction2.
+     * @return product in mixed number form.
+     */
+    public MixedFraction multiplyBy(MixedFraction multiplicand) {
+        Fraction fraction1 = this.toFraction(); // converts MixedFraction1 to improper fraction
+        Fraction fraction2 = multiplicand.toFraction(); // converts MixedFraction2 to improper fraction
+        Fraction product = fraction1.multiplyBy(fraction2); // invokes add method from Fraction class
+        return product.toMixedFraction(); // converts difference to mixed number
+    } // end of multiplyBy overridden method
+
+    /**
+     * Divides the Fraction dividend by the Fraction divisor.
+     * Method from Fraction class.
+     * @param dividend Fraction 2
+     * @return simplified quotient of Fraction 1 and Fraction 2.
+     */
+    @Override
+    public Fraction divideBy(Fraction dividend) {
+        return super.divideBy(dividend);
+    } // end of divideBy method
+
+    /**
+     * Divides the MixedFraction divisor to the MixedFraction dividend.
+     * MixedFraction1 and MixedFraction2 are converted to improper fractions.
+     * Invokes the Override divideBy method from Fraction class.
+     * @param dividend MixedFraction2
+     * @return quotient in mixed number form.
+     */
+    public MixedFraction divideBy(MixedFraction dividend) {
+        Fraction fraction1 = this.toFraction(); // converts MixedFraction1 to improper fraction
+        Fraction fraction2 = dividend.toFraction(); // converts MixedFraction2 to improper fraction
+        Fraction quotient = fraction1.multiplyBy(fraction2); // invokes divideBy method from Fraction class
+        return quotient.toMixedFraction(); // converts quotient to mixed number
+    } // end of overridden divideBy method
 } // end of class MixedFraction
