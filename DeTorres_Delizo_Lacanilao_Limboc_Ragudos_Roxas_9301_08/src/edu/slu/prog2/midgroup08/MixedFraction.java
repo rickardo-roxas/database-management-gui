@@ -143,12 +143,16 @@ public class MixedFraction extends Fraction {
 
     /**
      * Converts MixedFraction to decimal.
-     * MixedFraction is converted to
+     * <p>
+     *     The whole number is set as it is.
+     *     The numerator is divided by the denominator.
+     *     The whole number is added to the quotient of the numerator and denominator.
+     * </p>
      * @return MixedFraction as decimal
      */
     public double toDouble() {
         int wholeNumber = this.wholeNumber;
-        double decimal = getNumerator() / getDenominator();
+        double decimal = (double) getNumerator() / getDenominator();
         return (double) wholeNumber + decimal;
     } // end of overridden toDouble method
 
