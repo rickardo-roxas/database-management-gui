@@ -146,8 +146,6 @@ public class FractionArithmetic {
             fraction.setNumerator(numerator); // mutates numerator with user given integer
             denominator = readDenominator("Denominator for " + promptMessage);
             fraction.setDenominator(denominator); // mutates denominator with user given integer
-        } catch (NoNumeratorException | NoDenominatorException noNumerator) { // no values given
-            fraction = new Fraction(); // instantiates new Fraction with default values
         } finally {
             System.out.println(promptMessage + ": " + fraction); // displays fraction in the console
         } // end of try-catch
