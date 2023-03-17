@@ -248,7 +248,7 @@ public class MixedFraction extends Fraction {
     public MixedFraction divideBy(MixedFraction dividend) {
         Fraction fraction1 = this.toFraction(); // converts MixedFraction1 to improper fraction
         Fraction fraction2 = dividend.toFraction(); // converts MixedFraction2 to improper fraction
-        Fraction quotient = fraction1.multiplyBy(fraction2); // invokes divideBy method from Fraction class
+        Fraction quotient = fraction1.divideBy(fraction2); // invokes divideBy method from Fraction class
         return quotient.toMixedFraction(); // converts quotient to mixed number
     } // end of overridden divideBy method
 } // end of class MixedFraction
