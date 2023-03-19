@@ -13,7 +13,7 @@
  * The MixedFractionCalculatorGUI
  * <p>
  *     This class represents the graphical user interface for a
- *     mixed fraction calculator. It extends the JFrame class and
+ *     simple fraction calculator. It extends the JFrame class and
  *     implements the ActionListener interface for event handling.
  * </p>
  */
