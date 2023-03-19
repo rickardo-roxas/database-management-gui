@@ -40,7 +40,7 @@ public class FractionTester {
      * There are no input parameters, and the method does not return anything.
      */
     public static void runGUI() {
-        GUIFractionCalculator guiFractionCalculator = new GUIFractionCalculator();
+        // GUIFractionCalculator guiFractionCalculator = new GUIFractionCalculator();
     } // end of runGUI method
 
     /**

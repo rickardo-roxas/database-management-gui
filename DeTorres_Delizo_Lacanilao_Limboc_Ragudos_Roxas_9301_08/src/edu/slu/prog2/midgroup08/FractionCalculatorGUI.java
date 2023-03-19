@@ -19,6 +19,8 @@
  */
 
 package edu.slu.prog2.midgroup08;
+import edu.slu.prog2.pregroup08.Fraction;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -163,10 +165,10 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
         if (parts.length == 1) {
             // Simple fraction
             String[] nums = parts[0].split("/");
-            int wholeNumber = Integer.parseInt(parts[0]);
             int numerator = Integer.parseInt(nums[0]);
             int denominator = Integer.parseInt(nums[1]);
-            return new MixedFraction(wholeNumber, numerator, denominator);
+            Fraction fraction = new Fraction(numerator, denominator);
+            return new MixedFraction(fraction);
         } else {
             // Mixed fraction
             int wholeNumber = Integer.parseInt(parts[0]);
