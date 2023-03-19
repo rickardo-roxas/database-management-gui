@@ -115,19 +115,15 @@ public class MixedFraction extends Fraction {
      * @return improper from Fraction of MixedFraction
      */
     public Fraction toFraction() {
-        MixedFraction mixedFraction = new MixedFraction(); // instantiates new MixedFraction
-        Fraction fraction = new Fraction(); // instantiates new Fraction
+        int wholeNumber = getWholeNumber();
+        int numerator = getNumerator();
+        int denominator = getDenominator();
 
-        int wholeNumber = mixedFraction.getWholeNumber(); // gets the whole number of mixedFraction
-        int numerator = mixedFraction.getNumerator(); // gets the numerator of mixedFraction
-        int denominator = mixedFraction.getDenominator(); // gets the denominator of mixedFraction
+        numerator = (wholeNumber * denominator) + numerator;
 
-        numerator = (wholeNumber * denominator) + numerator; // computes for the numerator of Fraction
-        fraction.setNumerator(numerator); // sets the numerator of Fraction
-        fraction.setDenominator(denominator); // sets the denominator of Fraction
+        return new Fraction(numerator, denominator);
+    } // end of toraction class
 
-        return fraction;
-    } // end of toFraction method
 
     /**
      * Concatenates the attributes of MixedFraction to String.
