@@ -114,25 +114,31 @@ public class MixedFraction extends Fraction {
      * </p>
      * @return improper from Fraction of MixedFraction
      */
+
     public Fraction toFraction() {
+        // Get the whole number, numerator, and denominator of the mixed fraction
         int wholeNumber = getWholeNumber();
         int numerator = getNumerator();
         int denominator = getDenominator();
 
+        // Calculate the numerator of the improper fraction
         numerator = (wholeNumber * denominator) + numerator;
 
-        return new Fraction(numerator, denominator);
-    } // end of toraction class
+        // Create a new Fraction object with the calculated numerator and denominator
+        Fraction improperFraction = new Fraction(numerator, denominator);
 
+        // Return the new Fraction object
+        return improperFraction;
+    }
 
-    /**
-     * Concatenates the attributes of MixedFraction to String.
-     * String form:
-     * <p>
-     *     wholeNumber numerator/denominator
-     * </p>
-     * @return mixed number
-     */
+        /**
+         * Concatenates the attributes of MixedFraction to String.
+         * String form:
+         * <p>
+         *     wholeNumber numerator/denominator
+         * </p>
+         * @return mixed number
+         */
     public String toString() {
         return getWholeNumber() + " " + getNumerator() + "/" + getDenominator();
     } // end of overridden toString method
