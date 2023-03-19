@@ -163,10 +163,9 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
         if (parts.length == 1) {
             // Simple fraction
             String[] nums = parts[0].split("/");
-            int wholeNumber = Integer.parseInt(parts[0]);
             int numerator = Integer.parseInt(nums[0]);
             int denominator = Integer.parseInt(nums[1]);
-            return new MixedFraction(wholeNumber, numerator, denominator);
+            return new MixedFraction(0, numerator, denominator);
         } else {
             // Mixed fraction
             int wholeNumber = Integer.parseInt(parts[0]);
