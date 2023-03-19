@@ -73,7 +73,7 @@ public class FractionCalculatorOptionalGUI extends JPanel {
         add(clearB);
         add(exitB);
 
-        //set component bounds ()
+        //set component bounds
         addB.setBounds(15, 95, 90, 60);
         subtractB.setBounds(115, 95, 90, 60);
         multiplyB.setBounds(215, 95, 90, 60);
