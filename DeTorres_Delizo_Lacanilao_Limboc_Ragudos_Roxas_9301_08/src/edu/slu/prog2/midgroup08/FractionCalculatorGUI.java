@@ -123,7 +123,7 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
                 fraction2Field.requestFocusInWindow();
             }
         });
-    }
+    } // end of FractionCalculatorGUI constructor
 
     /**
      * This method performs the appropriate operation based on the button that was clicked.
@@ -163,7 +163,7 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
             // Exit the program
             System.exit(0);
         }
-    }
+    } // end of actionPerformed
 
     /**
      * This method parses a string representation of a fraction into a MixedFraction object.
@@ -191,7 +191,7 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
             int denominator = Integer.parseInt(nums[1]);
             return new MixedFraction(wholeNumber, numerator, denominator);
         }
-    }
+    } // end of MixedFraction
 
     /**
      * The main method of the FractionCalculator program.
@@ -203,6 +203,6 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
         FractionCalculatorGUI calculator = new FractionCalculatorGUI();
         // Set the visibility of the calculator to true, so that it is displayed to the user
         calculator.setVisible(true);
-    }
-}
+    } // end of main method
+} // end of FractionCalculatorGUI class
 
