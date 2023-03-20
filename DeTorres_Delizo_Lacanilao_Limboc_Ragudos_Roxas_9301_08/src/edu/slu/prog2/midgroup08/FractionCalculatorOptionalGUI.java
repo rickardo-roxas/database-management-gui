@@ -178,6 +178,5 @@ public class FractionCalculatorOptionalGUI extends JPanel {
         frame.getContentPane().add(new FractionCalculatorOptionalGUI());
         frame.pack();
         frame.setVisible(true);
-
     } // end of main method
 } // end of FractionCalculatorOptionalGUI
