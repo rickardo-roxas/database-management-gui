@@ -28,24 +28,28 @@ import java.awt.event.*;
 
 public class FractionCalculatorGUI extends JFrame implements ActionListener {
 
+    // GUI Components
     private JTextField fraction1Field, fraction2Field, resultField;
     private JLabel fraction1Label, fraction2Label, resultLabel;
     private JButton addButton, subtractButton, multiplyButton, divideButton, clearButton, exitButton;
 
+    /**
+     * Creates a new FractionCalculatorGUI object with the specified dimensions.
+     */
     public FractionCalculatorGUI() {
+        // set frame properties
         setTitle("Fraction Calculator");
         setSize(420, 530);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
+        // set background color and icon
         getContentPane().setBackground(Color.decode("#E5E5E5"));
         Image icon = Toolkit.getDefaultToolkit().getImage("");
         setIconImage(icon);
 
 
-
-
-        // Create the labels
+        // GUI Components : Labels
         Font labelFont = new Font("Arial", Font.BOLD, 20);
         fraction1Label = new JLabel("Enter Fraction 1:");
         fraction1Label.setFont(labelFont);
@@ -54,7 +58,7 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
         resultLabel = new JLabel("Result:");
         resultLabel.setFont(labelFont);
 
-        // Create the input fields
+        // set input Fields
         Font inputFont = new Font("Arial", Font.PLAIN, 18);
         fraction1Field = new JTextField();
         fraction1Field.setFont(inputFont);
@@ -64,7 +68,7 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
         resultField.setEditable(false);
         resultField.setFont(inputFont);
 
-        // Create the buttons
+        // set buttons
         Font buttonFont = new Font("Arial", Font.BOLD, 20);
         addButton = new JButton("ADD");
         addButton.setFont(buttonFont);
@@ -91,10 +95,10 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
         exitButton.setBackground(Color.decode("#607D8B"));
         exitButton.setForeground(Color.WHITE);
 
-        // Set the layout
+        // Layout
         setLayout(new GridLayout(7, 2, 5, 5));
 
-        // Add the components to the frame
+        // Adding the components to the frame
         add(fraction1Label);
         add(fraction1Field);
         add(fraction2Label);
@@ -121,8 +125,12 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
                 fraction2Field.requestFocusInWindow();
             }
         });
-    }
+    } // end of FractionCalculatorGUI constructor
 
+    /**
+     * This method performs the appropriate operation based on the button that was clicked.
+     @param e The ActionEvent object representing the button click event.
+     */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addButton) {
             // Perform addition
@@ -157,13 +165,21 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
             // Exit the program
             System.exit(0);
         }
-    }
+    } // end of actionPerformed
 
+    /**
+     * This method parses a string representation of a fraction into a MixedFraction object.
+     * The input string can either be a simple fraction in the form "numerator/denominator"
+     * or a mixed fraction in the form "wholeNumber numerator/denominator".
+     @param fractionString the string representation of the fraction to be parsed
+     @return a MixedFraction object that represents the parsed fraction
+     */
     private MixedFraction parseFraction(String fractionString) {
         // Parse a string into a fraction
         String[] parts = fractionString.split(" ");
         if (parts.length == 1) {
             // Simple fraction
+            // Split the numerator and denominator and parse them as integers
             String[] nums = parts[0].split("/");
             int numerator = Integer.parseInt(nums[0]);
             int denominator = Integer.parseInt(nums[1]);
@@ -171,17 +187,25 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
             return new MixedFraction(fraction);
         } else {
             // Mixed fraction
+            // Parse the whole number, numerator, and denominator as integers
             int wholeNumber = Integer.parseInt(parts[0]);
             String[] nums = parts[1].split("/");
             int numerator = Integer.parseInt(nums[0]);
             int denominator = Integer.parseInt(nums[1]);
             return new MixedFraction(wholeNumber, numerator, denominator);
         }
-    }
+    } // end of MixedFraction
 
+    /**
+     * The main method of the FractionCalculator program.
+     * This method creates an instance of the FractionCalculatorGUI class and displays the GUI to the user.
+     * @param args
+     */
     public static void main(String[] args) {
+        // Create a new instance of the FractionCalculatorGUI class
         FractionCalculatorGUI calculator = new FractionCalculatorGUI();
+        // Set the visibility of the calculator to true, so that it is displayed to the user
         calculator.setVisible(true);
-    }
-}
+    } // end of main method
+} // end of FractionCalculatorGUI class
 
