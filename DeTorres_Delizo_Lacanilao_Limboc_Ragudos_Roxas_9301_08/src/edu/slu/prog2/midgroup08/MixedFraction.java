@@ -114,7 +114,6 @@ public class MixedFraction extends Fraction {
      * </p>
      * @return improper from Fraction of MixedFraction
      */
-
     public Fraction toFraction() {
         // Get the whole number, numerator, and denominator of the mixed fraction
         int wholeNumber = getWholeNumber();
@@ -129,17 +128,29 @@ public class MixedFraction extends Fraction {
 
         // Return the new Fraction object
         return improperFraction;
-    }
+    } // end of toFraction method
 
-        /**
-         * Concatenates the attributes of MixedFraction to String.
-         * String form:
-         * <p>
-         *     wholeNumber numerator/denominator
-         * </p>
-         * @return mixed number
-         */
+    /**
+     * Concatenates the attributes of MixedFraction to String.
+     * String form:
+     * <p>
+     *     wholeNumber numerator/denominator
+     * </p>
+     * @return mixed number
+     */
     public String toString() {
+        if (getWholeNumber() == 0 && getNumerator() == 0 && getDenominator() == 1)
+            return "0";
+        else if (getWholeNumber() == 0 && getNumerator() != 0 && getDenominator() == 1)
+            return String.valueOf(getNumerator());
+        else if (getWholeNumber() != 0 && getNumerator() == 0 && getDenominator() == 1)
+            return String.valueOf(getWholeNumber());
+        else if (getWholeNumber() != 0 && getNumerator() != 0 && getDenominator() == 1)
+            return String.valueOf((getWholeNumber() + getDenominator()));
+        else if (getWholeNumber() == 0 && getNumerator() != 0 && getDenominator() != 0)
+            return getNumerator() + "/" + getDenominator();
+        else if (getWholeNumber() != 0 && getNumerator() != 0 && getDenominator() == 0)
+            return "Undefined (denominator is 0)";
         return getWholeNumber() + " " + getNumerator() + "/" + getDenominator();
     } // end of overridden toString method
 
