@@ -148,9 +148,9 @@ public class MixedFraction extends Fraction {
             return String.valueOf(getWholeNumber());
         else if (getWholeNumber() != 0 && getNumerator() != 0 && getDenominator() == 1)
             return String.valueOf((getWholeNumber() + getDenominator()));
-        else if (getWholeNumber() == 0 && getNumerator() != 0 && getDenominator() != 0)
+        else if (getWholeNumber() == 0)
             return getNumerator() + "/" + getDenominator();
-        else if (getWholeNumber() != 0 && getNumerator() != 0 && getDenominator() == 0)
+        else if (getDenominator() == 0)
             return "Undefined (denominator is 0)";
         return getWholeNumber() + " " + getNumerator() + "/" + getDenominator();
     } // end of overridden toString method
