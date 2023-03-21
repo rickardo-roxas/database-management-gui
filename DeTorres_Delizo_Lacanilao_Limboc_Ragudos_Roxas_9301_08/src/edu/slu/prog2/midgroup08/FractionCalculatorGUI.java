@@ -43,7 +43,7 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         // set background color and icon
         getContentPane().setBackground(Color.decode("#E5E5E5"));
-        Image icon = Toolkit.getDefaultToolkit().getImage("");
+        Image icon = Toolkit.getDefaultToolkit().getImage("logo-gui.png");
         setIconImage(icon);
 
 
