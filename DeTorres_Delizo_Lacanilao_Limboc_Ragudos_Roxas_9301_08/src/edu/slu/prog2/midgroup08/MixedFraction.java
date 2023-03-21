@@ -136,6 +136,7 @@ public class MixedFraction extends Fraction {
      * <p>
      *     wholeNumber numerator/denominator
      * </p>
+     * This method was made by ROXAS, Johan Rickardo - 2233375
      * @return mixed number
      */
     public String toString() {
