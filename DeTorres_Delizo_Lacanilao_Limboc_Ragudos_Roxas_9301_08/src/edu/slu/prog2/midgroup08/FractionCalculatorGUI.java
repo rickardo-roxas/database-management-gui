@@ -133,7 +133,7 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addButton) {
             // Perform addition
-            MixedFraction fraction1 = parseFraction(fraction1Field.getText.().trim());
+            MixedFraction fraction1 = parseFraction(fraction1Field.getText().trim());
             MixedFraction fraction2 = parseFraction(fraction2Field.getText().trim());
             MixedFraction result = fraction1.add(fraction2);
             resultField.setText(result.toString());
@@ -192,10 +192,10 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
                 int numerator = Integer.parseInt(nums[0]);
                 int denominator = Integer.parseInt(nums[1]);
                 return new MixedFraction(wholeNumber, numerator, denominator);
-            }
-        } catch (NumberFormatException exception 1) {
-            return new MixedFraction();
-        }
+            } // end of if-else
+        } catch (NumberFormatException exception1) {
+            return new MixedFraction(); // returns fraction with default values
+        } // end of try-catch
     } // end of MixedFraction
 
     /**
