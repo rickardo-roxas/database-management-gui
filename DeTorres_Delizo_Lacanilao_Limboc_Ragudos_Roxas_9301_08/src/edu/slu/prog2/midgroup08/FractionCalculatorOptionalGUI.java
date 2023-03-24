@@ -32,6 +32,15 @@ public class FractionCalculatorOptionalGUI extends JPanel {
     private final JTextField secondDenominator;
     private final JTextField result;
 
+    /**
+     * This class represents the GUI components of a Fraction Calculator application.
+     * It contains buttons for addition, subtraction, multiplication, and division,
+     * labels for fractions and their numerators/denominators, and text fields for user
+     * input and result display. Additionally, it contains buttons for clearing the input\
+     * fields and exiting the application.
+     * @author Ragudos, Hannah
+     * @since March 19, 2023
+     */
     public FractionCalculatorOptionalGUI() {
         //construct components
         JButton addB = new JButton("Add");
@@ -50,6 +59,7 @@ public class FractionCalculatorOptionalGUI extends JPanel {
         result = new JTextField(5);
         JButton clearB = new JButton("Clear");
         JButton exitB = new JButton("Exit");
+
 
         //adjust size and set layout
         setPreferredSize(new Dimension(424, 272));
@@ -91,7 +101,15 @@ public class FractionCalculatorOptionalGUI extends JPanel {
         clearB.setBounds(65, 230, 100, 25);
         exitB.setBounds(310, 230, 100, 25);
 
-        //add action listeners
+        /**
+         * Adds action listeners to buttons for performing arithmetic operations on two fractions.
+         * The buttons include add, subtract, multiply, divide, clear, and exit.
+         * Upon clicking each button, the numerator and denominator values of the two fractions entered in text fields
+         * are extracted and used to create Fraction objects for performing the corresponding arithmetic operation.
+         * The result of the operation is then displayed in a text field.
+         * The clear button clears all text fields, and the exit button exits the program.
+         */
+
         addB.addActionListener(e -> {
             int num1 = Integer.parseInt(firstNumerator.getText());
             int den1 = Integer.parseInt(firstDenominator.getText());
@@ -103,6 +121,7 @@ public class FractionCalculatorOptionalGUI extends JPanel {
             Fraction resultFraction = f1.add(f2);
             result.setText(resultFraction.toString());
         });
+
         subtractB.addActionListener(e -> {
             int num1 = Integer.parseInt(firstNumerator.getText());
             int den1 = Integer.parseInt(firstDenominator.getText());
@@ -159,5 +178,5 @@ public class FractionCalculatorOptionalGUI extends JPanel {
         frame.getContentPane().add(new FractionCalculatorOptionalGUI());
         frame.pack();
         frame.setVisible(true);
-    }
-}
+    } // end of main method
+} // end of FractionCalculatorOptionalGUI

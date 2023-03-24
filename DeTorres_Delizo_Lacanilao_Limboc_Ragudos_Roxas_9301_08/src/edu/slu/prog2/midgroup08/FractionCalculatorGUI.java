@@ -19,8 +19,6 @@
  */
 
 package edu.slu.prog2.midgroup08;
-import edu.slu.prog2.pregroup08.Fraction;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -44,8 +42,8 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
         setResizable(false);
         setLocationRelativeTo(null);
         // set background color and icon
-        getContentPane().setBackground(Color.decode("#E5E5E5"));
-        Image icon = Toolkit.getDefaultToolkit().getImage("");
+        getContentPane().setBackground(Color.decode("#FFF8DC"));
+        Image icon = Toolkit.getDefaultToolkit().getImage("logo-gui.png");
         setIconImage(icon);
 
 
@@ -67,24 +65,25 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
         resultField = new JTextField();
         resultField.setEditable(false);
         resultField.setFont(inputFont);
+        resultField.setBackground(Color.WHITE);
 
         // set buttons
         Font buttonFont = new Font("Arial", Font.BOLD, 20);
         addButton = new JButton("ADD");
         addButton.setFont(buttonFont);
-        addButton.setBackground(Color.decode("#4CAF50"));
+        addButton.setBackground(Color.decode("#00FF7F"));
         addButton.setForeground(Color.WHITE);
         subtractButton = new JButton("SUBTRACT");
         subtractButton.setFont(buttonFont);
-        subtractButton.setBackground(Color.decode("#f44336"));
+        subtractButton.setBackground(Color.decode("#F08080"));
         subtractButton.setForeground(Color.WHITE);
         multiplyButton = new JButton("MULTIPLY");
         multiplyButton.setFont(buttonFont);
-        multiplyButton.setBackground(Color.decode("#2196F3"));
+        multiplyButton.setBackground(Color.decode("#1E90FF"));
         multiplyButton.setForeground(Color.WHITE);
         divideButton = new JButton("DIVIDE");
         divideButton.setFont(buttonFont);
-        divideButton.setBackground(Color.decode("#9C27B0"));
+        divideButton.setBackground(Color.decode("#BA55D3"));
         divideButton.setForeground(Color.WHITE);
         clearButton = new JButton("CLEAR");
         clearButton.setFont(buttonFont);
@@ -134,26 +133,26 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addButton) {
             // Perform addition
-            MixedFraction fraction1 = parseFraction(fraction1Field.getText());
-            MixedFraction fraction2 = parseFraction(fraction2Field.getText());
+            MixedFraction fraction1 = parseFraction(fraction1Field.getText.().trim());
+            MixedFraction fraction2 = parseFraction(fraction2Field.getText().trim());
             MixedFraction result = fraction1.add(fraction2);
             resultField.setText(result.toString());
         } else if (e.getSource() == subtractButton) {
             // Perform subtraction
-            MixedFraction fraction1 = parseFraction(fraction1Field.getText());
-            MixedFraction fraction2 = parseFraction(fraction2Field.getText());
+            MixedFraction fraction1 = parseFraction(fraction1Field.getText().trim());
+            MixedFraction fraction2 = parseFraction(fraction2Field.getText().trim());
             MixedFraction result = fraction1.subtract(fraction2);
             resultField.setText(result.toString());
         } else if (e.getSource() == multiplyButton) {
             // Perform multiplication
-            MixedFraction fraction1 = parseFraction(fraction1Field.getText());
-            MixedFraction fraction2 = parseFraction(fraction2Field.getText());
+            MixedFraction fraction1 = parseFraction(fraction1Field.getText().trim());
+            MixedFraction fraction2 = parseFraction(fraction2Field.getText().trim());
             MixedFraction result = fraction1.multiplyBy(fraction2);
             resultField.setText(result.toString());
         } else if (e.getSource() == divideButton) {
             // Perform division
-            MixedFraction fraction1 = parseFraction(fraction1Field.getText());
-            MixedFraction fraction2 = parseFraction(fraction2Field.getText());
+            MixedFraction fraction1 = parseFraction(fraction1Field.getText().trim());
+            MixedFraction fraction2 = parseFraction(fraction2Field.getText().trim());
             MixedFraction result = fraction1.divideBy(fraction2);
             resultField.setText(result.toString());
         } else if (e.getSource() == clearButton) {
@@ -174,25 +173,28 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
      @param fractionString the string representation of the fraction to be parsed
      @return a MixedFraction object that represents the parsed fraction
      */
-    private MixedFraction parseFraction(String fractionString) {
+    private MixedFraction parseFraction(String fractionString) throws NumberFormatException {
         // Parse a string into a fraction
         String[] parts = fractionString.split(" ");
-        if (parts.length == 1) {
-            // Simple fraction
-            // Split the numerator and denominator and parse them as integers
-            String[] nums = parts[0].split("/");
-            int numerator = Integer.parseInt(nums[0]);
-            int denominator = Integer.parseInt(nums[1]);
-            Fraction fraction = new Fraction(numerator, denominator);
-            return new MixedFraction(fraction);
-        } else {
-            // Mixed fraction
-            // Parse the whole number, numerator, and denominator as integers
-            int wholeNumber = Integer.parseInt(parts[0]);
-            String[] nums = parts[1].split("/");
-            int numerator = Integer.parseInt(nums[0]);
-            int denominator = Integer.parseInt(nums[1]);
-            return new MixedFraction(wholeNumber, numerator, denominator);
+        try {
+            if (parts.length == 1) {
+                // Simple fraction
+                // Split the numerator and denominator and parse them as integers
+                String[] nums = parts[0].split("/");
+                int numerator = Integer.parseInt(nums[0]);
+                int denominator = Integer.parseInt(nums[1]);
+                return new MixedFraction(0, numerator, denominator);
+            } else {
+                // Mixed fraction
+                // Parse the whole number, numerator, and denominator as integers
+                int wholeNumber = Integer.parseInt(parts[0]);
+                String[] nums = parts[1].split("/");
+                int numerator = Integer.parseInt(nums[0]);
+                int denominator = Integer.parseInt(nums[1]);
+                return new MixedFraction(wholeNumber, numerator, denominator);
+            }
+        } catch (NumberFormatException exception 1) {
+            return new MixedFraction();
         }
     } // end of MixedFraction
 

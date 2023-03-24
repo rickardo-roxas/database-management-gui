@@ -32,6 +32,15 @@ public class MixedFractionCalculatorGUI extends JPanel {
     private final JTextField secondDenominator;
     private final JTextField fracResult;
 
+    /**
+     * This class represents the GUI components of a Mixed Fraction Calculator application.
+     * It contains buttons for addition, subtraction, multiplication, and division,
+     * labels for two fractions and their numerators, denominators, and whole parts,
+     * and text fields for user input and result display. Additionally, it contains
+     * buttons for clearing the input fields and exiting the application.
+     * @author Ragudos, Hannah
+     * @since March 19, 2023
+     */
     public MixedFractionCalculatorGUI () {
         //construct components
         JButton addB = new JButton("Add");
@@ -91,7 +100,17 @@ public class MixedFractionCalculatorGUI extends JPanel {
         secondDenominator.setBounds(290, 215, 100, 25);
         fracResult.setBounds(175, 360, 95, 60);
 
-        //add action listeners
+        /**
+         * Adds action listeners to buttons for performing arithmetic operations on two mixed fractions.
+         * The buttons include add, subtract, multiply, divide, clear, and exit.
+         * Upon clicking each button, the whole part, numerator, and denominator values of the two mixed
+         * fractions entered in text fields are extracted and used to create MixedFraction objects for
+         * performing the corresponding arithmetic operation.
+         * The result of the operation is then displayed in a text field.
+         * The clear button clears all text fields.
+         * The exit button exits the program.
+         */
+
         addB.addActionListener(e -> {
             int f1num = Integer.parseInt(firstNumerator.getText());
             int f1den = Integer.parseInt(firstDenominator.getText());
@@ -143,7 +162,6 @@ public class MixedFractionCalculatorGUI extends JPanel {
             fracResult.setText(result.toString());
         });
 
-
         divideB.addActionListener(e -> {
             int f1num = Integer.parseInt(firstNumerator.getText());
             int f1den = Integer.parseInt(firstDenominator.getText());
@@ -174,12 +192,11 @@ public class MixedFractionCalculatorGUI extends JPanel {
         exitB.addActionListener(e -> System.exit(0));
 
     }
-
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Fraction Calculator");
+        JFrame frame = new JFrame("Mixed Fraction Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(new MixedFractionCalculatorGUI());
         frame.pack();
         frame.setVisible(true);
-    }
-}
+    } // end of main method
+} // end of MixedFractionCalculatorGUI class
