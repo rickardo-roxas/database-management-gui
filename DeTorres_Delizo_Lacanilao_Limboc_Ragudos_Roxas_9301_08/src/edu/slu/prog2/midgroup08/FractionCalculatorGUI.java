@@ -42,7 +42,7 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
         setResizable(false);
         setLocationRelativeTo(null);
         // set background color and icon
-        getContentPane().setBackground(Color.decode("#FFF8DC"));
+        getContentPane().setBackground(Color.decode("#E5E5E5"));
         Image icon = Toolkit.getDefaultToolkit().getImage("logo-gui.png");
         setIconImage(icon);
 
@@ -71,19 +71,19 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
         Font buttonFont = new Font("Arial", Font.BOLD, 20);
         addButton = new JButton("ADD");
         addButton.setFont(buttonFont);
-        addButton.setBackground(Color.decode("#00FF7F"));
+        addButton.setBackground(Color.decode("#4CAF50"));
         addButton.setForeground(Color.WHITE);
         subtractButton = new JButton("SUBTRACT");
         subtractButton.setFont(buttonFont);
-        subtractButton.setBackground(Color.decode("#F08080"));
+        subtractButton.setBackground(Color.decode("#f44336"));
         subtractButton.setForeground(Color.WHITE);
         multiplyButton = new JButton("MULTIPLY");
         multiplyButton.setFont(buttonFont);
-        multiplyButton.setBackground(Color.decode("#1E90FF"));
+        multiplyButton.setBackground(Color.decode("#2196F3"));
         multiplyButton.setForeground(Color.WHITE);
         divideButton = new JButton("DIVIDE");
         divideButton.setFont(buttonFont);
-        divideButton.setBackground(Color.decode("#BA55D3"));
+        divideButton.setBackground(Color.decode("#9C27B0"));
         divideButton.setForeground(Color.WHITE);
         clearButton = new JButton("CLEAR");
         clearButton.setFont(buttonFont);
@@ -120,7 +120,7 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
         exitButton.addActionListener(this);
         fraction1Field.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // When the Enter key is pressed, give focus to the fraction2Field
+                // When the Enter key is pressed, it goes to the fraction2Field
                 fraction2Field.requestFocusInWindow();
             }
         });
