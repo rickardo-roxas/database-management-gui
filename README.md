@@ -12,15 +12,12 @@ MixedFractionCalculator
 2. **DE TORRES**, John Rey I. -2234944
 3. **DELIZO**, John Marco -2234758
 4. **LIMBOC**, Trixie Mae W. - 2233674
-5. **RAGUDOS**, Hannah - 2233361
+5. **RAGUDOS**, Hannah T. - 2233361
 6. **ROXAS**, Johan Rickardo A. - 2233375
 
 ## Description
 The MixedFractionArithmetic class is a programming class that performs arithmetic operations on mixed fractions, which are a combination of a whole number and a fraction. The class contains methods for addition, subtraction, multiplication, and division of mixed fractions, as well as simplifying mixed fractions, converting them to improper fractions or decimals, and comparing them for equality or magnitude.
 
-## Visuals 
-*video or presentaion link to be followed*
-*may also include UML diagram link*
 
 ## Installation and Usage
 To use the MixedFractionArithmetic class, simply download the source code and run the program on your computer. The program requires an IDE or a Java development environment to run. The program also includes a GUI class that allows for user input and output of mixed fraction arithmetic calculations.
