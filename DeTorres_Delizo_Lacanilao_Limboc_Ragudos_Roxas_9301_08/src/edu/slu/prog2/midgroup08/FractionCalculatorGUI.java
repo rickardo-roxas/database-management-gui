@@ -210,4 +210,3 @@ public class FractionCalculatorGUI extends JFrame implements ActionListener {
         calculator.setVisible(true);
     } // end of main method
 } // end of FractionCalculatorGUI class
-
