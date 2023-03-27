@@ -121,7 +121,10 @@ public class MixedFraction extends Fraction {
         int denominator = getDenominator();
 
         // Calculate the numerator of the improper fraction
-        numerator = (wholeNumber * denominator) + numerator;
+        if (wholeNumber == 0) // if whole number is 0, numerator would be defaulted as itself.
+            return new Fraction(numerator, denominator);
+        else
+            numerator = (wholeNumber * denominator) + numerator;
 
         // Create a new Fraction object with the calculated numerator and denominator
         Fraction improperFraction = new Fraction(numerator, denominator);
