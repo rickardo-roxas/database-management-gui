@@ -115,5 +115,70 @@ public class Student {
     public void setYearLevel(byte yearLevel) {
         this.yearLevel = yearLevel;
     } // end of setYearLevel mutator method
+
+    /**
+     * Accessor method for the last name attribute.
+     * @return The last name of the student
+     */
+    public String getLastName() {
+        return lastName;
+    } // end of getLastName accessor method
+
+    /**
+     * Accessor method for the first name attribute.
+     * @return The first name of the student
+     */
+    public String getFirstName() {
+        return firstName;
+    } // end of getFirstName accessor method
+
+    /**
+     * Accessor method for the ID number attribute.
+     * @return The ID number of the student
+     */
+    public int getIdNumber() {
+        return idNumber;
+    } // end of getIdNumber accessor method
+
+    /**
+     * Accessor method for the age attribute.
+     * @return The age of the student
+     */
+    public int getAge() {
+        return age;
+    } // end of getAge accessor method
+
+    /**
+     * Accessor method for the gender attribute.
+     * @return The gender of the student
+     */
+    public char getGender() {
+        return gender;
+    } // end of getGender accessor method
+
+    /**
+     * Accessor method for the course program attribute.
+     * @return The course program of the student
+     */
+    public String getCourseProgram() {
+        return courseProgram;
+    } // end of getCourseProgram accessor method
+
+    /**
+     * Accessor method for the year level attribute.
+     * @return The year level of the student
+     */
+    public byte getYearLevel() {
+        return yearLevel;
+    } // end of getYearLevel accessor method
+
+    /**
+     * Returns a string representation of the Student object.
+     * @return A string representation of the Student object
+     */
+    public String toString() {
+        return firstName + " " + lastName + ", ID number: " + idNumber + ", age: " + age + ", gender: " + gender
+                + ", course program: " + courseProgram + ", year level: " + yearLevel;
+    }// end of toString method
 } // end of Student Class
 
