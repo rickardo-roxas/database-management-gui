@@ -10,23 +10,19 @@
  *     RAGUDOS, Hannah T.- 2233361
  *     ROXAS, Johan Rickardo A. - 2233375
  * </p>
- * The Course class.
- * This class was made by:
- * <p>
- *     ROXAS, Johan Rickardo A. - 2233375
- * </p>
  */
 package finals.prog2.samcis.slu;
 
-import java.util.ArrayList;
-
-public class Course <Course> {
+/**
+ * The Course class provides a blueprint for creating a Course object. The class has the conventional accessor, mutator,
+ * and toString methods.
+ */
+public class Course {
     private byte year; // Year of Course (e.g. Year 1)
     private byte term; // Term of Course (the semester)
     private String courseNumber; // Course Number of Course (e.g. CS 111)
     private String descriptiveTitle; // Descriptive title of Course (e.g. "Intro. to Computing)
     private byte units; // Number of units of Course (e.g. 3 Units)
-    private ArrayList<Course> allCourses = new ArrayList<>(); // stores all Courses in an array list
 
     /**
      * Constructs an object of Course with default values.
@@ -55,28 +51,82 @@ public class Course <Course> {
         this.units = units;
     } // end of Course constructor
 
+    /**
+     * Mutator/Setter method for the year attribute.
+     */
     public void setYear(byte year) {
         this.year = year;
     } // end of setYear mutator method
 
+    /**
+     * Mutator/Setter method for the term attribute.
+     */
     public void setTerm(byte term) {
         this.term = term;
     } // end of setTerm method mutator method
 
+    /**
+     * Mutator/Setter method for the courseNumber attribute.
+     */
     public void setCourseNumber(String courseNumber) {
         this.courseNumber = courseNumber;
     } // end of setCourseNumber mutator method
 
+    /**
+     * Mutator/Setter method for the descriptiveTitle attribute.
+     */
     public void setDescriptiveTitle(String descriptiveTitle) {
         this.descriptiveTitle = descriptiveTitle;
     } // end of descriptiveTitle mutator method
 
+    /**
+     * Mutator/Setter method for the units attribute.
+     */
     public void setUnits(byte units) {
         this.units = units;
     } // end of setUnits mutator method
 
+    /**
+     * Accessor/Getter method for year
+     * @return state/value of the year attribute
+     */
     public byte getYear() {
         return this.year;
     } // end of getYear accessor method
 
+    public byte getTerm() {
+        return this.term;
+    } // end of getTerm accessor method
+
+    /**
+     * Accessor/Getter method for courseNumber
+     * @return state/value of the courseNumber attribute
+     */
+    public String getCourseNumber() {
+        return this.courseNumber;
+    } // end of getCourseNumber accessor method
+
+    /**
+     * Accessor/Getter method for descriptiveTitle
+     * @return state/value of the descriptiveTitle attribute
+     */
+    public String getDescriptiveTitle() {
+        return this.descriptiveTitle;
+    } // end of getDescriptiveTitle accessor method
+
+    /**
+     * Accessor/Getter method for units
+     * @return state/value of units attribute
+     */
+    public byte getUnits() {
+        return this.units;
+    } // end of getUnits accessor method
+
+    /**
+     * Concatenates the state of Course attributes.
+     * @return comma-separated values
+     */
+    public String toString() {
+        return year + "," + term + "," + courseNumber + "," + descriptiveTitle + "," + units;
+    } // end of toString method
 } // end of class Course
