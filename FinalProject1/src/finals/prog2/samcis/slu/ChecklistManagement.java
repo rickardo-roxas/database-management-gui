@@ -42,12 +42,20 @@ public class ChecklistManagement {
      * @throws Exception TO DO...
      */
     public void run() throws Exception {
-        populateCourse();
-        // TO DO...
+        ArrayList<Course> courseArrayList;
+        try {
+            courseArrayList = new ArrayList<>(populateCourse());
+
+            // TO DO...
+        } catch (Exception exception1) {
+            System.out.println("TO DO...");
+        } finally {
+            System.out.println("TO DO...");
+        } // end of try-catch
     } // end of run method
 
     /**
-     * Populates ArrayList of Course from a file.
+     * Populates ArrayList of Course from curriculum file.
      * @return Populated Course ArrayList
      * @throws FileNotFoundException TO DO...
      */
@@ -60,7 +68,6 @@ public class ChecklistManagement {
 
             while (inputStream.readLine() != null) {
                 String course = inputStream.readLine();
-
                 String[] courseData = course.split(",");
 
                 byte courseYear = Byte.parseByte(courseData[0]);
@@ -70,9 +77,9 @@ public class ChecklistManagement {
                 byte units = Byte.parseByte(courseData[4]);
 
                 Course newCourse = new Course(courseYear, courseTerm, courseNumber, courseDescriptiveTitle, units);
-
+                courses.add(newCourse);
             } // end of while
-            inputStream.close();
+            inputStream.close(); // Closes inputStream when readLine == null
         } catch (IOException exception1) {
             exception1.getMessage();
         } finally {
