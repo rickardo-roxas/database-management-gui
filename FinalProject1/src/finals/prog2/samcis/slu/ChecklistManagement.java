@@ -23,14 +23,14 @@ import java.util.ArrayList;
 
 public class ChecklistManagement extends JFrame implements ActionListener {
 
-    private JButton showSubjectsBtn;
-    private JButton showGradesBtn;
-    private JButton enterGradesBtn;
-    private JButton editCourseBtn;
-    private JButton quitBtn;
-    private JTextArea textArea;
-    private JComboBox<Integer> termComboBox;
-    private JComboBox<Integer> yearComboBox;
+    private final JButton showSubjectsBtn;
+    private final JButton showGradesBtn;
+    private final JButton enterGradesBtn;
+    private final JButton editCourseBtn;
+    private final JButton quitBtn;
+    private final JTextArea textArea;
+    private final JComboBox<Integer> termComboBox;
+    private final JComboBox<Integer> yearComboBox;
 
     private ArrayList<Course> courses;
     private ArrayList<Student> students;
@@ -103,9 +103,16 @@ public class ChecklistManagement extends JFrame implements ActionListener {
      * @param args command line arguments
      */
     public static void main(String[] args) {
-        ChecklistManagement checklistManagement = new ChecklistManagement();
-        checklistManagement.pack();
-        checklistManagement.setVisible(true);
+        ChecklistManagement checklistManagement;
+
+        try {
+            checklistManagement = new ChecklistManagement();
+            checklistManagement.pack();
+            checklistManagement.setVisible(true);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        } // end of try-catch
+        System.exit(0);
     } // end of main method
 
     /**
@@ -231,14 +238,16 @@ public class ChecklistManagement extends JFrame implements ActionListener {
                     // Loop through the students and prompt the user to enter a grade for each student in the selected course
                     for (Student student : students) {
                         if (student.getYearLevel() == selectedYear) {
-                            String gradeString = JOptionPane.showInputDialog("Enter grade for " + student.getLastName() + ":");
+                            String gradeString = JOptionPane.showInputDialog("Enter grade for " +
+                                    student.getLastName() + ":");
                             if (gradeString != null && !gradeString.isEmpty()) {
                                 try {
                                     double gradeValue = Double.parseDouble(gradeString);
                                     Grade grade = new Grade(course.getCourseNumber(), gradeValue);
-                                    student.addGrade(grade);
+                                    student.setGrade(grade);
                                 } catch (NumberFormatException ex) {
-                                    JOptionPane.showMessageDialog(null, "Invalid grade value entered.");
+                                    JOptionPane.showMessageDialog(null,
+                                            "Invalid grade value entered.");
                                 }
                             }
                         }
