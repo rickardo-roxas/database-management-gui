@@ -16,6 +16,10 @@ package finals.prog2.samcis.slu;
 import java.io.*;
 import java.lang.*;
 import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -43,8 +47,10 @@ public class ChecklistManagement {
      */
     public void run() throws Exception {
         ArrayList<Course> courseArrayList;
+        ArrayList<Student> studentArrayList;
         try {
             courseArrayList = new ArrayList<>(populateCourse());
+            studentArrayList = new ArrayList<>(populateStudent());
 
             // TO DO...
         } catch (Exception exception1) {
@@ -87,4 +93,73 @@ public class ChecklistManagement {
         } // end of try-catch
         return courses;
     } // end of populateCourse method
+
+    /**
+     * Populates ArrayList of Student from user input.
+     * @return Populated Student ArrayList
+     */
+    public ArrayList<Student> populateStudent() {
+        ArrayList<Student> students = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+
+        // Prompt the user for the number of students to input
+        try {
+            System.out.print("Enter the number of students: ");
+            int numStudents = scanner.nextInt();
+            scanner.nextLine();
+
+            // Loop through the number of students and prompt the user to input each student's information
+            for (int i = 0; i < numStudents; i++) {
+                System.out.printf("\nStudent %d:\n", i + 1);
+
+                // Prompt the user for the student's last name
+                System.out.print("Last name: ");
+                String lastName = scanner.nextLine();
+
+                // Prompt the user for the student's first name
+                System.out.print("First name: ");
+                String firstName = scanner.nextLine();
+
+                // Prompt the user for the student's ID number
+                System.out.print("ID number: ");
+                int idNumber = scanner.nextInt();
+                scanner.nextLine();
+
+                // Prompt the user for the student's age
+                System.out.print("Age: ");
+                int age = scanner.nextInt();
+                scanner.nextLine();
+
+                // Prompt the user for the student's gender and check if it's valid
+                System.out.print("Gender (M/F): ");
+                char gender = scanner.nextLine().charAt(0);
+                if (gender != 'M' && gender != 'F') {
+                    throw new IllegalArgumentException("Invalid gender. Must be 'M' or 'F'.");
+                }
+
+                // Prompt the user for the student's course program
+                System.out.print("Course program: ");
+                String courseProgram = scanner.nextLine();
+
+                // Prompt the user for the student's year level and check if it's valid
+                System.out.print("Year level: ");
+                byte yearLevel = scanner.nextByte();
+                scanner.nextLine();
+                if (yearLevel < 1 || yearLevel > 5) {
+                    throw new IllegalArgumentException("Invalid year level. Must be between 1 and 5 inclusive.");
+                }
+
+                // Create a new Student object with the inputted information and add it to the ArrayList
+                Student student = new Student(lastName, firstName, idNumber, age, gender, courseProgram, yearLevel);
+                students.add(student);
+            }
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Must be an integer.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            scanner.close();
+        }
+        return students;
+    } // end of populateStudent method
 } // end of class ChecklistManagement
