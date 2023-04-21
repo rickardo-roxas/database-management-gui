@@ -24,7 +24,6 @@ public class Citizen implements Comparable<Citizen> {
 
     /**
      * Constructs an object of Citizen with user-defined values.
-     *
      * @param fullName The full name of the citizen
      * @param email    The email of the citizen
      * @param address  The address of the citizen
@@ -33,7 +32,8 @@ public class Citizen implements Comparable<Citizen> {
      * @param district The district number of the citizen
      * @param gender   The gender of the citizen (M or F)
      */
-    public Citizen(String fullName, String email, String address, int age, boolean resident, int district, char gender) {
+    public Citizen(String fullName, String email, String address, int age, boolean resident,
+                   int district, char gender) {
         this.fullName = fullName;
         this.email = email;
         this.address = address;
@@ -99,8 +99,111 @@ public class Citizen implements Comparable<Citizen> {
         this.gender = gender;
     } // end of setGender mutator method
 
+    /**
+     * Accessor method for the full name attribute.
+     * @return The full name of the citizen
+     */
+    public String getFullName() {
+        return fullName;
+    } // end of getFullName accessor method
+
+    /**
+     * Accessor method for the email attribute.
+     * @return The email of the citizen
+     */
+    public String getEmail() {
+        return email;
+    } // end of getEmail accessor method
+
+    /**
+     * Accessor method for the address attribute.
+     * @return The address of the citizen
+     */
+    public String getAddress() {
+        return address;
+    } // end getAddress accessor method
+
+    /**
+     * Accessor method for the age attribute.
+     * @return The age of the citizen
+     */
+    public int getAge() {
+        return age;
+    } // end of getAge accessor method
+
+    /**
+     * Accessor method for the residential status attribute.
+     * @return The residential status of the citizen
+     */
+    public boolean isResident() {
+        return resident;
+    } // end of isResident accessor method
+
+    /**
+     * Accessor method for the district attribute.
+     * @return The district number of the citizen
+     */
+    public int getDistrict() {
+        return district;
+    } // end of getDistrict accessor method
+
+    /**
+     * Accessor method for the gender attribute.
+     * @return The gender of the citizen
+     */
+    public char getGender() {
+        return gender;
+    } // end of getGender accessor method
+
+    /**
+     * Determines if two Citizen objects are equal based on their attribute values.
+     * @param o The object to compare to
+     * @return true if the objects are equal, false otherwise
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Citizen citizen = (Citizen) o;
+        return age == citizen.age && resident == citizen.resident && district == citizen.district && gender ==
+                citizen.gender && Objects.equals(fullName, citizen.fullName) && Objects.equals(email, citizen.email)
+                && Objects.equals(address, citizen.address);
+    } // end of equals method
+
+    /**
+     * Generates a hash code for the Citizen object based on its attribute values.
+     * @return The hash code for the object
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(fullName, email, address, age, resident, district, gender);
+    } // end of hashCode method
+
+    /**
+     * Compares this Citizen object to another based on their full name attribute.
+     * @param o The Citizen object to compare to
+     * @return A negative integer, zero, or a positive integer as this object is less than,
+     * equal to, or greater than the specified object.
+     */
     @Override
     public int compareTo(Citizen o) {
         return fullName.compareTo(o.fullName);
     } // end of compareTo method
+
+    /**
+     * Returns a string representation of the Citizen object.
+     * @return A string representation of the Citizen object
+     */
+    @Override
+    public String toString() {
+        return "Citizen{" +
+                "fullName='" + fullName + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", age=" + age +
+                ", resident=" + resident +
+                ", district=" + district +
+                ", gender=" + gender +
+                '}';
+    } // end of toString method
 } // end of Citizen class
