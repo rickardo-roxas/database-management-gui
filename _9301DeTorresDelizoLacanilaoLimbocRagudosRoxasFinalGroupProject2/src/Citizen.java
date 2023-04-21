@@ -41,9 +41,66 @@ public class Citizen implements Comparable<Citizen> {
         this.resident = resident;
         this.district = district;
         this.gender = gender;
-    }
+    } // end of Citizen default constructor
+
+    /**
+     * Mutator method for the full name attribute.
+     * @param fullName The new full name of the citizen
+     */
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    } // end of setFullName mutator method
+
+    /**
+     * Mutator method for the email attribute.
+     * @param email The new email of the citizen
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    } // end of steEmail method
+
+    /**
+     * Mutator method for the address attributes
+     * @param address The new address of the citizen
+     */
+    public void setAddress(String address) {
+        this.address = address;
+    } // end of setAddress mutator method
+
+    /**
+     * Mutator method for the age attribute.
+     * @param age The new age of the citizen
+     */
+    public void setAge(int age) {
+        this.age = age;
+    } // end of setAge mutator method
+
+    /**
+     * Mutator method for the residential status attribute.
+     * @param resident The new residential status of the citizen
+     */
+    public void setResident(boolean resident) {
+        this.resident = resident;
+    } // end of setResident mutator method
+
+    /**
+     * Mutator method for the district attribute.
+     * @param district The new district number of the citizen
+     */
+    public void setDistrict(int district) {
+        this.district = district;
+    } // end of setDistrict method
+
+    /**
+     * Mutator method for the gender attribute.
+     * @param gender The new gender of the citizen (M or F)
+     */
+    public void setGender(char gender) {
+        this.gender = gender;
+    } // end of setGender mutator method
+
     @Override
     public int compareTo(Citizen o) {
         return fullName.compareTo(o.fullName);
-    }
-}
+    } // end of compareTo method
+} // end of Citizen class
