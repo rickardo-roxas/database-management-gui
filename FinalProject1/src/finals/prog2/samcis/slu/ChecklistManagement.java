@@ -21,20 +21,101 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.*;
+import java.util.ArrayList;
 
-/**
- * The ChecklistManagement class is under construction...
- */
-public class ChecklistManagement {
+
+public class ChecklistManagement extends JFrame implements ActionListener {
+
+    private final JButton showSubjectsBtn;
+    private final JButton showGradesBtn;
+    private final JButton enterGradesBtn;
+    private final JButton editCourseBtn;
+    private final JButton quitBtn;
+    private final JTextArea textArea;
+    private final JComboBox<Integer> termComboBox;
+    private final JComboBox<Integer> yearComboBox;
+
+    private ArrayList<Course> courses;
+    private ArrayList<Student> students;
+
+    public ChecklistManagement() {
+        super("My Checklist Management");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
+
+        // Create buttons
+        showSubjectsBtn = new JButton("Show subjects for each school term");
+        showGradesBtn = new JButton("Show subjects with grades for each term");
+        enterGradesBtn = new JButton("Enter grades for subjects recently finished");
+        editCourseBtn = new JButton("Edit a course");
+        quitBtn = new JButton("Quit");
+
+        // Create combo boxes
+        termComboBox = new JComboBox<>();
+        yearComboBox = new JComboBox<>();
+
+        // Create text area
+        textArea = new JTextArea(20, 50);
+
+        // Add buttons, combo boxes, and text area to panel
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(2, 1));
+        JPanel topPanel = new JPanel();
+        topPanel.add(showSubjectsBtn);
+        topPanel.add(showGradesBtn);
+        topPanel.add(enterGradesBtn);
+        topPanel.add(editCourseBtn);
+        topPanel.add(quitBtn);
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.add(new JLabel("Select Year:"));
+        bottomPanel.add(yearComboBox);
+        bottomPanel.add(new JLabel("Select Term:"));
+        bottomPanel.add(termComboBox);
+        bottomPanel.add(new JScrollPane(textArea));
+        panel.add(topPanel);
+        panel.add(bottomPanel);
+        add(panel);
+
+        // Add action listeners to buttons
+        showSubjectsBtn.addActionListener(this);
+        showGradesBtn.addActionListener(this);
+        enterGradesBtn.addActionListener(this);
+        editCourseBtn.addActionListener(this);
+        quitBtn.addActionListener(this);
+
+        // Initialize combo boxes
+        for (int i = 1; i <= 4; i++) {
+            yearComboBox.addItem(i);
+        }
+        for (int i = 1; i <= 3; i++) {
+            termComboBox.addItem(i);
+        }
+
+        // Initialize courses and students
+        try {
+            courses = populateCourse();
+            students = populateStudents();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Main entry point of the program
+     *
      * @param args command line arguments
      */
     public static void main(String[] args) {
         ChecklistManagement checklistManagement;
+
         try {
             checklistManagement = new ChecklistManagement();
-            checklistManagement.run();
+            checklistManagement.pack();
+            checklistManagement.setVisible(true);
         } catch (Exception exception) {
             exception.printStackTrace();
         } // end of try-catch
@@ -62,35 +143,40 @@ public class ChecklistManagement {
 
     /**
      * Populates ArrayList of Course from curriculum file.
+     *
      * @return Populated Course ArrayList
-     * @throws FileNotFoundException TO DO...
+     * @throws FileNotFoundException
      */
     public ArrayList<Course> populateCourse() throws IOException {
         ArrayList<Course> courses = new ArrayList<>();
         BufferedReader inputStream;
 
         try {
-            inputStream = new BufferedReader(new FileReader("BSCSCurriculumData1.txt"));
+            inputStream = new BufferedReader(new FileReader("BSCSCurriculumData.txt"));
 
-            while (inputStream.readLine() != null) {
-                String course = inputStream.readLine();
-                String[] courseData = course.split(",");
+            while (inputStream.ready()) {
+                String line = inputStream.readLine();
+                String[] tokens = line.split("\t");
+                String courseCode = tokens[0];
+                String courseTitle = tokens[1];
+                int units = Integer.parseInt(tokens[2]);
+                int year = Integer.parseInt(tokens[3]);
+                int term = Integer.parseInt(tokens[4]);
 
-                byte courseYear = Byte.parseByte(courseData[0]);
-                byte courseTerm = Byte.parseByte(courseData[1]);
-                String courseNumber = courseData[2];
-                String courseDescriptiveTitle = courseData[3];
-                byte units = Byte.parseByte(courseData[4]);
+                Course course = new Course();
+                course.setYear((byte) year);
+                course.setTerm((byte) term);
+                course.setCourseNumber(courseCode);
+                course.setDescriptiveTitle(courseTitle);
+                course.setUnits((byte) units);
 
-                Course newCourse = new Course(courseYear, courseTerm, courseNumber, courseDescriptiveTitle, units);
-                courses.add(newCourse);
-            } // end of while
-            inputStream.close(); // Closes inputStream when readLine == null
-        } catch (IOException exception1) {
-            exception1.getMessage();
-        } finally {
-            System.out.println("TO DO...");
-        } // end of try-catch
+                courses.add(course);
+            }
+            inputStream.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found.");
+        }
+
         return courses;
     } // end of populateCourse method
 
