@@ -13,6 +13,13 @@
  */
 package finals.prog2.samcis.slu;
 
+import java.io.*;
+import java.lang.*;
+import java.util.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -116,6 +123,25 @@ public class ChecklistManagement extends JFrame implements ActionListener {
     } // end of main method
 
     /**
+     * Controls the execution of the program.
+     * @throws Exception TO DO...
+     */
+    public void run() throws Exception {
+        ArrayList<Course> courseArrayList;
+        ArrayList<Student> studentArrayList;
+        try {
+            courseArrayList = new ArrayList<>(populateCourse());
+            studentArrayList = new ArrayList<>(populateStudent());
+
+            // TO DO...
+        } catch (Exception exception1) {
+            System.out.println("TO DO...");
+        } finally {
+            System.out.println("TO DO...");
+        } // end of try-catch
+    } // end of run method
+
+    /**
      * Populates ArrayList of Course from curriculum file.
      *
      * @return Populated Course ArrayList
@@ -155,127 +181,71 @@ public class ChecklistManagement extends JFrame implements ActionListener {
     } // end of populateCourse method
 
     /**
-     * Populates ArrayList of Student from student file.
-     *
+     * Populates ArrayList of Student from user input.
      * @return Populated Student ArrayList
-     * @throws FileNotFoundException
      */
-    public ArrayList<Student> populateStudents() throws IOException {
+    public ArrayList<Student> populateStudent() {
         ArrayList<Student> students = new ArrayList<>();
-        BufferedReader inputStream;
+        Scanner scanner = new Scanner(System.in);
 
+        // Prompt the user for the number of students to input
         try {
-            inputStream = new BufferedReader(new FileReader("students.txt"));
+            System.out.print("Enter the number of students: ");
+            int numStudents = scanner.nextInt();
+            scanner.nextLine();
 
-            while (inputStream.ready()) {
-                String line = inputStream.readLine();
-                String[] tokens = line.split("\t");
+            // Loop through the number of students and prompt the user to input each student's information
+            for (int i = 0; i < numStudents; i++) {
+                System.out.printf("\nStudent %d:\n", i + 1);
 
-                int id = Integer.parseInt(tokens[0]);
-                String name = tokens[1];
-                int year = Integer.parseInt(tokens[2]);
+                // Prompt the user for the student's last name
+                System.out.print("Last name: ");
+                String lastName = scanner.nextLine();
 
-                Student student = new Student();
-                student.setIdNumber(id);
-                student.setLastName(name);
-                student.setYearLevel((byte) year);
+                // Prompt the user for the student's first name
+                System.out.print("First name: ");
+                String firstName = scanner.nextLine();
 
+                // Prompt the user for the student's ID number
+                System.out.print("ID number: ");
+                int idNumber = scanner.nextInt();
+                scanner.nextLine();
+
+                // Prompt the user for the student's age
+                System.out.print("Age: ");
+                int age = scanner.nextInt();
+                scanner.nextLine();
+
+                // Prompt the user for the student's gender and check if it's valid
+                System.out.print("Gender (M/F): ");
+                char gender = scanner.nextLine().charAt(0);
+                if (gender != 'M' && gender != 'F') {
+                    throw new IllegalArgumentException("Invalid gender. Must be 'M' or 'F'.");
+                }
+
+                // Prompt the user for the student's course program
+                System.out.print("Course program: ");
+                String courseProgram = scanner.nextLine();
+
+                // Prompt the user for the student's year level and check if it's valid
+                System.out.print("Year level: ");
+                byte yearLevel = scanner.nextByte();
+                scanner.nextLine();
+                if (yearLevel < 1 || yearLevel > 5) {
+                    throw new IllegalArgumentException("Invalid year level. Must be between 1 and 5 inclusive.");
+                }
+
+                // Create a new Student object with the inputted information and add it to the ArrayList
+                Student student = new Student(lastName, firstName, idNumber, age, gender, courseProgram, yearLevel);
                 students.add(student);
             }
-            inputStream.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found.");
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Must be an integer.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            scanner.close();
         }
-
         return students;
-    } // end of populateStudents method
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == showSubjectsBtn) {
-            // Get the selected year and term
-            int selectedYear = (int) yearComboBox.getSelectedItem();
-            int selectedTerm = (int) termComboBox.getSelectedItem();
-
-            // Loop through the courses and display the courses that match the selected year and term
-            textArea.setText("");
-            for (Course course : courses) {
-                if (course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
-                    textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\n");
-                }
-            }
-        } else if (e.getSource() == showGradesBtn) {
-            // Get the selected year and term
-            int selectedYear = (int) yearComboBox.getSelectedItem();
-            int selectedTerm = (int) termComboBox.getSelectedItem();
-
-            // Loop through the courses and display the courses that match the selected year and term
-            textArea.setText("");
-            for (Course course : courses) {
-                if (course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
-                    textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\n");
-
-                    // Loop through the students and display the grade for each student in the selected course
-                    for (Student student : students) {
-                        Grade grade = student.getGrade();
-                        if (grade != null) {
-                            textArea.append("\t" + student.getLastName() + ": " + grade.getGrade() + "\n");
-                        }
-                    }
-                }
-            }
-        } else if (e.getSource() == enterGradesBtn) {
-            // Get the selected year and term
-            int selectedYear = (int) yearComboBox.getSelectedItem();
-            int selectedTerm = (int) termComboBox.getSelectedItem();
-
-            // Loop through the courses and display the courses that match the selected year and term
-            textArea.setText("");
-            for (Course course : courses) {
-                if (course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
-                    textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\n");
-
-                    // Loop through the students and prompt the user to enter a grade for each student in the selected course
-                    for (Student student : students) {
-                        if (student.getYearLevel() == selectedYear) {
-                            String gradeString = JOptionPane.showInputDialog("Enter grade for " +
-                                    student.getLastName() + ":");
-                            if (gradeString != null && !gradeString.isEmpty()) {
-                                try {
-                                    double gradeValue = Double.parseDouble(gradeString);
-                                    Grade grade = new Grade(course.getCourseNumber(), gradeValue);
-                                    student.setGrade(grade);
-                                } catch (NumberFormatException ex) {
-                                    JOptionPane.showMessageDialog(null,
-                                            "Invalid grade value entered.");
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        } else if (e.getSource() == editCourseBtn) {
-            String courseCode = JOptionPane.showInputDialog("Enter course code to edit:");
-            if (courseCode != null && !courseCode.isEmpty()) {
-                Course course = null;
-                for (Course c : courses) {
-                    if (c.getCourseNumber().equals(courseCode)) {
-                        course = c;
-                        break;
-                    }
-                }
-                if (course != null) {
-                    String newTitle = JOptionPane.showInputDialog("Enter new title for " + courseCode + ":");
-                    if (newTitle != null && !newTitle.isEmpty()) {
-                        course.setDescriptiveTitle(newTitle);
-                        JOptionPane.showMessageDialog(null, "Course title updated successfully.");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No course title entered. Course title not updated.");
-                    }
-                }
-            }
-        } else if (e.getSource() == quitBtn) {
-            System.exit(0);
-        }
-    }
-}
+    } // end of populateStudent method
+} // end of class ChecklistManagement
