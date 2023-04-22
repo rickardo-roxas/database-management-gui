@@ -53,6 +53,7 @@ public class Course {
 
     /**
      * Mutator/Setter method for the year attribute.
+     * @param year - given year
      */
     public void setYear(byte year) {
         this.year = year;
@@ -60,6 +61,7 @@ public class Course {
 
     /**
      * Mutator/Setter method for the term attribute.
+     * @param term - given term
      */
     public void setTerm(byte term) {
         this.term = term;
@@ -67,6 +69,7 @@ public class Course {
 
     /**
      * Mutator/Setter method for the courseNumber attribute.
+     * @param courseNumber given courseNumber
      */
     public void setCourseNumber(String courseNumber) {
         this.courseNumber = courseNumber;
@@ -74,6 +77,7 @@ public class Course {
 
     /**
      * Mutator/Setter method for the descriptiveTitle attribute.
+     * @param descriptiveTitle given descriptiveTitle
      */
     public void setDescriptiveTitle(String descriptiveTitle) {
         this.descriptiveTitle = descriptiveTitle;
@@ -81,6 +85,7 @@ public class Course {
 
     /**
      * Mutator/Setter method for the units attribute.
+     * @param units given units
      */
     public void setUnits(byte units) {
         this.units = units;
