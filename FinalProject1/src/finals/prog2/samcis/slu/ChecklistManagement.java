@@ -94,14 +94,16 @@ public class ChecklistManagement extends JFrame implements ActionListener {
                 String course = inputStream.readLine();
                 String[] courseData = course.split(",");
 
-                byte courseYear = Byte.parseByte(courseData[0]);
-                byte courseTerm = Byte.parseByte(courseData[1]);
+                int courseYear = Byte.parseByte(courseData[0]);
+                int courseTerm = Byte.parseByte(courseData[1]);
                 String courseNumber = courseData[2];
                 String courseDescriptiveTitle = courseData[3];
-                byte units = Byte.parseByte(courseData[4]);
+                int units = Byte.parseByte(courseData[4]);
 
                 Course newCourse = new Course(courseYear, courseTerm, courseNumber, courseDescriptiveTitle, units);
                 courses.add(newCourse);
+
+                System.out.println(courses);
             } // end of while
             inputStream.close(); // Closes inputStream when readLine == null
         } catch (IOException exception1) {

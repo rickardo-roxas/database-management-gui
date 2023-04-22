@@ -18,11 +18,11 @@ package finals.prog2.samcis.slu;
  * and toString methods.
  */
 public class Course {
-    private byte year; // Year of Course (e.g. Year 1)
-    private byte term; // Term of Course (the semester)
+    private int year; // Year of Course (e.g. Year 1)
+    private int term; // Term of Course (the semester)
     private String courseNumber; // Course Number of Course (e.g. CS 111)
     private String descriptiveTitle; // Descriptive title of Course (e.g. "Intro. to Computing)
-    private byte units; // Number of units of Course (e.g. 3 Units)
+    private int units; // Number of units of Course (e.g. 3 Units)
 
     /**
      * Constructs an object of Course with default values.
@@ -43,7 +43,7 @@ public class Course {
      * @param descriptiveTitle given descriptiveTitle
      * @param units given units
      */
-    public Course(byte year, byte term, String courseNumber, String descriptiveTitle, byte units) {
+    public Course(int year, int term, String courseNumber, String descriptiveTitle, int units) {
         this.year = year;
         this.term = term;
         this.courseNumber = courseNumber;
@@ -55,7 +55,7 @@ public class Course {
      * Mutator/Setter method for the year attribute.
      * @param year - given year
      */
-    public void setYear(byte year) {
+    public void setYear(int year) {
         this.year = year;
     } // end of setYear mutator method
 
@@ -63,7 +63,7 @@ public class Course {
      * Mutator/Setter method for the term attribute.
      * @param term - given term
      */
-    public void setTerm(byte term) {
+    public void setTerm(int term) {
         this.term = term;
     } // end of setTerm method mutator method
 
@@ -87,7 +87,7 @@ public class Course {
      * Mutator/Setter method for the units attribute.
      * @param units given units
      */
-    public void setUnits(byte units) {
+    public void setUnits(int units) {
         this.units = units;
     } // end of setUnits mutator method
 
@@ -95,11 +95,11 @@ public class Course {
      * Accessor/Getter method for year
      * @return state/value of the year attribute
      */
-    public byte getYear() {
+    public int getYear() {
         return this.year;
     } // end of getYear accessor method
 
-    public byte getTerm() {
+    public int getTerm() {
         return this.term;
     } // end of getTerm accessor method
 
@@ -123,7 +123,7 @@ public class Course {
      * Accessor/Getter method for units
      * @return state/value of units attribute
      */
-    public byte getUnits() {
+    public int getUnits() {
         return this.units;
     } // end of getUnits accessor method
 
