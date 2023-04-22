@@ -30,7 +30,6 @@ public class ChecklistManagement extends JFrame implements ActionListener {
 
     // Labels
     private JLabel loginLabel;
-
     // Buttons
     private JButton quitButton;
     private JButton loginButton;
@@ -106,6 +105,8 @@ public class ChecklistManagement extends JFrame implements ActionListener {
                 System.out.println(courses);
             } // end of while
             inputStream.close(); // Closes inputStream when readLine == null
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid byte value: " + e.getMessage());
         } catch (IOException exception1) {
             exception1.getMessage();
         } finally {
@@ -114,10 +115,61 @@ public class ChecklistManagement extends JFrame implements ActionListener {
     } // end of populateCourse method
 
     private void populateGUIComponents() {
-        // Add JFrame stuff here
-        // Invoke in run method
-        // For shorter code
-    }
+        setTitle("Checklist Management System");
+
+        // Buttons
+        JButton showSubjectsButton = new JButton("Show subjects for each school term");
+        JButton showGradesButton = new JButton("Show subjects with grades for each term");
+        JButton enterGradesButton = new JButton("Enter grades for subjects recently finished");
+        JButton editCourseButton = new JButton("Edit a course");
+        JButton quitButton = new JButton("Quit");
+
+        // Add action listeners to buttons
+        showSubjectsButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO: Show subjects with grades for each term
+            }
+        });
+
+        showGradesButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO: Show subjects with grades for each term
+            }
+        });
+
+        enterGradesButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO: Enter grades for subjects recently finished
+            }
+        });
+
+        editCourseButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO: Edit a course
+            }
+        });
+
+        quitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
+        // Add buttons to panel
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridLayout(5,1));
+        buttonPanel.add(showSubjectsButton);
+        buttonPanel.add(showGradesButton);
+        buttonPanel.add(enterGradesButton);
+        buttonPanel.add(editCourseButton);
+        buttonPanel.add(quitButton);
+
+        add(buttonPanel);
+
+        this.pack();
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    } // end of populateGUIComponents
 
     /**
      * Shows the UI when a student is logging in the program.
