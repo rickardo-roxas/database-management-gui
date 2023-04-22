@@ -37,6 +37,9 @@ public class ChecklistManagement extends JFrame implements ActionListener {
 
     // Text Fields
     private JTextField loginTextField;
+    private JTextArea textArea;
+    private JComboBox<Integer> termComboBox;
+    private JComboBox<Integer> yearComboBox;
 
 
     // ArrayLists
@@ -49,6 +52,7 @@ public class ChecklistManagement extends JFrame implements ActionListener {
 
     /**
      * Main entry point of the program
+     *
      * @param args command line arguments
      */
     public static void main(String[] args) {
@@ -66,6 +70,7 @@ public class ChecklistManagement extends JFrame implements ActionListener {
 
     /**
      * Controls the execution of the program
+     *
      * @throws Exception To-Do...
      */
     private void run() throws Exception {
@@ -83,6 +88,7 @@ public class ChecklistManagement extends JFrame implements ActionListener {
 
     /**
      * Populates ArrayList of courses using the data of the BSCS Curriculum
+     *
      * @throws FileNotFoundException TO-DO...
      */
     private void populateCourse() throws FileNotFoundException {
@@ -114,178 +120,297 @@ public class ChecklistManagement extends JFrame implements ActionListener {
         } // end of try-catch
     } // end of populateCourse method
 
+
     private void populateGUIComponents() {
         setTitle("Checklist Management System");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
 
         // Buttons
-        JButton showSubjectsButton = new JButton("Show subjects for each school term");
-        JButton showGradesButton = new JButton("Show subjects with grades for each term");
-        JButton enterGradesButton = new JButton("Enter grades for subjects recently finished");
-        JButton editCourseButton = new JButton("Edit a course");
-        JButton quitButton = new JButton("Quit");
+        JButton showSubjectsBtn = new JButton("Show subjects for each school term");
+        JButton showGradesBtn = new JButton("Show subjects with grades for each term");
+        JButton enterGradesBtn = new JButton("Enter grades for subjects recently finished");
+        JButton editCourseBtn = new JButton("Edit Course");
+        JButton quitBtn = new JButton("Quit");
 
+        // Create combo boxes
+        termComboBox = new JComboBox<>();
+        yearComboBox = new JComboBox<>();
+
+        // Create text area
+        textArea = new JTextArea(20, 50);
+
+        // Add buttons, combo boxes, and text area to panel
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(2, 1));
+        JPanel topPanel = new JPanel();
+        topPanel.add(showSubjectsBtn);
+        topPanel.add(showGradesBtn);
+        topPanel.add(enterGradesBtn);
+        topPanel.add(quitBtn);
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.add(new JLabel("Select Year:"));
+        bottomPanel.add(yearComboBox);
+        bottomPanel.add(new JLabel("Select Term:"));
+        bottomPanel.add(termComboBox);
+        bottomPanel.add(new JScrollPane(textArea));
+        panel.add(topPanel);
+        panel.add(bottomPanel);
+        add(panel);
+
+
+        // Initialize combo boxes
+        for (int i = 1; i <= 4; i++) {
+            yearComboBox.addItem(i);
+        }
+        for (int i = 1; i <= 3; i++) {
+            termComboBox.addItem(i);
+        }
         // Add action listeners to buttons
-        showSubjectsButton.addActionListener(new ActionListener() {
+        showSubjectsBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO: Show subjects with grades for each term
+                // Get the selected year and term
+                int selectedYear = (int) yearComboBox.getSelectedItem();
+                int selectedTerm = (int) termComboBox.getSelectedItem();
+
+                // Loop through the courses and display the courses that match the selected year and term
+                textArea.setText("");
+                for (Course course : courses) {
+                    if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
+                        textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\n");
+                    }
+                }
             }
         });
 
-        showGradesButton.addActionListener(new ActionListener() {
+        showGradesBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO: Show subjects with grades for each term
+                // Get the selected year and term
+                int selectedYear = (int) yearComboBox.getSelectedItem();
+                int selectedTerm = (int) termComboBox.getSelectedItem();
+
+                // Loop through the courses and display the courses that match the selected year and term
+                textArea.setText("");
+                for (Course course : courses) {
+                    if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
+                        textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\n");
+
+                        // Loop through the students and display the grade for each student in the selected course
+                        for (Student student : students) {
+                            Grade grades = grade.getGrade(student, course); // to fix (remove before running)
+                            if (grades != null) {
+                                textArea.append("\t" + student.getLastName() + ": " + grades.getGrade() + "\n");
+                            }
+                        }
+                    }
+                }
             }
         });
 
-        enterGradesButton.addActionListener(new ActionListener() {
+        enterGradesBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TODO: Enter grades for subjects recently finished
+                // Get the selected year and term
+                int selectedYear = (int) yearComboBox.getSelectedItem();
+                int selectedTerm = (int) termComboBox.getSelectedItem();
+
+                // Loop through the courses and display the courses that match the selected year and term, and allow the user to enter grades for each student in the selected courses
+                textArea.setText("");
+                for (Course course : courses) {
+                    if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
+                        textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\n");
+                        // Loop through the students and allow the user to enter the grade for each student in the selected course
+                        for (Student student : students) {
+                            Grade grade = grade.getGrade(student, course); // to fix (remove before running)
+                            if (grade == null) {
+                                String input = JOptionPane.showInputDialog("Enter grade for " + student.getLastName() + " in " + course.getCourseNumber());
+                                if (input != null && !input.isEmpty()) {
+                                    double gradeValue = Double.parseDouble(input);
+                                    grade = new Grade(gradeValue);
+                                    grade.addGrade(student, course, grades); // to fix (remove before running)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+        editCourseBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // Get the selected year and term
+                int selectedYear = (int) yearComboBox.getSelectedItem();
+                int selectedTerm = (int) termComboBox.getSelectedItem();
+
+                // Loop through the courses and display the courses that match the selected year and term
+                textArea.setText("");
+                for (Course course : courses) {
+                    if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
+                        textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\n");
+                    }
+                }
+
+                // Prompt the user to select a course to edit
+                String courseNumber = JOptionPane.showInputDialog(null, "Enter the course number of the course you would like to edit:");
+
+                // Find the course with the given course number and display its details
+                for (Course course : courses) {
+                    if (course instanceof Course && course.getCourseNumber().equals(courseNumber)) {
+                        String input = JOptionPane.showInputDialog("Enter new course number:");
+                        if (input != null && !input.isEmpty()) {
+                            course.setCourseNumber(input);
+                        }
+
+                        input = JOptionPane.showInputDialog("Enter new course title:");
+                        if (input != null && !input.isEmpty()) {
+                            course.setDescriptiveTitle(input);
+                        }
+
+                        input = JOptionPane.showInputDialog("Enter new course year:");
+                        if (input != null && !input.isEmpty()) {
+                            int year = Integer.parseInt(input);
+                            course.setYear(year);
+                        }
+
+                        input = JOptionPane.showInputDialog("Enter new course term:");
+                        if (input != null && !input.isEmpty()) {
+                            int term = Integer.parseInt(input);
+                            course.setTerm(term);
+                        }
+
+                        break;
+                    }
+                }
             }
         });
 
-        editCourseButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // TODO: Edit a course
-            }
-        });
-
-        quitButton.addActionListener(new ActionListener() {
+        quitBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         });
 
-        // Add buttons to panel
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(5,1));
-        buttonPanel.add(showSubjectsButton);
-        buttonPanel.add(showGradesButton);
-        buttonPanel.add(enterGradesButton);
-        buttonPanel.add(editCourseButton);
-        buttonPanel.add(quitButton);
+        pack();
+        setVisible(true);
+    }
 
-        add(buttonPanel);
 
-        this.pack();
-        this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    } // end of populateGUIComponents
 
-    /**
-     * Shows the UI when a student is logging in the program.
-     */
-    private void loginFormComponents() {
-        setTitle("Student Login Form");
+        /**
+         * Shows the UI when a student is logging in the program.
+         */
+        private void loginFormComponents () {
+            setTitle("Student Login Form");
 
-        JPanel loginPanel = new JPanel();
-        loginPanel.setLayout(new GridLayout(2,1));
+            JPanel loginPanel = new JPanel();
+            loginPanel.setLayout(new GridLayout(2, 1));
 
-        loginLabel = new JLabel("Enter your SLU ID Number");
-        loginButton = new JButton("Login");
-        loginTextField = new JTextField();
-        loginTextField.setDocument(new JTextFieldLimit(7)); // Limits input to 7 characters
-        quitButton = new JButton("Quit");
+            loginLabel = new JLabel("Enter your SLU ID Number");
+            loginButton = new JButton("Login");
+            loginTextField = new JTextField();
+            loginTextField.setDocument(new JTextFieldLimit(7)); // Limits input to 7 characters
+            quitButton = new JButton("Quit");
 
-        loginPanel.add(loginLabel);
-        loginPanel.add(loginButton);
-        loginPanel.add(quitButton);
-        add(loginPanel);
+            loginPanel.add(loginLabel);
+            loginPanel.add(loginButton);
+            loginPanel.add(quitButton);
+            add(loginPanel);
 
-        loginButton.addActionListener(this);
+            loginButton.addActionListener(this);
 
-        this.pack();
-        this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    } // end of loginFormComponents
+            this.pack();
+            this.setVisible(true);
+            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        } // end of loginFormComponents
 
-    /**
-     * Creates student record when no record has been found.
-     */
-    private void createRecordComponents() {
-        setTitle("Student Login Form");
+        /**
+         * Creates student record when no record has been found.
+         */
+        private void createRecordComponents () {
+            setTitle("Student Login Form");
 
-        JPanel recordPanel = new JPanel();
-        recordPanel.setLayout(new GridLayout(2,1));
+            JPanel recordPanel = new JPanel();
+            recordPanel.setLayout(new GridLayout(2, 1));
 
-        loginLabel = new JLabel("No student record found. Default record has been created.");
-        createButton = new JButton("Next");
-        quitButton = new JButton("Quit");
+            loginLabel = new JLabel("No student record found. Default record has been created.");
+            createButton = new JButton("Next");
+            quitButton = new JButton("Quit");
 
-        recordPanel.add(loginLabel);
-        recordPanel.add(createButton);
-        recordPanel.add(quitButton);
-        add(recordPanel);
+            recordPanel.add(loginLabel);
+            recordPanel.add(createButton);
+            recordPanel.add(quitButton);
+            add(recordPanel);
 
-        createButton.addActionListener(this);
+            createButton.addActionListener(this);
 
-        this.pack();
-        this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    } // end of makeRecordComponents method
+            this.pack();
+            this.setVisible(true);
+            this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        } // end of makeRecordComponents method
 
-    /**
-     * Implemented method for actionPerformed for JButtons
-     * @param e the event to be processed
-     */
-    public void actionPerformed(ActionEvent e) {
-        // Login Button
-        if (e.getSource() == loginButton) {
-            loginFormComponents();
+        /**
+         * Implemented method for actionPerformed for JButtons
+         * @param e the event to be processed
+         */
+        public void actionPerformed (ActionEvent e){
+            // Login Button
+            if (e.getSource() == loginButton) {
+                loginFormComponents();
 
-            try {
-                int studentID = 0000000;
+                try {
+                    int studentID = 0000000;
 
-                if (!loginTextField.getText().equals("")) {
-                    studentID = Integer.parseInt(loginLabel.getText());
-                    try {
-                        inputStream = new BufferedReader(new FileReader(String.valueOf(studentID)));
-                    } catch (FileNotFoundException exception) {
-                        createRecordComponents();
-                    } // end of try-catch
-                } else
-                    loginTextField.setText("Please enter a valid SLU ID Number");
-            } catch (NumberFormatException exception1) {
-                loginTextField.setText(exception1.getMessage());
-            } // end of try-catch
-        } // end of if -> loginButton
+                    if (!loginTextField.getText().equals("")) {
+                        studentID = Integer.parseInt(loginLabel.getText());
+                        try {
+                            inputStream = new BufferedReader(new FileReader(String.valueOf(studentID)));
+                        } catch (FileNotFoundException exception) {
+                            createRecordComponents();
+                        } // end of try-catch
+                    } else
+                        loginTextField.setText("Please enter a valid SLU ID Number");
+                } catch (NumberFormatException exception1) {
+                    loginTextField.setText(exception1.getMessage());
+                } // end of try-catch
+            } // end of if -> loginButton
 
-        // Create Record
-        if (e.getSource() == createButton) {
-            // signUpFormComponents();
-        } // end of if -> createButton
+            // Create Record
+            if (e.getSource() == createButton) {
+                // signUpFormComponents();
+            } // end of if -> createButton
 
-        if (e.getSource() == quitButton) {
-            System.exit(0);
-        } // end of if -> quitButton
-    } // end of actionPerformed method
-} // end of class ChecklistManagement
-
-/**
- * Class that limits user input from JTextField using a given offset value.
- */
-class JTextFieldLimit extends PlainDocument {
-    private final int limit;
+            if (e.getSource() == quitButton) {
+                System.exit(0);
+            } // end of if -> quitButton
+        } // end of actionPerformed method
+    } // end of class ChecklistManagement
 
     /**
-     * Constructs JTextFieldLimit object with user-defined values.
-     * @param limit input limit
+     * Class that limits user input from JTextField using a given offset value.
      */
-    JTextFieldLimit(int limit) {
-        super();
-        this.limit = limit;
-    } // end of JTextFieldLimit constructor
+    class JTextFieldLimit extends PlainDocument {
+        private final int limit;
 
-    /**
-     * Implemented method for text field limit
-     * @param offset the starting offset &gt;= 0
-     * @param string the string to insert; does nothing with null/empty strings
-     * @param attributeSet the attributes for the inserted content
-     * @throws BadLocationException if reference does not exist
-     */
-    public void insertString(int offset, String string, AttributeSet attributeSet) throws BadLocationException {
-        if (string == null)
-            return;
-        if ((getLength() + string.length()) <= limit)
-            super.insertString(offset, string, attributeSet);
-    } // end of insertString method
-} // end of JTextFieldLimit class
+        /**
+         * Constructs JTextFieldLimit object with user-defined values.
+         *
+         * @param limit input limit
+         */
+        JTextFieldLimit(int limit) {
+            super();
+            this.limit = limit;
+        } // end of JTextFieldLimit constructor
+
+        /**
+         * Implemented method for text field limit
+         *
+         * @param offset       the starting offset &gt;= 0
+         * @param string       the string to insert; does nothing with null/empty strings
+         * @param attributeSet the attributes for the inserted content
+         * @throws BadLocationException if reference does not exist
+         */
+        public void insertString(int offset, String string, AttributeSet attributeSet) throws BadLocationException {
+            if (string == null)
+                return;
+            if ((getLength() + string.length()) <= limit)
+                super.insertString(offset, string, attributeSet);
+        } // end of insertString method
+    } // end of JTextFieldLimit class

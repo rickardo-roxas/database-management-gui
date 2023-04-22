@@ -25,7 +25,6 @@ public class Student {
     private char gender; // The gender of the student (M or F)
     private String courseProgram; // The course program of the student
     private byte yearLevel; // The year level of the student
-
     /**
      * Constructs an object of Student with default values.
      */
