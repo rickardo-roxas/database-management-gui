@@ -25,7 +25,6 @@ public class Student {
     private char gender; // The gender of the student (M or F)
     private String courseProgram; // The course program of the student
     private byte yearLevel; // The year level of the student
-    private double grade; // Grade of student for respective Course
 
     /**
      * Constructs an object of Student with default values.
@@ -38,7 +37,6 @@ public class Student {
         gender = 'M';
         courseProgram = "BS Computer Science";
         yearLevel = 1;
-        grade = 99.0;
     } // end of Student default constructor
 
     /**
@@ -120,9 +118,6 @@ public class Student {
         this.yearLevel = yearLevel;
     } // end of setYearLevel mutator method
 
-    public void setGrade(double grade) {
-        this.grade = grade;
-    } // end of setGrade mutator method
     /**
      * Accessor method for the last name attribute.
      * @return The last name of the student
@@ -179,9 +174,6 @@ public class Student {
         return yearLevel;
     } // end of getYearLevel accessor method
 
-    public double getGrade() {
-        return this.grade;
-    } // end of getGrade accessor method
     /**
      * Returns a string representation of the Student object.
      * @return A string representation of the Student object
