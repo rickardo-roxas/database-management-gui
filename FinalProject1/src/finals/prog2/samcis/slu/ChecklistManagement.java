@@ -303,7 +303,7 @@ public class ChecklistManagement extends JFrame implements ActionListener {
         constraints.anchor = GridBagConstraints.WEST;
 
         // Load the image
-        ImageIcon logoIcon = new ImageIcon("school_logo.png");
+        ImageIcon logoIcon = new ImageIcon("slu_school_logo.png");
 
         // Scale the image to a smaller size
         Image logoImage = logoIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
@@ -410,7 +410,8 @@ public class ChecklistManagement extends JFrame implements ActionListener {
      */
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == loginButton) {
-            int studentID = 0;
+            loginFormComponents();
+            int studentID = 0000000;
             try {
                 studentID = Integer.parseInt(loginTextField.getText());
             } catch (NumberFormatException ex) {
@@ -423,7 +424,6 @@ public class ChecklistManagement extends JFrame implements ActionListener {
                 createRecordComponents();
                 return;
             }
-            loginFormComponents();
         } else if (e.getSource() == createButton) {
             // TODO: implement create record functionality
         } else if (e.getSource() == quitButton) {
