@@ -429,7 +429,7 @@ public class ChecklistManagement extends JFrame {
         constraints.gridy = 1;
         constraints.anchor = GridBagConstraints.CENTER;
 
-        JButton createButton = new JButton("Next");
+        JButton createButton = new JButton("Create");
         createButton.setPreferredSize(new Dimension(120, 40));
         createButton.setBackground(Color.BLUE);
         createButton.setForeground(Color.WHITE);
@@ -456,7 +456,7 @@ public class ChecklistManagement extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 recordFrame.dispose();
-                loginFormComponents();
+                populateGUIComponents();
             }
         });
 
