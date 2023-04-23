@@ -25,7 +25,7 @@ import javax.swing.text.PlainDocument;
 import java.awt.*;
 
 
-public class ChecklistManagement extends JFrame implements ActionListener {
+public class ChecklistManagement extends JFrame {
     // GUI Components
 
     // Labels
@@ -389,11 +389,17 @@ public class ChecklistManagement extends JFrame implements ActionListener {
                 }
             }
         });
-        quitButton.addActionListener(this);
+        quitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
 
         this.pack();
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
     }
 
 
@@ -464,13 +470,7 @@ public class ChecklistManagement extends JFrame implements ActionListener {
      * Implemented method for actionPerformed for JButtons
      * @param e the event to be processed
      */
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == createButton) {
-            // TODO: implement create record functionality
-        } else if (e.getSource() == quitButton) {
-            System.exit(0);
-        }
-    }
+
 } // end of class ChecklistManagement
 
     /**
