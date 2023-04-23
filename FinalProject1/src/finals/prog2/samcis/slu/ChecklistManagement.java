@@ -88,13 +88,13 @@ public class ChecklistManagement extends JFrame {
      *
      * @throws FileNotFoundException TO-DO...
      */
+
     private void populateCourse() throws FileNotFoundException {
         try {
             inputStream = new BufferedReader(new FileReader("BSCSCurriculumData1.txt"));
-
-            while (inputStream.readLine() != null) {
-                String course = inputStream.readLine();
-                String[] courseData = course.split(",");
+            String line;
+            while ((line = inputStream.readLine()) != null) {
+                String[] courseData = line.split(",");
 
                 int courseYear = Byte.parseByte(courseData[0]);
                 int courseTerm = Byte.parseByte(courseData[1]);
@@ -107,21 +107,23 @@ public class ChecklistManagement extends JFrame {
 
                 System.out.println(courses);
             } // end of while
-            inputStream.close(); // Closes inputStream when readLine == null
         } catch (NumberFormatException e) {
             System.out.println("Invalid byte value: " + e.getMessage());
         } catch (IOException exception1) {
             exception1.getMessage();
         } finally {
-            System.out.println("TO DO...");
+            try {
+                inputStream.close(); // Closes inputStream when readLine == null
+            } catch (IOException e) {
+                System.out.println("Error closing file: " + e.getMessage());
+            }
         } // end of try-catch
     } // end of populateCourse method
 
-
     private void populateGUIComponents() {
-        setTitle("Checklist Management System");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
+        JFrame frame = new JFrame("Checklist Management System");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
 
         // Buttons
         JButton showSubjectsBtn = new JButton("Show subjects for each school term");
@@ -153,7 +155,7 @@ public class ChecklistManagement extends JFrame {
         bottomPanel.add(new JScrollPane(textArea));
         panel.add(topPanel);
         panel.add(bottomPanel);
-        add(panel);
+        frame.add(panel);
 
 
         // Initialize combo boxes
@@ -285,8 +287,9 @@ public class ChecklistManagement extends JFrame {
             }
         });
 
-        pack();
-        setVisible(true);
+        frame.pack();
+        frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
     }
 
         /**
@@ -464,13 +467,6 @@ public class ChecklistManagement extends JFrame {
             }
         });
     } // end of createRecordComponents method
-
-
-    /**
-     * Implemented method for actionPerformed for JButtons
-     * @param e the event to be processed
-     */
-
 } // end of class ChecklistManagement
 
     /**
