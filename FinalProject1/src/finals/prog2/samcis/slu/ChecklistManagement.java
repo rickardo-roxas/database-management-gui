@@ -34,13 +34,11 @@ public class ChecklistManagement extends JFrame implements ActionListener {
     private JButton quitButton;
     private JButton loginButton;
     private JButton createButton;
-
     // Text Fields
     private JTextField loginTextField;
     private JTextArea textArea;
     private JComboBox<Integer> termComboBox;
     private JComboBox<Integer> yearComboBox;
-
 
     // ArrayLists
     private ArrayList<Course> courses = new ArrayList<>();
@@ -65,7 +63,6 @@ public class ChecklistManagement extends JFrame implements ActionListener {
         } catch (Exception exception) {
             exception.printStackTrace();
         } // end of try-catch
-        System.exit(0);
     } // end of main method
 
     /**
@@ -197,7 +194,7 @@ public class ChecklistManagement extends JFrame implements ActionListener {
 
                         // Loop through the students and display the grade for each student in the selected course
                         for (Student student : students) {
-                            Grade grades = grade.getGrade(student, course); // to fix (remove before running)
+                            Grade grades = null;
                             if (grades != null) {
                                 textArea.append("\t" + student.getLastName() + ": " + grades.getGrade() + "\n");
                             }
@@ -220,13 +217,13 @@ public class ChecklistManagement extends JFrame implements ActionListener {
                         textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\n");
                         // Loop through the students and allow the user to enter the grade for each student in the selected course
                         for (Student student : students) {
-                            Grade grade = grade.getGrade(student, course); // to fix (remove before running)
+                            Grade grade = null;
                             if (grade == null) {
                                 String input = JOptionPane.showInputDialog("Enter grade for " + student.getLastName() + " in " + course.getCourseNumber());
                                 if (input != null && !input.isEmpty()) {
                                     double gradeValue = Double.parseDouble(input);
                                     grade = new Grade(gradeValue);
-                                    grade.addGrade(student, course, grades); // to fix (remove before running)
+
                                 }
                             }
                         }
@@ -292,96 +289,148 @@ public class ChecklistManagement extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-
-
         /**
          * Shows the UI when a student is logging in the program.
          */
-        private void loginFormComponents () {
-            setTitle("Student Login Form");
+    private void loginFormComponents() {
+        setTitle("Student Login Form");
+        JPanel loginPanel = new JPanel(new GridBagLayout());
 
-            JPanel loginPanel = new JPanel();
-            loginPanel.setLayout(new GridLayout(2, 1));
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.insets = new Insets(10, 10, 10, 10);
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.anchor = GridBagConstraints.WEST;
 
-            loginLabel = new JLabel("Enter your SLU ID Number");
-            loginButton = new JButton("Login");
-            loginTextField = new JTextField();
-            loginTextField.setDocument(new JTextFieldLimit(7)); // Limits input to 7 characters
-            quitButton = new JButton("Quit");
+        // Load the image
+        ImageIcon logoIcon = new ImageIcon("school_logo.png");
 
-            loginPanel.add(loginLabel);
-            loginPanel.add(loginButton);
-            loginPanel.add(quitButton);
-            add(loginPanel);
+        // Scale the image to a smaller size
+        Image logoImage = logoIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        ImageIcon scaledLogoIcon = new ImageIcon(logoImage);
 
-            loginButton.addActionListener(this);
+        // Create the JLabel with the scaled image
+        JLabel logoLabel = new JLabel(scaledLogoIcon);
+        loginPanel.add(logoLabel, constraints);
 
-            this.pack();
-            this.setVisible(true);
-            this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        } // end of loginFormComponents
+        constraints.gridx = 1;
+        constraints.gridy = 0;
+        constraints.anchor = GridBagConstraints.WEST;
 
-        /**
-         * Creates student record when no record has been found.
-         */
-        private void createRecordComponents () {
-            setTitle("Student Login Form");
+        JLabel loginTitleLabel = new JLabel("Student Login");
+        loginTitleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        loginPanel.add(loginTitleLabel, constraints);
 
-            JPanel recordPanel = new JPanel();
-            recordPanel.setLayout(new GridLayout(2, 1));
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        constraints.gridwidth = 2;
+        constraints.anchor = GridBagConstraints.CENTER;
 
-            loginLabel = new JLabel("No student record found. Default record has been created.");
-            createButton = new JButton("Next");
-            quitButton = new JButton("Quit");
+        JSeparator separator = new JSeparator();
+        separator.setPreferredSize(new Dimension(400, 2));
+        loginPanel.add(separator, constraints);
 
-            recordPanel.add(loginLabel);
-            recordPanel.add(createButton);
-            recordPanel.add(quitButton);
-            add(recordPanel);
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        constraints.gridwidth = 1;
 
-            createButton.addActionListener(this);
+        JLabel loginLabel = new JLabel("Enter your SLU ID Number:");
+        loginLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        loginPanel.add(loginLabel, constraints);
 
-            this.pack();
-            this.setVisible(true);
-            this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        } // end of makeRecordComponents method
+        constraints.gridx = 1;
+        constraints.gridy = 2;
 
-        /**
-         * Implemented method for actionPerformed for JButtons
-         * @param e the event to be processed
-         */
-        public void actionPerformed (ActionEvent e){
-            // Login Button
-            if (e.getSource() == loginButton) {
-                loginFormComponents();
+        JTextField loginTextField = new JTextField(10);
+        loginPanel.add(loginTextField, constraints);
 
-                try {
-                    int studentID = 0000000;
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        constraints.gridwidth = 2;
+        constraints.anchor = GridBagConstraints.CENTER;
 
-                    if (!loginTextField.getText().equals("")) {
-                        studentID = Integer.parseInt(loginLabel.getText());
-                        try {
-                            inputStream = new BufferedReader(new FileReader(String.valueOf(studentID)));
-                        } catch (FileNotFoundException exception) {
-                            createRecordComponents();
-                        } // end of try-catch
-                    } else
-                        loginTextField.setText("Please enter a valid SLU ID Number");
-                } catch (NumberFormatException exception1) {
-                    loginTextField.setText(exception1.getMessage());
-                } // end of try-catch
-            } // end of if -> loginButton
+        JButton loginButton = new JButton("Login");
+        loginButton.setPreferredSize(new Dimension(120, 40));
+        loginButton.setBackground(Color.BLUE);
+        loginButton.setForeground(Color.WHITE);
+        loginButton.setFont(new Font("Arial", Font.BOLD, 14));
+        loginPanel.add(loginButton, constraints);
 
-            // Create Record
-            if (e.getSource() == createButton) {
-                // signUpFormComponents();
-            } // end of if -> createButton
+        constraints.gridx = 0;
+        constraints.gridy = 4;
+        constraints.gridwidth = 2;
+        constraints.anchor = GridBagConstraints.CENTER;
 
-            if (e.getSource() == quitButton) {
-                System.exit(0);
-            } // end of if -> quitButton
-        } // end of actionPerformed method
-    } // end of class ChecklistManagement
+        JButton quitButton = new JButton("Quit");
+        quitButton.setPreferredSize(new Dimension(120, 40));
+        quitButton.setBackground(Color.RED);
+        quitButton.setForeground(Color.WHITE);
+        quitButton.setFont(new Font("Arial", Font.BOLD, 14));
+        loginPanel.add(quitButton, constraints);
+
+        add(loginPanel);
+
+        loginButton.addActionListener(this);
+        quitButton.addActionListener(this);
+
+        this.pack();
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+
+    /**
+     * Creates student record when no record has been found.
+     */
+    private void createRecordComponents () {
+        setTitle("Student Login Form");
+
+        JPanel recordPanel = new JPanel();
+        recordPanel.setLayout(new GridLayout(2, 1));
+
+        loginLabel = new JLabel("No student record found. Default record has been created.");
+        createButton = new JButton("Next");
+        quitButton = new JButton("Quit");
+
+        recordPanel.add(loginLabel);
+        recordPanel.add(createButton);
+        recordPanel.add(quitButton);
+        add(recordPanel);
+
+        createButton.addActionListener(this);
+
+        this.pack();
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    } // end of makeRecordComponents method
+
+    /**
+     * Implemented method for actionPerformed for JButtons
+     * @param e the event to be processed
+     */
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == loginButton) {
+            int studentID = 0;
+            try {
+                studentID = Integer.parseInt(loginTextField.getText());
+            } catch (NumberFormatException ex) {
+                loginTextField.setText("Please enter a valid SLU ID Number");
+                return;
+            }
+            try {
+                inputStream = new BufferedReader(new FileReader(String.valueOf(studentID)));
+            } catch (FileNotFoundException ex) {
+                createRecordComponents();
+                return;
+            }
+            loginFormComponents();
+        } else if (e.getSource() == createButton) {
+            // TODO: implement create record functionality
+        } else if (e.getSource() == quitButton) {
+            System.exit(0);
+        }
+    }
+} // end of class ChecklistManagement
 
     /**
      * Class that limits user input from JTextField using a given offset value.
