@@ -401,26 +401,64 @@ public class ChecklistManagement extends JFrame implements ActionListener {
      * Creates student record when no record has been found.
      */
     private void createRecordComponents () {
-        setTitle("Student Login Form");
+        JFrame recordFrame = new JFrame("Student Record Form");
+        recordFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        JPanel recordPanel = new JPanel();
-        recordPanel.setLayout(new GridLayout(2, 1));
+        JPanel recordPanel = new JPanel(new GridBagLayout());
 
-        loginLabel = new JLabel("No student record found. Default record has been created.");
-        createButton = new JButton("Next");
-        quitButton = new JButton("Quit");
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.insets = new Insets(10, 10, 10, 10);
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.anchor = GridBagConstraints.CENTER;
 
-        recordPanel.add(loginLabel);
-        recordPanel.add(createButton);
-        recordPanel.add(quitButton);
-        add(recordPanel);
+        JLabel loginLabel = new JLabel("No student record found. Default record has been created.");
+        loginLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        recordPanel.add(loginLabel, constraints);
 
-        createButton.addActionListener(this);
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        constraints.anchor = GridBagConstraints.CENTER;
 
-        this.pack();
-        this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    } // end of makeRecordComponents method
+        JButton createButton = new JButton("Next");
+        createButton.setPreferredSize(new Dimension(120, 40));
+        createButton.setBackground(Color.BLUE);
+        createButton.setForeground(Color.WHITE);
+        createButton.setFont(new Font("Arial", Font.BOLD, 14));
+        recordPanel.add(createButton, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        constraints.anchor = GridBagConstraints.CENTER;
+
+        JButton quitButton = new JButton("Quit");
+        quitButton.setPreferredSize(new Dimension(120, 40));
+        quitButton.setBackground(Color.RED);
+        quitButton.setForeground(Color.WHITE);
+        quitButton.setFont(new Font("Arial", Font.BOLD, 14));
+        recordPanel.add(quitButton, constraints);
+
+        recordFrame.add(recordPanel);
+        recordFrame.pack();
+        recordFrame.setLocationRelativeTo(null); // center the frame on the screen
+        recordFrame.setVisible(true);
+
+        createButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                recordFrame.dispose();
+                loginFormComponents();
+            }
+        });
+
+        quitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                recordFrame.dispose();
+            }
+        });
+    } // end of createRecordComponents method
+
 
     /**
      * Implemented method for actionPerformed for JButtons
