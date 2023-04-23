@@ -370,7 +370,24 @@ public class ChecklistManagement extends JFrame implements ActionListener {
 
         add(loginPanel);
 
-        loginButton.addActionListener(this);
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int studentID = 0000000;
+                try {
+                    studentID = Integer.parseInt(loginTextField.getText());
+                } catch (NumberFormatException ex) {
+                    loginTextField.setText("Please enter a valid SLU ID Number");
+                    return;
+                }
+                try {
+                    inputStream = new BufferedReader(new FileReader(String.valueOf(studentID)));
+                } catch (FileNotFoundException ex) {
+                    createRecordComponents();
+                    return;
+                }
+            }
+        });
         quitButton.addActionListener(this);
 
         this.pack();
@@ -409,22 +426,7 @@ public class ChecklistManagement extends JFrame implements ActionListener {
      * @param e the event to be processed
      */
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == loginButton) {
-            loginFormComponents();
-            int studentID = 0000000;
-            try {
-                studentID = Integer.parseInt(loginTextField.getText());
-            } catch (NumberFormatException ex) {
-                loginTextField.setText("Please enter a valid SLU ID Number");
-                return;
-            }
-            try {
-                inputStream = new BufferedReader(new FileReader(String.valueOf(studentID)));
-            } catch (FileNotFoundException ex) {
-                createRecordComponents();
-                return;
-            }
-        } else if (e.getSource() == createButton) {
+        if (e.getSource() == createButton) {
             // TODO: implement create record functionality
         } else if (e.getSource() == quitButton) {
             System.exit(0);
