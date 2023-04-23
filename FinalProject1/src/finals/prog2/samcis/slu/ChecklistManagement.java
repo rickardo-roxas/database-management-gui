@@ -342,6 +342,7 @@ public class ChecklistManagement extends JFrame implements ActionListener {
         constraints.gridy = 2;
 
         JTextField loginTextField = new JTextField(10);
+        loginTextField.setDocument(new JTextFieldLimit(7)); // limit to 7 characters
         loginPanel.add(loginTextField, constraints);
 
         constraints.gridx = 0;
