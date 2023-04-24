@@ -51,4 +51,19 @@ public class MyProgramUtility {
         br.close();
         return citizens;
     } // end of readCitizensFromFile method
+
+    // TODO: Add more methods to process the list and generate useful information
+    // Here are the potential examples:
+    // - countByGender(List<Citizen> citizens): returns the count of male and female citizens in the list
+    // - countByDistrict(List<Citizen> citizens): returns the count of citizens in each district
+    // - countSeniors(List<Citizen> citizens): returns the count of senior citizens (age 60 and above) in the list
+    // - getResidents(List<Citizen> citizens): returns a new List containing only the citizens who are residents
+    // - getCitizensByAgeRange(List<Citizen> citizens, int minAge, int maxAge): returns a new List containing only the citizens whose age falls within the specified range
+    // - getOldestCitizen(List<Citizen> citizens): returns the Citizen object with the highest age
+    // - getYoungestCitizen(List<Citizen> citizens): returns the Citizen object with the lowest age
+    // - getAverageAge(List<Citizen> citizens): returns the average age of all the citizens in the list
+    // - findCitizensByKeyword(List<Citizen> citizens, String keyword): returns a new List containing only the citizens whose name or address contains the specified keyword
+    // - getCitizensByDistrict(List<Citizen> citizens, int district): returns a new List containing only the citizens who belong to the specified district
+    // - countNonResidents(List<Citizen> citizens): returns the count of citizens who are not residents
+
 } // end of MyProgramUtility class
