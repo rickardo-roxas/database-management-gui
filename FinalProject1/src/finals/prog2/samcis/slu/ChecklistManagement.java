@@ -94,13 +94,13 @@ public class ChecklistManagement extends JFrame {
             inputStream = new BufferedReader(new FileReader("BSCSCurriculumData1.txt"));
             String line;
             while ((line = inputStream.readLine()) != null) {
-                String[] courseData = line.split(",");
+                String[] courseData = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
 
-                int courseYear = Byte.parseByte(courseData[0]);
-                int courseTerm = Byte.parseByte(courseData[1]);
+                int courseYear = Integer.parseInt(courseData[0]);
+                int courseTerm = Integer.parseInt(courseData[1]);
                 String courseNumber = courseData[2];
                 String courseDescriptiveTitle = courseData[3];
-                int units = Byte.parseByte(courseData[4]);
+                double units = Double.parseDouble(courseData[4]);
 
                 Course newCourse = new Course(courseYear, courseTerm, courseNumber, courseDescriptiveTitle, units);
                 courses.add(newCourse);
@@ -109,6 +109,7 @@ public class ChecklistManagement extends JFrame {
             } // end of while
         } catch (NumberFormatException e) {
             System.out.println("Invalid byte value: " + e.getMessage());
+            e.printStackTrace();
         } catch (IOException exception1) {
             exception1.getMessage();
         } finally {
@@ -292,9 +293,9 @@ public class ChecklistManagement extends JFrame {
         frame.setLocationRelativeTo(null);
     }
 
-        /**
-         * Shows the UI when a student is logging in the program.
-         */
+    /**
+     * Shows the UI when a student is logging in the program.
+     */
     private void loginFormComponents() {
         setTitle("Student Login Form");
         JPanel loginPanel = new JPanel(new GridBagLayout());
@@ -469,34 +470,34 @@ public class ChecklistManagement extends JFrame {
     } // end of createRecordComponents method
 } // end of class ChecklistManagement
 
+/**
+ * Class that limits user input from JTextField using a given offset value.
+ */
+class JTextFieldLimit extends PlainDocument {
+    private final int limit;
+
     /**
-     * Class that limits user input from JTextField using a given offset value.
+     * Constructs JTextFieldLimit object with user-defined values.
+     *
+     * @param limit input limit
      */
-    class JTextFieldLimit extends PlainDocument {
-        private final int limit;
+    JTextFieldLimit(int limit) {
+        super();
+        this.limit = limit;
+    } // end of JTextFieldLimit constructor
 
-        /**
-         * Constructs JTextFieldLimit object with user-defined values.
-         *
-         * @param limit input limit
-         */
-        JTextFieldLimit(int limit) {
-            super();
-            this.limit = limit;
-        } // end of JTextFieldLimit constructor
-
-        /**
-         * Implemented method for text field limit
-         *
-         * @param offset       the starting offset &gt;= 0
-         * @param string       the string to insert; does nothing with null/empty strings
-         * @param attributeSet the attributes for the inserted content
-         * @throws BadLocationException if reference does not exist
-         */
-        public void insertString(int offset, String string, AttributeSet attributeSet) throws BadLocationException {
-            if (string == null)
-                return;
-            if ((getLength() + string.length()) <= limit)
-                super.insertString(offset, string, attributeSet);
-        } // end of insertString method
-    } // end of JTextFieldLimit class
+    /**
+     * Implemented method for text field limit
+     *
+     * @param offset       the starting offset &gt;= 0
+     * @param string       the string to insert; does nothing with null/empty strings
+     * @param attributeSet the attributes for the inserted content
+     * @throws BadLocationException if reference does not exist
+     */
+    public void insertString(int offset, String string, AttributeSet attributeSet) throws BadLocationException {
+        if (string == null)
+            return;
+        if ((getLength() + string.length()) <= limit)
+            super.insertString(offset, string, attributeSet);
+    } // end of insertString method
+} // end of JTextFieldLimit class

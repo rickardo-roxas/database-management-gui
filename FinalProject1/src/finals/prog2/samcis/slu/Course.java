@@ -22,7 +22,7 @@ public class Course {
     private int term; // Term of Course (the semester)
     private String courseNumber; // Course Number of Course (e.g. CS 111)
     private String descriptiveTitle; // Descriptive title of Course (e.g. "Intro. to Computing)
-    private int units; // Number of units of Course (e.g. 3 Units)
+    private double units; // Number of units of Course (e.g. 3 Units)
 
     /**
      * Constructs an object of Course with default values.
@@ -43,7 +43,7 @@ public class Course {
      * @param descriptiveTitle given descriptiveTitle
      * @param units given units
      */
-    public Course(int year, int term, String courseNumber, String descriptiveTitle, int units) {
+    public Course(int year, int term, String courseNumber, String descriptiveTitle, double units) {
         this.year = year;
         this.term = term;
         this.courseNumber = courseNumber;
@@ -123,7 +123,7 @@ public class Course {
      * Accessor/Getter method for units
      * @return state/value of units attribute
      */
-    public int getUnits() {
+    public double getUnits() {
         return this.units;
     } // end of getUnits accessor method
 
