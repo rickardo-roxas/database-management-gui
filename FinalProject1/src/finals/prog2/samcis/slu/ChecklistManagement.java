@@ -273,16 +273,36 @@ public class ChecklistManagement extends JFrame {
                             course.setDescriptiveTitle(input);
                         }
 
-                        input = JOptionPane.showInputDialog("Enter new course year:");
-                        if (input != null && !input.isEmpty()) {
-                            int year = Integer.parseInt(input);
-                            course.setYear(year);
+                        // Validate and set the course year
+                        while (true) {
+                            input = JOptionPane.showInputDialog("Enter new course year (1, 2, 3, or 4):");
+                            if (input != null && !input.isEmpty()) {
+                                int year = Integer.parseInt(input);
+                                if (year >= 1 && year <= 4) {
+                                    course.setYear(year);
+                                    break;
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Invalid input. Year must be 1, 2, 3, or 4.");
+                                }
+                            } else {
+                                break;
+                            }
                         }
 
-                        input = JOptionPane.showInputDialog("Enter new course term:");
-                        if (input != null && !input.isEmpty()) {
-                            int term = Integer.parseInt(input);
-                            course.setTerm(term);
+                        // Validate and set the course term
+                        while (true) {
+                            input = JOptionPane.showInputDialog("Enter new course term (1, 2, or 3):");
+                            if (input != null && !input.isEmpty()) {
+                                int term = Integer.parseInt(input);
+                                if (term >= 1 && term <= 3) {
+                                    course.setTerm(term);
+                                    break;
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Invalid input. Term must be 1, 2, or 3.");
+                                }
+                            } else {
+                                break;
+                            }
                         }
 
                         break;
@@ -290,6 +310,7 @@ public class ChecklistManagement extends JFrame {
                 }
             }
         });
+
 
         quitBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
