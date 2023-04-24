@@ -204,9 +204,9 @@ public class ChecklistManagement extends JFrame {
 
                         // Loop through the students and display the grade for each student in the selected course
                         for (Student student : students) {
-                            Grade grades = null;
-                            if (grades != null) {
-                                textArea.append("\t" + student.getLastName() + ": " + grades.getGrade() + "\n");
+                            Grade grade = student.getGrades().get(course);
+                            if (grade != null) {
+                                textArea.append("\t" + student.getLastName() + ": " + grade.getGrade() + "\n");
                             }
                         }
                     }
@@ -228,12 +228,13 @@ public class ChecklistManagement extends JFrame {
                                         + course.getUnits() + "\n");
                         // Loop through the students and allow the user to enter the grade for each student in the selected course
                         for (Student student : students) {
-                            Grade grade = null;
+                            Grade grade = student.getGrades().get(course);
                             if (grade == null) {
                                 String input = JOptionPane.showInputDialog("Enter grade for " + student.getLastName() + " in " + course.getCourseNumber());
                                 if (input != null && !input.isEmpty()) {
                                     double gradeValue = Double.parseDouble(input);
                                     grade = new Grade(gradeValue);
+                                    student.getGrades().put(course, grade);
 
                                 }
                             }

@@ -12,6 +12,7 @@
  * </p>
  */
 package finals.prog2.samcis.slu;
+import java.util.HashMap;
 
 /**
 
@@ -25,6 +26,7 @@ public class Student {
     private char gender; // The gender of the student (M or F)
     private String courseProgram; // The course program of the student
     private byte yearLevel; // The year level of the student
+    private HashMap<Course, Grade> grades; // A HashMap of the student's grades for each course
     /**
      * Constructs an object of Student with default values.
      */
@@ -36,6 +38,7 @@ public class Student {
         gender = 'M';
         courseProgram = "BS Computer Science";
         yearLevel = 1;
+        grades = new HashMap<Course, Grade>();
     } // end of Student default constructor
 
     /**
@@ -48,9 +51,10 @@ public class Student {
      * @param gender        The gender of the student (M or F)
      * @param courseProgram The course program of the student
      * @param yearLevel     The year level of the student
+     * @param grade         The grade of the student
      */
     public Student(String lastName, String firstName, int idNumber, int age, char gender, String courseProgram,
-                   byte yearLevel) {
+                   byte yearLevel, double grade) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.idNumber = idNumber;
@@ -58,7 +62,23 @@ public class Student {
         this.gender = gender;
         this.courseProgram = courseProgram;
         this.yearLevel = yearLevel;
+        this.grades = grades;
     } // end of Student constructor
+
+    /**
+
+     Accessor method for the HashMap of grades.
+     @return The HashMap of the student's grades for each course
+     */
+    public HashMap<Course, Grade> getGrades() {
+        return grades;
+    } // end of getGrades accessor method
+    /**
+
+ Mutator method for a grade of a specific course.
+ @param course The course to update the grade for
+ @param grade The new grade for the specified course
+ */
 
     /**
      * Mutator method for the last name attribute.
@@ -171,6 +191,15 @@ public class Student {
     public byte getYearLevel() {
         return yearLevel;
     } // end of getYearLevel accessor method
+
+    /**
+     * Accessor method for the grade attribute.
+     * @return The grade of the student
+     */
+    public Grade getGrade(Course course) {
+        return grades.get(course);
+    } // end of getGrade accessor method
+     // end of getYearLevel accessor method
 
     /**
      * Returns a string representation of the Student object.
