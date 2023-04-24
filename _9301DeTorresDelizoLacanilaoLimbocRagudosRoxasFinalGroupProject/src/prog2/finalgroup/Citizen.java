@@ -11,7 +11,7 @@
  *     ROXAS, Johan Rickardo A. - 2233375
  * </p>
  */
-
+package prog2.finalgroup;
 import java.util.Objects;
 public class Citizen implements Comparable<Citizen> {
     private String fullName; // The full name of the citizen
@@ -23,7 +23,7 @@ public class Citizen implements Comparable<Citizen> {
     private char gender; // The gender of the citizen (M or F)
 
     /**
-     * Constructs an object of Citizen with user-defined values.
+     * Constructs an object of prog2.finalgroup.Citizen with user-defined values.
      * @param fullName The full name of the citizen
      * @param email    The email of the citizen
      * @param address  The address of the citizen
@@ -41,7 +41,7 @@ public class Citizen implements Comparable<Citizen> {
         this.resident = resident;
         this.district = district;
         this.gender = gender;
-    } // end of Citizen default constructor
+    } // end of prog2.finalgroup.Citizen default constructor
 
     /**
      * Mutator method for the full name attribute.
@@ -156,7 +156,7 @@ public class Citizen implements Comparable<Citizen> {
     } // end of getGender accessor method
 
     /**
-     * Determines if two Citizen objects are equal based on their attribute values.
+     * Determines if two prog2.finalgroup.Citizen objects are equal based on their attribute values.
      * @param o The object to compare to
      * @return true if the objects are equal, false otherwise
      */
@@ -171,7 +171,7 @@ public class Citizen implements Comparable<Citizen> {
     } // end of equals method
 
     /**
-     * Generates a hash code for the Citizen object based on its attribute values.
+     * Generates a hash code for the prog2.finalgroup.Citizen object based on its attribute values.
      * @return The hash code for the object
      */
     @Override
@@ -180,8 +180,8 @@ public class Citizen implements Comparable<Citizen> {
     } // end of hashCode method
 
     /**
-     * Compares this Citizen object to another based on their full name attribute.
-     * @param o The Citizen object to compare to
+     * Compares this prog2.finalgroup.Citizen object to another based on their full name attribute.
+     * @param o The prog2.finalgroup.Citizen object to compare to
      * @return A negative integer, zero, or a positive integer as this object is less than,
      * equal to, or greater than the specified object.
      */
@@ -191,12 +191,12 @@ public class Citizen implements Comparable<Citizen> {
     } // end of compareTo method
 
     /**
-     * Returns a string representation of the Citizen object.
-     * @return A string representation of the Citizen object
+     * Returns a string representation of the prog2.finalgroup.Citizen object.
+     * @return A string representation of the prog2.finalgroup.Citizen object
      */
     @Override
     public String toString() {
-        return "Citizen{" +
+        return "prog2.finalgroup.Citizen{" +
                 "fullName='" + fullName + '\'' +
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
@@ -206,4 +206,4 @@ public class Citizen implements Comparable<Citizen> {
                 ", gender=" + gender +
                 '}';
     } // end of toString method
-} // end of Citizen class
+} // end of prog2.finalgroup.Citizen class
