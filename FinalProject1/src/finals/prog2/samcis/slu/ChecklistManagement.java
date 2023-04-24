@@ -104,9 +104,10 @@ public class ChecklistManagement extends JFrame {
 
                 Course newCourse = new Course(courseYear, courseTerm, courseNumber, courseDescriptiveTitle, units);
                 courses.add(newCourse);
-
-                System.out.println(courses);
             } // end of while
+
+            for (int index = 0; index < courses.size(); index++)
+                System.out.println(courses.get(index) + "\n");
         } catch (NumberFormatException e) {
             System.out.println("Invalid byte value: " + e.getMessage());
             e.printStackTrace();
@@ -136,6 +137,7 @@ public class ChecklistManagement extends JFrame {
         // Create combo boxes
         termComboBox = new JComboBox<>();
         yearComboBox = new JComboBox<>();
+
 
         // Create text area
         textArea = new JTextArea(20, 50);
@@ -167,6 +169,7 @@ public class ChecklistManagement extends JFrame {
         for (int i = 1; i <= 3; i++) {
             termComboBox.addItem(i);
         }
+
         // Add action listeners to buttons
         showSubjectsBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -178,7 +181,8 @@ public class ChecklistManagement extends JFrame {
                 textArea.setText("");
                 for (Course course : courses) {
                     if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
-                        textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\n");
+                        textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\t"
+                                + course.getUnits() + "\n");
                     }
                 }
             }
@@ -194,7 +198,8 @@ public class ChecklistManagement extends JFrame {
                 textArea.setText("");
                 for (Course course : courses) {
                     if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
-                        textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\n");
+                        textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\t"
+                                + course.getUnits() + "\n");
 
                         // Loop through the students and display the grade for each student in the selected course
                         for (Student student : students) {
@@ -218,7 +223,8 @@ public class ChecklistManagement extends JFrame {
                 textArea.setText("");
                 for (Course course : courses) {
                     if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
-                        textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\n");
+                        textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\t"
+                                        + course.getUnits() + "\n");
                         // Loop through the students and allow the user to enter the grade for each student in the selected course
                         for (Student student : students) {
                             Grade grade = null;
@@ -245,7 +251,8 @@ public class ChecklistManagement extends JFrame {
                 textArea.setText("");
                 for (Course course : courses) {
                     if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
-                        textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\n");
+                        textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\t"
+                                + course.getUnits() + "\n");
                     }
                 }
 
