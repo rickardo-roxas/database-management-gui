@@ -153,34 +153,29 @@ public class ChecklistManagement extends JFrame {
         buttonsPanel.setBorder(BorderFactory.createEmptyBorder(30, 0, 30, 0));
 
         // Add buttons to buttons panel
-// Create buttons
+        // Create buttons
         JButton showSubjectsBtn = new JButton("Show Subjects");
         showSubjectsBtn.setPreferredSize(new Dimension(180, 50));
-
         showSubjectsBtn.setFont(new Font("Arial", Font.BOLD, 18));
         showSubjectsBtn.setBorder(BorderFactory.createLineBorder(new Color(0, 128, 128), 2));
 
         JButton showGradesBtn = new JButton("Show Grades");
         showGradesBtn.setPreferredSize(new Dimension(180, 50));
-
         showGradesBtn.setFont(new Font("Arial", Font.BOLD, 18));
         showGradesBtn.setBorder(BorderFactory.createLineBorder(new Color(128, 64, 0), 2));
 
         JButton enterGradesBtn = new JButton("Enter Grades");
         enterGradesBtn.setPreferredSize(new Dimension(180, 50));
-
         enterGradesBtn.setFont(new Font("Arial", Font.BOLD, 18));
         enterGradesBtn.setBorder(BorderFactory.createLineBorder(new Color(128, 0, 32), 2));
 
         JButton editCourseBtn = new JButton("Edit Course");
         editCourseBtn.setPreferredSize(new Dimension(180, 50));
-
         editCourseBtn.setFont(new Font("Arial", Font.BOLD, 18));
         editCourseBtn.setBorder(BorderFactory.createLineBorder(new Color(128, 0, 128), 2));
 
         JButton quitBtn = new JButton("Quit");
         quitBtn.setPreferredSize(new Dimension(180, 50));
-
         quitBtn.setFont(new Font("Arial", Font.BOLD, 18));
         quitBtn.setBorder(BorderFactory.createLineBorder(new Color(0, 128, 0), 2));
 
@@ -197,8 +192,8 @@ public class ChecklistManagement extends JFrame {
         // Add combo boxes to form panel
         termComboBox = new JComboBox<>();
         yearComboBox = new JComboBox<>();
-        termComboBox.setPreferredSize(new Dimension(150, 30));
-        yearComboBox.setPreferredSize(new Dimension(150, 30));
+        termComboBox.setPreferredSize(new Dimension(200, 40));
+        yearComboBox.setPreferredSize(new Dimension(200, 40));
         JPanel comboPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         comboPanel.add(new JLabel("Select Year:"));
         comboPanel.add(yearComboBox);
@@ -208,6 +203,8 @@ public class ChecklistManagement extends JFrame {
 
         // Add text area to form panel
         textArea = new JTextArea(20, 50);
+        Font font = new Font("Roboto", Font.PLAIN, 18);
+        textArea.setFont(font);
         textArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(textArea);
         formPanel.add(scrollPane, BorderLayout.CENTER);
