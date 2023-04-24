@@ -261,12 +261,13 @@ public class ChecklistManagement extends JFrame {
                     if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
                         textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\t"
                                 + course.getUnits() + "\n");
-
                         // Loop through the students and display the grade for each student in the selected course
                         for (Student student : students) {
                             Grade grade = student.getGrades().get(course);
                             if (grade != null) {
                                 textArea.append("\t" + student.getLastName() + ": " + grade.getGrade() + "\n");
+                            } else {
+                                textArea.append("\t" + student.getLastName() + ": Not yet taken\n");
                             }
                         }
                     }
@@ -289,7 +290,7 @@ public class ChecklistManagement extends JFrame {
                         // Loop through the students and allow the user to enter or modify the grade for each student in the selected course
                         for (Student student : students) {
                             Grade grade = student.getGrades().get(course);
-                            String input = JOptionPane.showInputDialog("Enter grade for " + student.getLastName() + " in " + course.getCourseNumber());
+                            String input = JOptionPane.showInputDialog(null,"Enter grade for " + student.getLastName() + " in " + course.getCourseNumber());
                             if (input != null && !input.isEmpty()) {
                                 double gradeValue = Double.parseDouble(input);
                                 if (grade == null) {
@@ -304,7 +305,6 @@ public class ChecklistManagement extends JFrame {
                 }
             }
         });
-
         editCourseBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Get the selected year and term
@@ -373,18 +373,16 @@ public class ChecklistManagement extends JFrame {
                 }
             }
         });
-
-
         quitBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         });
-
         frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
     }
+
 
     /**
      * Shows the UI when a student is logging in the program.
