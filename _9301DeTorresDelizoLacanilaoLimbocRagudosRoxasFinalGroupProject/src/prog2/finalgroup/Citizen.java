@@ -11,7 +11,9 @@
  *     ROXAS, Johan Rickardo A. - 2233375
  * </p>
  */
+
 package prog2.finalgroup;
+
 import java.util.Objects;
 public class Citizen implements Comparable<Citizen> {
     private String fullName; // The full name of the citizen
