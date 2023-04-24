@@ -139,6 +139,7 @@ public class ChecklistManagement extends JFrame {
 
         // Create text area
         textArea = new JTextArea(20, 50);
+        textArea.setEditable(false);
 
         // Add buttons, combo boxes, and text area to panel
         JPanel panel = new JPanel();
