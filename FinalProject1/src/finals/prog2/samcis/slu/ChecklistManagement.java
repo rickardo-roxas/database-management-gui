@@ -123,44 +123,86 @@ public class ChecklistManagement extends JFrame {
     } // end of populateCourse method
 
     private void populateGUIComponents() {
+        // Create main frame
         JFrame frame = new JFrame("Checklist Management System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new BorderLayout());
 
-        // Buttons
+        // Create header panel
+        JPanel headerPanel = new JPanel(new BorderLayout());
+        headerPanel.setBackground(new Color(56, 79, 141));
+
+        // Add logo to header panel
+        ImageIcon logoIcon = new ImageIcon("logo.png");
+        JLabel logoLabel = new JLabel(logoIcon);
+        logoLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        headerPanel.add(logoLabel, BorderLayout.WEST);
+
+        // Add title label to header panel
+        JLabel titleLabel = new JLabel("Checklist Management System", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setForeground(Color.WHITE);
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        headerPanel.add(titleLabel, BorderLayout.CENTER);
+
+        // Create main panel
+        JPanel mainPanel = new JPanel(new BorderLayout());
+
+        // Create buttons panel
+        JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
+        buttonsPanel.setBorder(BorderFactory.createEmptyBorder(30, 0, 30, 0));
+
+        // Add buttons to buttons panel
         JButton showSubjectsBtn = new JButton("Show subjects for each school term");
         JButton showGradesBtn = new JButton("Show subjects with grades for each term");
         JButton enterGradesBtn = new JButton("Enter grades for subjects recently finished");
         JButton editCourseBtn = new JButton("Edit Course");
         JButton quitBtn = new JButton("Quit");
+        showSubjectsBtn.setPreferredSize(new Dimension(250, 50));
+        showGradesBtn.setPreferredSize(new Dimension(250, 50));
+        enterGradesBtn.setPreferredSize(new Dimension(250, 50));
+        editCourseBtn.setPreferredSize(new Dimension(250, 50));
+        quitBtn.setPreferredSize(new Dimension(250, 50));
+        buttonsPanel.add(showSubjectsBtn);
+        buttonsPanel.add(showGradesBtn);
+        buttonsPanel.add(enterGradesBtn);
+        buttonsPanel.add(editCourseBtn);
+        buttonsPanel.add(quitBtn);
 
-        // Create combo boxes
+        // Create form panel
+        JPanel formPanel = new JPanel(new BorderLayout());
+        formPanel.setBorder(BorderFactory.createEmptyBorder(0, 50, 0, 50));
+
+        // Add combo boxes to form panel
         termComboBox = new JComboBox<>();
         yearComboBox = new JComboBox<>();
+        termComboBox.setPreferredSize(new Dimension(150, 30));
+        yearComboBox.setPreferredSize(new Dimension(150, 30));
+        JPanel comboPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
+        comboPanel.add(new JLabel("Select Year:"));
+        comboPanel.add(yearComboBox);
+        comboPanel.add(new JLabel("Select Term:"));
+        comboPanel.add(termComboBox);
+        formPanel.add(comboPanel, BorderLayout.NORTH);
 
-
-        // Create text area
+        // Add text area to form panel
         textArea = new JTextArea(20, 50);
         textArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        formPanel.add(scrollPane, BorderLayout.CENTER);
 
-        // Add buttons, combo boxes, and text area to panel
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(2, 1));
-        JPanel topPanel = new JPanel();
-        topPanel.add(showSubjectsBtn);
-        topPanel.add(showGradesBtn);
-        topPanel.add(enterGradesBtn);
-        topPanel.add(editCourseBtn);
-        topPanel.add(quitBtn);
-        JPanel bottomPanel = new JPanel();
-        bottomPanel.add(new JLabel("Select Year:"));
-        bottomPanel.add(yearComboBox);
-        bottomPanel.add(new JLabel("Select Term:"));
-        bottomPanel.add(termComboBox);
-        bottomPanel.add(new JScrollPane(textArea));
-        panel.add(topPanel);
-        panel.add(bottomPanel);
-        frame.add(panel);
+        // Add buttons panel and form panel to main panel
+        mainPanel.add(buttonsPanel, BorderLayout.NORTH);
+        mainPanel.add(formPanel, BorderLayout.CENTER);
+
+        // Add header panel and main panel to frame
+        frame.add(headerPanel, BorderLayout.NORTH);
+        frame.add(mainPanel, BorderLayout.CENTER);
+
+        // Set frame properties
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
 
 
         // Initialize combo boxes
@@ -225,17 +267,18 @@ public class ChecklistManagement extends JFrame {
                 for (Course course : courses) {
                     if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
                         textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\t"
-                                        + course.getUnits() + "\n");
-                        // Loop through the students and allow the user to enter the grade for each student in the selected course
+                                + course.getUnits() + "\n");
+                        // Loop through the students and allow the user to enter or modify the grade for each student in the selected course
                         for (Student student : students) {
                             Grade grade = student.getGrades().get(course);
-                            if (grade == null) {
-                                String input = JOptionPane.showInputDialog("Enter grade for " + student.getLastName() + " in " + course.getCourseNumber());
-                                if (input != null && !input.isEmpty()) {
-                                    double gradeValue = Double.parseDouble(input);
+                            String input = JOptionPane.showInputDialog("Enter grade for " + student.getLastName() + " in " + course.getCourseNumber());
+                            if (input != null && !input.isEmpty()) {
+                                double gradeValue = Double.parseDouble(input);
+                                if (grade == null) {
                                     grade = new Grade(gradeValue);
                                     student.getGrades().put(course, grade);
-
+                                } else {
+                                    grade.setGrade(gradeValue);
                                 }
                             }
                         }
@@ -243,6 +286,7 @@ public class ChecklistManagement extends JFrame {
                 }
             }
         });
+
         editCourseBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Get the selected year and term
