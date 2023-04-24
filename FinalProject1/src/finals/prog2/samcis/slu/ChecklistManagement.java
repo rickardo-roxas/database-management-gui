@@ -150,6 +150,7 @@ public class ChecklistManagement extends JFrame {
         topPanel.add(showSubjectsBtn);
         topPanel.add(showGradesBtn);
         topPanel.add(enterGradesBtn);
+        topPanel.add(editCourseBtn);
         topPanel.add(quitBtn);
         JPanel bottomPanel = new JPanel();
         bottomPanel.add(new JLabel("Select Year:"));
