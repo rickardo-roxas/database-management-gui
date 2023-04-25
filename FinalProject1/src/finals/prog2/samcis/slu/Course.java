@@ -23,6 +23,7 @@ public class Course {
     private String courseNumber; // Course Number of Course (e.g. CS 111)
     private String descriptiveTitle; // Descriptive title of Course (e.g. "Intro. to Computing)
     private double units; // Number of units of Course (e.g. 3 Units)
+    private String grade; // Grade of Student for respective Course
 
     /**
      * Constructs an object of Course with default values.
@@ -33,6 +34,7 @@ public class Course {
         courseNumber = "CS 111";
         descriptiveTitle = "Introduction to Computing";
         units = 2;
+        grade = "Not Yet Taken";
     } // end of Course default constructor
 
     /**
@@ -50,6 +52,15 @@ public class Course {
         this.descriptiveTitle = descriptiveTitle;
         this.units = units;
     } // end of Course constructor
+
+    public Course(int year, int term, String courseNumber, String descriptiveTitle, double units, String grade) {
+        this.year = year;
+        this.term = term;
+        this.courseNumber = courseNumber;
+        this.descriptiveTitle = descriptiveTitle;
+        this.units = units;
+        this.grade = grade;
+    } // end of Course constructor with grade attribute
 
     /**
      * Mutator/Setter method for the year attribute.
@@ -81,7 +92,7 @@ public class Course {
      */
     public void setDescriptiveTitle(String descriptiveTitle) {
         this.descriptiveTitle = descriptiveTitle;
-    } // end of descriptiveTitle mutator method
+    } // end of setDescriptiveTitle mutator method
 
     /**
      * Mutator/Setter method for the units attribute.
@@ -91,6 +102,13 @@ public class Course {
         this.units = units;
     } // end of setUnits mutator method
 
+    /**
+     * Mutator/Setter method for the grade attribute.
+     * @param grade given grade typecasted to String
+     */
+    public void setGrade(double grade) {
+        this.grade = String.valueOf(grade);
+    } // end of setGrade mutator method
     /**
      * Accessor/Getter method for year
      * @return state/value of the year attribute
@@ -128,10 +146,18 @@ public class Course {
     } // end of getUnits accessor method
 
     /**
+     * Accessor/Getter method for grade
+     * @return state/value of grade attribute
+     */
+    public String getGrade() {
+       return this.grade;
+    } // end of getGrade accessor method
+
+    /**
      * Concatenates the state of Course attributes.
      * @return comma-separated values
      */
     public String toString() {
-        return year + "," + term + "," + courseNumber + "," + descriptiveTitle + "," + units;
+        return year + "," + term + "," + courseNumber + "," + descriptiveTitle + "," + units + "," + grade;
     } // end of toString method
 } // end of class Course
