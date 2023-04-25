@@ -568,7 +568,7 @@ public class ChecklistManagement extends JFrame {
         JPanel signupPanel = new JPanel(new GridBagLayout());
 
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.insets = new Insets(10, 10, 15, 15);
+        constraints.insets = new Insets(10, 10, 10, 15);
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.anchor = GridBagConstraints.WEST;
@@ -598,12 +598,13 @@ public class ChecklistManagement extends JFrame {
         constraints.anchor = GridBagConstraints.CENTER;
 
         JSeparator separator = new JSeparator();
-        separator.setPreferredSize(new Dimension(400, 2));
+        separator.setPreferredSize(new Dimension(450, 2));
         signupPanel.add(separator, constraints);
 
         constraints.gridx = 1;
         constraints.gridy = 2;
         constraints.gridwidth = 1;
+        constraints.anchor = GridBagConstraints.WEST;
 
         JLabel idLabel = new JLabel("SLU ID Number:");
         idLabel.setFont(new Font("Arial", Font.BOLD, 14));
@@ -613,7 +614,7 @@ public class ChecklistManagement extends JFrame {
         constraints.gridy = 3;
         constraints.anchor = GridBagConstraints.WEST;
 
-        JTextField idTextField = new JTextField(40);
+        JTextField idTextField = new JTextField(30);
         idTextField.setText(String.valueOf(studentID));
         idTextField.setEditable(false);
         signupPanel.add(idTextField, constraints);
@@ -630,7 +631,7 @@ public class ChecklistManagement extends JFrame {
         constraints.gridy = 5;
         constraints.anchor = GridBagConstraints.WEST;
 
-        JTextField lastNameTextField = new JTextField(40);
+        JTextField lastNameTextField = new JTextField(30);
         signupPanel.add(lastNameTextField, constraints);
 
         constraints.gridx = 1;
@@ -645,7 +646,7 @@ public class ChecklistManagement extends JFrame {
         constraints.gridy = 7;
         constraints.anchor = GridBagConstraints.WEST;
 
-        JTextField firstNameTextField = new JTextField(40);
+        JTextField firstNameTextField = new JTextField(30);
         signupPanel.add(firstNameTextField, constraints);
 
         constraints.gridx = 1;
@@ -660,20 +661,20 @@ public class ChecklistManagement extends JFrame {
         constraints.gridy = 9;
         constraints.anchor = GridBagConstraints.WEST;
 
-        JTextField ageTextField = new JTextField(40);
+        JTextField ageTextField = new JTextField(10);
         ageTextField.setDocument(new JTextFieldLimit(2));
         signupPanel.add(ageTextField, constraints);
 
-        constraints.gridx = 1;
-        constraints.gridy = 10;
+        constraints.gridx = 2;
+        constraints.gridy = 8;
         constraints.gridwidth = 1;
 
         JLabel genderLabel = new JLabel("Gender:");
         genderLabel.setFont(new Font("Arial", Font.BOLD, 14));
         signupPanel.add(genderLabel, constraints);
 
-        constraints.gridx = 1;
-        constraints.gridy = 11;
+        constraints.gridx = 2;
+        constraints.gridy = 9;
         constraints.anchor = GridBagConstraints.WEST;
 
         String[] genderOptions = {"Male" , "Female"};
@@ -682,7 +683,7 @@ public class ChecklistManagement extends JFrame {
         signupPanel.add(genderComboBox, constraints);
 
         constraints.gridx = 1;
-        constraints.gridy = 12;
+        constraints.gridy = 10;
         constraints.gridwidth = 1;
 
         JLabel programLabel = new JLabel("Program:");
@@ -690,22 +691,22 @@ public class ChecklistManagement extends JFrame {
         signupPanel.add(programLabel, constraints);
 
         constraints.gridx = 1;
-        constraints.gridy = 13;
+        constraints.gridy = 11;
         constraints.anchor = GridBagConstraints.WEST;
 
         JTextField programTextField = new JTextField(40);
         signupPanel.add(programTextField, constraints);
 
-        constraints.gridx = 1;
-        constraints.gridy = 14;
+        constraints.gridx = 2;
+        constraints.gridy = 10;
         constraints.gridwidth = 1;
 
         JLabel yearLabel = new JLabel("Year Level:");
         yearLabel.setFont(new Font("Arial", Font.BOLD, 14));
         signupPanel.add(yearLabel, constraints);
 
-        constraints.gridx = 1;
-        constraints.gridy = 15;
+        constraints.gridx = 2;
+        constraints.gridy = 11;
         constraints.anchor = GridBagConstraints.WEST;
 
         Integer[] yearOptions = {1,2,3,4};
@@ -713,7 +714,7 @@ public class ChecklistManagement extends JFrame {
         signupPanel.add(yearComboBox2, constraints);
 
         constraints.gridx = 1;
-        constraints.gridy = 16;
+        constraints.gridy = 13;
         constraints.gridwidth = 1;
         constraints.anchor = GridBagConstraints.CENTER;
 
@@ -725,7 +726,7 @@ public class ChecklistManagement extends JFrame {
         signupPanel.add(signupButton, constraints);
 
         constraints.gridx = 1;
-        constraints.gridy = 17;
+        constraints.gridy = 14;
         constraints.gridwidth = 1;
         constraints.anchor = GridBagConstraints.CENTER;
 
@@ -803,6 +804,9 @@ public class ChecklistManagement extends JFrame {
 
                     outputStream.println(students); // prints Student attributes a
                     outputStream.close();
+
+                    populateGUIComponents();
+                    signupFrame.dispose();
                 } catch (FileNotFoundException exception1) {
                     exception1.getMessage();
                 } catch (IOException exception2) {
