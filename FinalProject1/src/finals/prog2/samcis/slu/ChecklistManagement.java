@@ -381,7 +381,7 @@ public class ChecklistManagement extends JFrame {
      * Shows the UI when a student is logging in the program.
      */
     private void loginFormComponents() {
-        setTitle("Student Login Form");
+        JFrame loginFrame = new JFrame("Student Login Form");
         JPanel loginPanel = new JPanel(new GridBagLayout());
 
         GridBagConstraints constraints = new GridBagConstraints();
@@ -457,8 +457,6 @@ public class ChecklistManagement extends JFrame {
         quitButton.setFont(new Font("Arial", Font.BOLD, 14));
         loginPanel.add(quitButton, constraints);
 
-        add(loginPanel);
-
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -472,11 +470,10 @@ public class ChecklistManagement extends JFrame {
                 try {
                     inputStream = new BufferedReader(new FileReader("Student Records/" + studentID + ".txt"));
                     inputStream.close();
-                    // TO - DO
-                    // If file exists, invoke code below
-                    // populateGUIComponents();
+                    loginFrame.dispose();
+                    populateGUIComponents();
                 } catch (FileNotFoundException ex) {
-                    loginPanel.setVisible(false);
+                    loginFrame.dispose();
                     createRecordComponents(studentID);
                 } catch (IOException exception) {
                     exception.printStackTrace();
@@ -489,12 +486,12 @@ public class ChecklistManagement extends JFrame {
                 System.exit(0);
             }
         });
-
-        this.pack();
-        this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
-    }
+        loginFrame.add(loginPanel);
+        loginFrame.pack();
+        loginFrame.setVisible(true);
+        loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        loginFrame.setLocationRelativeTo(null);
+    } // end of loginFormComponents method
 
 
     /**
@@ -566,11 +563,11 @@ public class ChecklistManagement extends JFrame {
     } // end of createRecordComponents method
 
     private void signupFormComponents(int studentID) {
-        setTitle("Student Signup Form");
+        JFrame signupFrame = new JFrame("Student Signup Form");
         JPanel signupPanel = new JPanel(new GridBagLayout());
 
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.insets = new Insets(10, 10, 10, 10);
+        constraints.insets = new Insets(10, 10, 25, 10);
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.anchor = GridBagConstraints.WEST;
@@ -594,7 +591,7 @@ public class ChecklistManagement extends JFrame {
         signupTitleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         signupPanel.add(signupTitleLabel, constraints);
 
-        constraints.gridx = 0;
+        constraints.gridx = 1;
         constraints.gridy = 1;
         constraints.gridwidth = 2;
         constraints.anchor = GridBagConstraints.CENTER;
@@ -603,7 +600,7 @@ public class ChecklistManagement extends JFrame {
         separator.setPreferredSize(new Dimension(400, 2));
         signupPanel.add(separator, constraints);
 
-        constraints.gridx = 0;
+        constraints.gridx = 1;
         constraints.gridy = 2;
         constraints.gridwidth = 1;
 
@@ -612,16 +609,110 @@ public class ChecklistManagement extends JFrame {
         signupPanel.add(idLabel, constraints);
 
         constraints.gridx = 1;
-        constraints.gridy = 2;
+        constraints.gridy = 3;
+        constraints.anchor = GridBagConstraints.WEST;
 
-        JTextField idTextField = new JTextField(10);
+        JTextField idTextField = new JTextField(40);
         idTextField.setText(String.valueOf(studentID));
         idTextField.setEditable(false);
         signupPanel.add(idTextField, constraints);
 
-        constraints.gridx = 0;
-        constraints.gridy = 3;
+        constraints.gridx = 1;
+        constraints.gridy = 4;
         constraints.gridwidth = 2;
+
+        JLabel lastNameLabel = new JLabel("Last Name:");
+        lastNameLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        signupPanel.add(lastNameLabel, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 5;
+        constraints.anchor = GridBagConstraints.WEST;
+
+        JTextField lastNameTextField = new JTextField(40);
+        signupPanel.add(lastNameTextField, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 6;
+        constraints.gridwidth = 3;
+
+        JLabel firstNameLabel = new JLabel("First Name:");
+        firstNameLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        signupPanel.add(firstNameLabel, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 7;
+        constraints.anchor = GridBagConstraints.WEST;
+
+        JTextField firstNameTextField = new JTextField(40);
+        signupPanel.add(firstNameTextField, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 8;
+        constraints.gridwidth = 4;
+
+        JLabel ageLabel = new JLabel("Age:");
+        ageLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        signupPanel.add(ageLabel, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 9;
+        constraints.anchor = GridBagConstraints.WEST;
+
+        JTextField ageTextField = new JTextField(40);
+        ageTextField.setDocument(new JTextFieldLimit(2));
+        signupPanel.add(ageTextField, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 10;
+        constraints.gridwidth = 5;
+
+        JLabel genderLabel = new JLabel("Gender:");
+        genderLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        signupPanel.add(genderLabel, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 11;
+        constraints.anchor = GridBagConstraints.WEST;
+
+        JTextField genderTextField = new JTextField(40);
+        genderTextField.setDocument(new JTextFieldLimit(1));
+        signupPanel.add(genderTextField, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 12;
+        constraints.gridwidth = 6;
+
+        JLabel programLabel = new JLabel("Program:");
+        programLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        signupPanel.add(programLabel, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 13;
+        constraints.anchor = GridBagConstraints.WEST;
+
+        JTextField programTextField = new JTextField(40);
+        signupPanel.add(programTextField, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 14;
+        constraints.gridwidth = 7;
+
+        JLabel yearLabel = new JLabel("Year Level:");
+        yearLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        signupPanel.add(yearLabel, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 15;
+        constraints.anchor = GridBagConstraints.WEST;
+
+        JTextField yearTextField = new JTextField(40);
+        yearTextField.setDocument(new JTextFieldLimit(1));
+        signupPanel.add(yearTextField, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 16;
+        constraints.gridwidth = 8;
         constraints.anchor = GridBagConstraints.CENTER;
 
         JButton signupButton = new JButton("Create Record");
@@ -631,19 +722,17 @@ public class ChecklistManagement extends JFrame {
         signupButton.setFont(new Font("Arial", Font.BOLD, 14));
         signupPanel.add(signupButton, constraints);
 
-        constraints.gridx = 0;
-        constraints.gridy = 4;
-        constraints.gridwidth = 2;
+        constraints.gridx = 1;
+        constraints.gridy = 17;
+        constraints.gridwidth = 9;
         constraints.anchor = GridBagConstraints.CENTER;
 
-        JButton quitButton = new JButton("Quit");
+        JButton quitButton = new JButton("Cancel");
         quitButton.setPreferredSize(new Dimension(120, 40));
         quitButton.setBackground(Color.RED);
         quitButton.setForeground(Color.WHITE);
         quitButton.setFont(new Font("Arial", Font.BOLD, 14));
         signupPanel.add(quitButton, constraints);
-
-        add(signupPanel);
 
         signupButton.addActionListener(new ActionListener() {
             @Override
@@ -670,10 +759,18 @@ public class ChecklistManagement extends JFrame {
             } // end of actionPerformed method
         });
 
-        this.pack();
-        this.setVisible(true);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLocationRelativeTo(null);
+        quitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                signupFrame.dispose();
+                loginFormComponents(); // invokes login form again on signup cancellation
+            }
+        });
+        signupFrame.add(signupPanel);
+        signupFrame.pack();
+        signupFrame.setVisible(true);
+        signupFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        signupFrame.setLocationRelativeTo(null);
     } // end of signupFormComponents method
 } // end of class ChecklistManagement
 
