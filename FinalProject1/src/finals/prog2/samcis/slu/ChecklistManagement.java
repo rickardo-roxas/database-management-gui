@@ -480,6 +480,7 @@ public class ChecklistManagement extends JFrame {
                     inputStream = new BufferedReader(new FileReader(String.valueOf(studentID)));
                 } catch (FileNotFoundException ex) {
                     createRecordComponents();
+                    // TO DO: signupForm components
                     return;
                 }
             }
