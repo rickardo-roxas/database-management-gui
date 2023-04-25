@@ -568,7 +568,7 @@ public class ChecklistManagement extends JFrame {
         JPanel signupPanel = new JPanel(new GridBagLayout());
 
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.insets = new Insets(10, 10, 25, 10);
+        constraints.insets = new Insets(10, 10, 20, 10);
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.anchor = GridBagConstraints.WEST;
@@ -594,7 +594,7 @@ public class ChecklistManagement extends JFrame {
 
         constraints.gridx = 1;
         constraints.gridy = 1;
-        constraints.gridwidth = 2;
+        constraints.gridwidth = 1;
         constraints.anchor = GridBagConstraints.CENTER;
 
         JSeparator separator = new JSeparator();
@@ -620,7 +620,7 @@ public class ChecklistManagement extends JFrame {
 
         constraints.gridx = 1;
         constraints.gridy = 4;
-        constraints.gridwidth = 2;
+        constraints.gridwidth = 1;
 
         JLabel lastNameLabel = new JLabel("Last Name:");
         lastNameLabel.setFont(new Font("Arial", Font.BOLD, 14));
@@ -635,7 +635,7 @@ public class ChecklistManagement extends JFrame {
 
         constraints.gridx = 1;
         constraints.gridy = 6;
-        constraints.gridwidth = 3;
+        constraints.gridwidth = 1;
 
         JLabel firstNameLabel = new JLabel("First Name:");
         firstNameLabel.setFont(new Font("Arial", Font.BOLD, 14));
@@ -650,7 +650,7 @@ public class ChecklistManagement extends JFrame {
 
         constraints.gridx = 1;
         constraints.gridy = 8;
-        constraints.gridwidth = 4;
+        constraints.gridwidth = 1;
 
         JLabel ageLabel = new JLabel("Age:");
         ageLabel.setFont(new Font("Arial", Font.BOLD, 14));
@@ -666,7 +666,7 @@ public class ChecklistManagement extends JFrame {
 
         constraints.gridx = 1;
         constraints.gridy = 10;
-        constraints.gridwidth = 5;
+        constraints.gridwidth = 1;
 
         JLabel genderLabel = new JLabel("Gender:");
         genderLabel.setFont(new Font("Arial", Font.BOLD, 14));
@@ -682,7 +682,7 @@ public class ChecklistManagement extends JFrame {
 
         constraints.gridx = 1;
         constraints.gridy = 12;
-        constraints.gridwidth = 6;
+        constraints.gridwidth = 1;
 
         JLabel programLabel = new JLabel("Program:");
         programLabel.setFont(new Font("Arial", Font.BOLD, 14));
@@ -697,7 +697,7 @@ public class ChecklistManagement extends JFrame {
 
         constraints.gridx = 1;
         constraints.gridy = 14;
-        constraints.gridwidth = 7;
+        constraints.gridwidth = 1;
 
         JLabel yearLabel = new JLabel("Year Level:");
         yearLabel.setFont(new Font("Arial", Font.BOLD, 14));
@@ -713,7 +713,7 @@ public class ChecklistManagement extends JFrame {
 
         constraints.gridx = 1;
         constraints.gridy = 16;
-        constraints.gridwidth = 8;
+        constraints.gridwidth = 1;
         constraints.anchor = GridBagConstraints.CENTER;
 
         JButton signupButton = new JButton("Create Record");
@@ -725,7 +725,7 @@ public class ChecklistManagement extends JFrame {
 
         constraints.gridx = 1;
         constraints.gridy = 17;
-        constraints.gridwidth = 9;
+        constraints.gridwidth = 1;
         constraints.anchor = GridBagConstraints.CENTER;
 
         JButton quitButton = new JButton("Cancel");
@@ -740,13 +740,57 @@ public class ChecklistManagement extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     outputStream = new PrintWriter(new FileWriter("Student Records/" + studentID + ".txt"));
-                    String lastName = "Rogan";
-                    String firstName = "Joe";
+                    String lastName = "";
+                    String firstName = "";
                     int idNumber = studentID;
-                    int age = 55;
-                    char gender = 'M';
+                    int age = 0;
+                    char gender = 'x';
                     String courseProgram = "BS Podcast";
                     byte yearLevel = 4;
+
+                    try {
+                        lastName = lastNameTextField.getText();
+                        while (!lastName.matches("[a-zA-Z]+")) {
+                            JOptionPane.showMessageDialog(null, "Invalid Last Name. Try again.");
+                            lastNameTextField.setText("");
+                        } // end of while
+                        if (lastNameTextField.getText() == "")
+                            JOptionPane.showMessageDialog(null, "No Last Name given. Try again.");
+                    } catch (InputMismatchException exception1) {
+                        JOptionPane.showMessageDialog(null, "Invalid Last Name. Try again.");
+                        lastNameTextField.setText("");
+                    }
+
+                    try {
+                        firstName = firstNameTextField.getText();
+                        while (!firstName.matches("[a-zA-Z]+")) {
+                            JOptionPane.showMessageDialog(null, "Invalid Last Name. Try again.");
+                            firstNameTextField.setText("");
+                        } // end of while
+                        if (firstNameTextField.getText() == "")
+                            JOptionPane.showMessageDialog(null, "No First Name given. Try again.");
+                    } catch (InputMismatchException exception1) {
+                        JOptionPane.showMessageDialog(null, "Invalid First Name. Try again.");
+                        firstNameTextField.setText("");
+                    }
+
+                    try {
+                        age = Integer.parseInt(ageTextField.getText());
+                    } catch (NumberFormatException exception1) {
+                        JOptionPane.showMessageDialog(null,"Invalid age. Try again");
+                        ageTextField.setText("");
+                    }
+
+                    try {
+                         courseProgram = programTextField.getText();
+                        while (!courseProgram.matches("[a-zA-Z]+")) {
+                            JOptionPane.showMessageDialog(null, "Invalid Last Name. Try again.");
+                            programTextField.setText("");
+                        } // end of while
+                    } catch (InputMismatchException exception) {
+                        JOptionPane.showMessageDialog(null, "Invalid Program. Try again.");
+                        programTextField.setText("");
+                    }
 
                     students.add(new Student(lastName, firstName, idNumber, age, gender, courseProgram, yearLevel));
 
