@@ -23,7 +23,7 @@ public class Course {
     private String courseNumber; // Course Number of Course (e.g. CS 111)
     private String descriptiveTitle; // Descriptive title of Course (e.g. "Intro. to Computing)
     private double units; // Number of units of Course (e.g. 3 Units)
-
+    private String grade; // grade of Student for respective Course
     /**
      * Constructs an object of Course with default values.
      */
@@ -33,6 +33,7 @@ public class Course {
         courseNumber = "CS 111";
         descriptiveTitle = "Introduction to Computing";
         units = 2;
+        grade = "Not Yet Taken";
     } // end of Course default constructor
 
     /**
@@ -50,6 +51,24 @@ public class Course {
         this.descriptiveTitle = descriptiveTitle;
         this.units = units;
     } // end of Course constructor
+
+    /**
+     * Constructs an object of Course with user-defined values.
+     * @param year given year
+     * @param term given term
+     * @param courseNumber given courseNumber
+     * @param descriptiveTitle given descriptiveTitle
+     * @param units given units
+     * @param grade given grade
+     */
+    public Course(int year, int term, String courseNumber, String descriptiveTitle, double units, String grade) {
+        this.year = year;
+        this.term = term;
+        this.courseNumber = courseNumber;
+        this.descriptiveTitle = descriptiveTitle;
+        this.units = units;
+        this.grade = grade;
+    } // end of Course constructor with Grade attribute
 
     /**
      * Mutator/Setter method for the year attribute.
@@ -91,6 +110,10 @@ public class Course {
         this.units = units;
     } // end of setUnits mutator method
 
+    public void setGrade(double grade) {
+        this.grade = String.valueOf(grade);
+    } // end of setGrade mutator method
+
     /**
      * Accessor/Getter method for year
      * @return state/value of the year attribute
@@ -99,6 +122,10 @@ public class Course {
         return this.year;
     } // end of getYear accessor method
 
+    /**
+     * Accessor/Getter method for term
+     * @return state/value of the term attribute
+     */
     public int getTerm() {
         return this.term;
     } // end of getTerm accessor method
@@ -126,6 +153,14 @@ public class Course {
     public double getUnits() {
         return this.units;
     } // end of getUnits accessor method
+
+    /**
+     * Accessor/Getter method for grade
+     * @return state/value of grade attribute
+     */
+    public String getGrade() {
+        return this.grade;
+    } // end of getGrade accessor method
 
     /**
      * Concatenates the state of Course attributes.
