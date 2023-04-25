@@ -679,7 +679,7 @@ public class ChecklistManagement extends JFrame {
 
         String[] genderOptions = {"Male" , "Female"};
         JComboBox<String> genderComboBox = new JComboBox<>(genderOptions);
-        genderComboBox.setEditable(true);
+        genderComboBox.setEditable(false);
         signupPanel.add(genderComboBox, constraints);
 
         constraints.gridx = 1;
@@ -784,20 +784,20 @@ public class ChecklistManagement extends JFrame {
                     }
 
                     try {
-                         courseProgram = programTextField.getText();
+                        courseProgram = programTextField.getText();
                         while (!courseProgram.matches("[a-zA-Z]+")) {
                             JOptionPane.showMessageDialog(null, "Invalid Last Name. Try again.");
                             programTextField.setText("");
                         } // end of while
                     } catch (InputMismatchException exception) {
-                        JOptionPane.showMessageDialog(null, "Invalid Program. Try again.");
-                        programTextField.setText("");
+                        exception.printStackTrace();
+
                     }
 
                     try {
                         yearLevel = (byte) yearComboBox2.getSelectedItem();
                     } catch (NumberFormatException exception) {
-                        JOptionPane.showMessageDialog(null, "Invalid year level. Try again.");
+                        exception.printStackTrace();
                     } // end of try-catch
 
                     students.add(new Student(lastName, firstName, idNumber, age, gender, courseProgram, yearLevel));
