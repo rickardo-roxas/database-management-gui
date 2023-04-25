@@ -47,6 +47,7 @@ public class ChecklistManagement extends JFrame {
 
     // BufferedReader objects
     private BufferedReader inputStream;
+    private PrintWriter outputStream;
 
     /**
      * Main entry point of the program
@@ -477,9 +478,9 @@ public class ChecklistManagement extends JFrame {
                     return;
                 }
                 try {
-                    inputStream = new BufferedReader(new FileReader(String.valueOf(studentID)));
+                    inputStream = new BufferedReader(new FileReader(studentID + ".txt"));
                 } catch (FileNotFoundException ex) {
-                    createRecordComponents();
+                    createRecordComponents(studentID);
                     // TO DO: signupForm components
                     return;
                 }
@@ -502,7 +503,7 @@ public class ChecklistManagement extends JFrame {
     /**
      * Creates student record when no record has been found.
      */
-    private void createRecordComponents () {
+    private void createRecordComponents (int studentID) {
         JFrame recordFrame = new JFrame("Student Record Form");
         recordFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -548,10 +549,15 @@ public class ChecklistManagement extends JFrame {
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                recordFrame.dispose();
-                populateGUIComponents();
-            }
-        });
+                try {
+                    outputStream = new PrintWriter(new FileWriter(studentID + ".txt"));
+                    recordFrame.dispose();
+                    // TO - DO: Invoke sign up form
+                } catch (IOException ioException) {
+                    ioException.getMessage();
+                } // end of try-catch
+            } // end of actionPerformed method
+        }); // end of createButton Lambda expression
 
         quitButton.addActionListener(new ActionListener() {
             @Override
