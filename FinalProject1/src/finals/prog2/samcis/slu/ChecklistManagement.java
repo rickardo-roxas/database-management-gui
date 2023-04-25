@@ -464,9 +464,10 @@ public class ChecklistManagement extends JFrame {
                 try {
                     studentID = Integer.parseInt(loginTextField.getText());
                 } catch (NumberFormatException ex) {
-                    loginTextField.setText("Please enter a valid SLU ID Number");
+                    JOptionPane.showMessageDialog(null, "Invalid ID Number. Try Again.");
+                    loginTextField.setText("");
                     return;
-                }
+                } // end of try-catch
                 try {
                     inputStream = new BufferedReader(new FileReader("Student Records/" + studentID + ".txt"));
                     inputStream.close();
