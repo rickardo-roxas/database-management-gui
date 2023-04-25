@@ -550,14 +550,15 @@ public class ChecklistManagement extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    outputStream = new PrintWriter(new FileWriter(studentID + ".txt"));
+                    outputStream = new PrintWriter(new FileWriter("/Student Records/" + studentID + ".txt"));
+                    outputStream.close();
                     recordFrame.dispose();
                     // TO - DO: Invoke sign up form
                 } catch (IOException ioException) {
                     ioException.getMessage();
                 } // end of try-catch
             } // end of actionPerformed method
-        }); // end of createButton Lambda expression
+        }); // end of actionListener for createButton
 
         quitButton.addActionListener(new ActionListener() {
             @Override
