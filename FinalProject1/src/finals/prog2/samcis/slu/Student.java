@@ -54,7 +54,7 @@ public class Student {
      * @param grade         The grade of the student
      */
     public Student(String lastName, String firstName, int idNumber, int age, char gender, String courseProgram,
-                   byte yearLevel, double grade) {
+                   byte yearLevel) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.idNumber = idNumber;
@@ -62,7 +62,6 @@ public class Student {
         this.gender = gender;
         this.courseProgram = courseProgram;
         this.yearLevel = yearLevel;
-        this.grades = grades;
     } // end of Student constructor
 
     /**

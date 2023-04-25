@@ -28,24 +28,16 @@ import java.awt.*;
 public class ChecklistManagement extends JFrame {
     // GUI Components
 
-    // Labels
-    private JLabel loginLabel;
-    // Buttons
-    private JButton quitButton;
-    private JButton loginButton;
-    private JButton createButton;
     // Text Fields
-    private JTextField loginTextField;
     private JTextArea textArea;
     private JComboBox<Integer> termComboBox;
     private JComboBox<Integer> yearComboBox;
 
     // ArrayLists
     private ArrayList<Course> courses = new ArrayList<>();
-    private ArrayList<Grade> grades = new ArrayList<>();
     private ArrayList<Student> students = new ArrayList<>();
 
-    // BufferedReader objects
+    // Input/Output objects
     private BufferedReader inputStream;
     private PrintWriter outputStream;
 
@@ -478,12 +470,14 @@ public class ChecklistManagement extends JFrame {
                     return;
                 }
                 try {
-                    inputStream = new BufferedReader(new FileReader("/Student Records/" + studentID + ".txt"));
+                    inputStream = new BufferedReader(new FileReader("Student Records/" + studentID + ".txt"));
                     inputStream.close();
+                    // TO - DO
+                    // If file exists, invoke code below
+                    // populateGUIComponents();
                 } catch (FileNotFoundException ex) {
+                    loginPanel.setVisible(false);
                     createRecordComponents(studentID);
-                    // TO DO: signupForm components
-                    return;
                 } catch (IOException exception) {
                     exception.printStackTrace();
                 } // end of try-catch
@@ -553,10 +547,10 @@ public class ChecklistManagement extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    outputStream = new PrintWriter(new FileWriter("/Student Records/" + studentID + ".txt"));
+                    outputStream = new PrintWriter(new FileWriter("Student Records/" + studentID + ".txt"));
                     outputStream.close();
                     recordFrame.dispose();
-                    // TO - DO: Invoke sign up form
+                    signupFormComponents(studentID);
                 } catch (IOException ioException) {
                     ioException.getMessage();
                 } // end of try-catch
@@ -570,6 +564,117 @@ public class ChecklistManagement extends JFrame {
             }
         });
     } // end of createRecordComponents method
+
+    private void signupFormComponents(int studentID) {
+        setTitle("Student Signup Form");
+        JPanel signupPanel = new JPanel(new GridBagLayout());
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.insets = new Insets(10, 10, 10, 10);
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.anchor = GridBagConstraints.WEST;
+
+        // Load the image
+        ImageIcon logoIcon = new ImageIcon("slu_school_logo.png");
+
+        // Scale the image to a smaller size
+        Image logoImage = logoIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        ImageIcon scaledLogoIcon = new ImageIcon(logoImage);
+
+        // Create the JLabel with the scaled image
+        JLabel logoLabel = new JLabel(scaledLogoIcon);
+        signupPanel.add(logoLabel, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 0;
+        constraints.anchor = GridBagConstraints.WEST;
+
+        JLabel signupTitleLabel = new JLabel("Student Signup");
+        signupTitleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        signupPanel.add(signupTitleLabel, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        constraints.gridwidth = 2;
+        constraints.anchor = GridBagConstraints.CENTER;
+
+        JSeparator separator = new JSeparator();
+        separator.setPreferredSize(new Dimension(400, 2));
+        signupPanel.add(separator, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        constraints.gridwidth = 1;
+
+        JLabel idLabel = new JLabel("SLU ID Number:");
+        idLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        signupPanel.add(idLabel, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 2;
+
+        JTextField idTextField = new JTextField(10);
+        idTextField.setText(String.valueOf(studentID));
+        idTextField.setEditable(false);
+        signupPanel.add(idTextField, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        constraints.gridwidth = 2;
+        constraints.anchor = GridBagConstraints.CENTER;
+
+        JButton signupButton = new JButton("Create Record");
+        signupButton.setPreferredSize(new Dimension(150, 40));
+        signupButton.setBackground(Color.BLUE);
+        signupButton.setForeground(Color.WHITE);
+        signupButton.setFont(new Font("Arial", Font.BOLD, 14));
+        signupPanel.add(signupButton, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 4;
+        constraints.gridwidth = 2;
+        constraints.anchor = GridBagConstraints.CENTER;
+
+        JButton quitButton = new JButton("Quit");
+        quitButton.setPreferredSize(new Dimension(120, 40));
+        quitButton.setBackground(Color.RED);
+        quitButton.setForeground(Color.WHITE);
+        quitButton.setFont(new Font("Arial", Font.BOLD, 14));
+        signupPanel.add(quitButton, constraints);
+
+        add(signupPanel);
+
+        signupButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    outputStream = new PrintWriter(new FileWriter("Student Records/" + studentID + ".txt"));
+                    String lastName = "Rogan";
+                    String firstName = "Joe";
+                    int idNumber = studentID;
+                    int age = 55;
+                    char gender = 'M';
+                    String courseProgram = "BS Podcast";
+                    byte yearLevel = 4;
+
+                    students.add(new Student(lastName, firstName, idNumber, age, gender, courseProgram, yearLevel));
+
+                    outputStream.println(students); // prints Student attributes a
+                    outputStream.close();
+                } catch (FileNotFoundException exception1) {
+                    exception1.getMessage();
+                } catch (IOException exception2) {
+                    exception2.getMessage();
+                } // end of try-catch
+            } // end of actionPerformed method
+        });
+
+        this.pack();
+        this.setVisible(true);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+    } // end of signupFormComponents method
 } // end of class ChecklistManagement
 
 /**
