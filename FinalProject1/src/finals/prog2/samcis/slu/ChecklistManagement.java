@@ -748,7 +748,7 @@ public class ChecklistManagement extends JFrame {
                     int age = 0;
                     char gender = 'x';
                     String courseProgram = "";
-                    byte yearLevel = 0;
+                    int yearLevel = 0;
 
                     try {
                         lastName = lastNameTextField.getText();
@@ -785,22 +785,18 @@ public class ChecklistManagement extends JFrame {
 
                     try {
                         courseProgram = programTextField.getText();
-                        while (!courseProgram.matches("[a-zA-Z]+")) {
-                            JOptionPane.showMessageDialog(null, "Invalid Last Name. Try again.");
-                            programTextField.setText("");
-                        } // end of while
                     } catch (InputMismatchException exception) {
                         exception.printStackTrace();
-
                     }
 
                     try {
-                        yearLevel = (byte) yearComboBox2.getSelectedItem();
+                        yearLevel = (int) yearComboBox2.getSelectedItem();
                     } catch (NumberFormatException exception) {
                         exception.printStackTrace();
                     } // end of try-catch
 
-                    students.add(new Student(lastName, firstName, idNumber, age, gender, courseProgram, yearLevel));
+                    students.add(new Student(lastName, firstName, idNumber, age,
+                            gender, courseProgram, (byte) yearLevel));
 
                     outputStream.println(students); // prints Student attributes a
                     outputStream.close();
