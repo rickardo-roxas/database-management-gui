@@ -614,7 +614,7 @@ public class ChecklistManagement extends JFrame {
         constraints.gridy = 3;
         constraints.anchor = GridBagConstraints.WEST;
 
-        JTextField idTextField = new JTextField(30);
+        JTextField idTextField = new JTextField(20);
         idTextField.setText(String.valueOf(studentID));
         idTextField.setEditable(false);
         signupPanel.add(idTextField, constraints);
@@ -631,7 +631,7 @@ public class ChecklistManagement extends JFrame {
         constraints.gridy = 5;
         constraints.anchor = GridBagConstraints.WEST;
 
-        JTextField lastNameTextField = new JTextField(30);
+        JTextField lastNameTextField = new JTextField(20);
         signupPanel.add(lastNameTextField, constraints);
 
         constraints.gridx = 1;
@@ -646,7 +646,7 @@ public class ChecklistManagement extends JFrame {
         constraints.gridy = 7;
         constraints.anchor = GridBagConstraints.WEST;
 
-        JTextField firstNameTextField = new JTextField(30);
+        JTextField firstNameTextField = new JTextField(20);
         signupPanel.add(firstNameTextField, constraints);
 
         constraints.gridx = 1;
@@ -694,7 +694,7 @@ public class ChecklistManagement extends JFrame {
         constraints.gridy = 11;
         constraints.anchor = GridBagConstraints.WEST;
 
-        JTextField programTextField = new JTextField(40);
+        JTextField programTextField = new JTextField(20);
         signupPanel.add(programTextField, constraints);
 
         constraints.gridx = 2;
@@ -795,7 +795,7 @@ public class ChecklistManagement extends JFrame {
                     }
 
                     try {
-                        yearLevel = Byte.parseByte((String) yearComboBox2.getSelectedItem());
+                        yearLevel = (byte) yearComboBox2.getSelectedItem();
                     } catch (NumberFormatException exception) {
                         JOptionPane.showMessageDialog(null, "Invalid year level. Try again.");
                     } // end of try-catch
