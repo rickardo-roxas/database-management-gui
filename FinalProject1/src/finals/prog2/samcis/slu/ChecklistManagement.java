@@ -478,12 +478,15 @@ public class ChecklistManagement extends JFrame {
                     return;
                 }
                 try {
-                    inputStream = new BufferedReader(new FileReader(studentID + ".txt"));
+                    inputStream = new BufferedReader(new FileReader("/Student Records/" + studentID + ".txt"));
+                    inputStream.close();
                 } catch (FileNotFoundException ex) {
                     createRecordComponents(studentID);
                     // TO DO: signupForm components
                     return;
-                }
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                } // end of try-catch
             }
         });
         quitButton.addActionListener(new ActionListener() {
