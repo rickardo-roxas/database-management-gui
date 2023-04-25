@@ -568,7 +568,7 @@ public class ChecklistManagement extends JFrame {
         JPanel signupPanel = new JPanel(new GridBagLayout());
 
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.insets = new Insets(10, 10, 20, 10);
+        constraints.insets = new Insets(10, 10, 15, 15);
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.anchor = GridBagConstraints.WEST;
@@ -676,9 +676,10 @@ public class ChecklistManagement extends JFrame {
         constraints.gridy = 11;
         constraints.anchor = GridBagConstraints.WEST;
 
-        JTextField genderTextField = new JTextField(40);
-        genderTextField.setDocument(new JTextFieldLimit(1));
-        signupPanel.add(genderTextField, constraints);
+        String[] genderOptions = {"Male" , "Female"};
+        JComboBox<String> genderComboBox = new JComboBox<>(genderOptions);
+        genderComboBox.setEditable(true);
+        signupPanel.add(genderComboBox, constraints);
 
         constraints.gridx = 1;
         constraints.gridy = 12;
@@ -707,9 +708,9 @@ public class ChecklistManagement extends JFrame {
         constraints.gridy = 15;
         constraints.anchor = GridBagConstraints.WEST;
 
-        JTextField yearTextField = new JTextField(40);
-        yearTextField.setDocument(new JTextFieldLimit(1));
-        signupPanel.add(yearTextField, constraints);
+        Integer[] yearOptions = {1,2,3,4};
+        JComboBox<Integer> yearComboBox2 = new JComboBox<>(yearOptions);
+        signupPanel.add(yearComboBox2, constraints);
 
         constraints.gridx = 1;
         constraints.gridy = 16;
@@ -745,33 +746,23 @@ public class ChecklistManagement extends JFrame {
                     int idNumber = studentID;
                     int age = 0;
                     char gender = 'x';
-                    String courseProgram = "BS Podcast";
-                    byte yearLevel = 4;
+                    String courseProgram = "";
+                    byte yearLevel = 0;
 
                     try {
                         lastName = lastNameTextField.getText();
-                        while (!lastName.matches("[a-zA-Z]+")) {
-                            JOptionPane.showMessageDialog(null, "Invalid Last Name. Try again.");
-                            lastNameTextField.setText("");
-                        } // end of while
                         if (lastNameTextField.getText() == "")
                             JOptionPane.showMessageDialog(null, "No Last Name given. Try again.");
-                    } catch (InputMismatchException exception1) {
-                        JOptionPane.showMessageDialog(null, "Invalid Last Name. Try again.");
-                        lastNameTextField.setText("");
+                    } catch (Exception exception1) {
+                        exception1.printStackTrace();
                     }
 
                     try {
                         firstName = firstNameTextField.getText();
-                        while (!firstName.matches("[a-zA-Z]+")) {
-                            JOptionPane.showMessageDialog(null, "Invalid Last Name. Try again.");
-                            firstNameTextField.setText("");
-                        } // end of while
                         if (firstNameTextField.getText() == "")
                             JOptionPane.showMessageDialog(null, "No First Name given. Try again.");
-                    } catch (InputMismatchException exception1) {
-                        JOptionPane.showMessageDialog(null, "Invalid First Name. Try again.");
-                        firstNameTextField.setText("");
+                    } catch (Exception exception1) {
+                        exception1.printStackTrace();
                     }
 
                     try {
@@ -779,6 +770,16 @@ public class ChecklistManagement extends JFrame {
                     } catch (NumberFormatException exception1) {
                         JOptionPane.showMessageDialog(null,"Invalid age. Try again");
                         ageTextField.setText("");
+                    }
+
+                    try {
+                        String chosenGender = (String) genderComboBox.getSelectedItem();
+                        if (chosenGender == "Male")
+                            gender = 'M';
+                        if (chosenGender == "Female")
+                            gender = 'F';
+                    } catch (Exception exception) {
+                        exception.printStackTrace();
                     }
 
                     try {
@@ -791,6 +792,12 @@ public class ChecklistManagement extends JFrame {
                         JOptionPane.showMessageDialog(null, "Invalid Program. Try again.");
                         programTextField.setText("");
                     }
+
+                    try {
+                        yearLevel = Byte.parseByte((String) yearComboBox2.getSelectedItem());
+                    } catch (NumberFormatException exception) {
+                        JOptionPane.showMessageDialog(null, "Invalid year level. Try again.");
+                    } // end of try-catch
 
                     students.add(new Student(lastName, firstName, idNumber, age, gender, courseProgram, yearLevel));
 
