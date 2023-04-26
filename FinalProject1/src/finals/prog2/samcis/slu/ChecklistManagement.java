@@ -116,6 +116,9 @@ public class ChecklistManagement extends JFrame {
         } // end of try-catch
     } // end of populateCourse method
 
+    // TO-DO
+    // SAVE BUTTON FOR EDIT COURSE AND ENTER GRADES
+    // REPLACE QUIT WITH SAVE
     private void populateGUIComponents() {
         // Create main frame
         JFrame frame = new JFrame("Checklist Management System");
