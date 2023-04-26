@@ -144,10 +144,6 @@ public class Course {
         return this.courseNumber;
     } // end of getCourseNumber accessor method
 
-    public String[] getCourseNumberToArray() {
-        return new String[]{this.courseNumber};
-    } // end of getCourseNumber accessor method
-
     /**
      * Accessor/Getter method for descriptiveTitle
      * @return state/value of the descriptiveTitle attribute

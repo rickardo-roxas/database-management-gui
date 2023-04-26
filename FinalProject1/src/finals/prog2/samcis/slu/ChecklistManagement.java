@@ -286,8 +286,10 @@ public class ChecklistManagement extends JFrame {
                     } // end of if
                 } // end of for
 
+                String courseNumber = JOptionPane.showInputDialog(null,
+                        "Enter the course number for grade input.");
+
                 for (Course course: courses) {
-                    String[] courseNumber = new String[]{enterGradesForm(course.getCourseNumberToArray())};
                     if (course instanceof Course && course.getCourseNumber().equals(courseNumber)) {
                         try {
                             boolean validInput = false;
@@ -309,6 +311,7 @@ public class ChecklistManagement extends JFrame {
                                     validInput = false;
                                 } // end of try-catch
                             } // end of while
+                            break;
                         } catch (Exception exception) {
                             exception.printStackTrace();
                         } // end of try-catch
@@ -517,20 +520,6 @@ public class ChecklistManagement extends JFrame {
         loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         loginFrame.setLocationRelativeTo(null);
     } // end of loginFormComponents method
-
-    private String enterGradesForm(String[] courses) {
-        JDialog.setDefaultLookAndFeelDecorated(true);
-        Object[] courseOptions = {courses};
-        String initialOption = "Select Course";
-
-        Object selected = JOptionPane.showInputDialog(null,
-                "Enter grade for specific course" ,
-                "Grade Form",
-                JOptionPane.QUESTION_MESSAGE, null,
-                courseOptions, initialOption);
-
-        return (String) selected;
-    } // end of enterGradesForm method
 
     /**
      * Creates student record when no record has been found.
