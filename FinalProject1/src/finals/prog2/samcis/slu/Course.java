@@ -173,7 +173,7 @@ public class Course {
      * @return comma-separated values
      */
     public String toString() {
-        return year + "," + term + "," + courseNumber + "," + descriptiveTitle + "," + units + "," + grade ;
+        return year + "," + term + "," + courseNumber + "," + descriptiveTitle + "," + units + "," + grade + "\n";
     } // end of toString method
 
     /**
