@@ -24,6 +24,7 @@ public class Course {
     private String descriptiveTitle; // Descriptive title of Course (e.g. "Intro. to Computing)
     private double units; // Number of units of Course (e.g. 3 Units)
     private String grade; // grade of Student for respective Course
+
     /**
      * Constructs an object of Course with default values.
      */
@@ -112,6 +113,10 @@ public class Course {
 
     public void setGrade(double grade) {
         this.grade = String.valueOf(grade);
+        if (grade > 99)
+            this.grade = String.valueOf(99);
+        if (grade < 65)
+            this.grade = "Failed";
     } // end of setGrade mutator method
 
     /**
@@ -132,10 +137,15 @@ public class Course {
 
     /**
      * Accessor/Getter method for courseNumber
+     *
      * @return state/value of the courseNumber attribute
      */
     public String getCourseNumber() {
         return this.courseNumber;
+    } // end of getCourseNumber accessor method
+
+    public String[] getCourseNumberToArray() {
+        return new String[]{this.courseNumber};
     } // end of getCourseNumber accessor method
 
     /**
@@ -163,10 +173,29 @@ public class Course {
     } // end of getGrade accessor method
 
     /**
-     * Concatenates the state of Course attributes.
+     * Concatenates that state of Course attributes
      * @return comma-separated values
      */
     public String toString() {
-        return year + "," + term + "," + courseNumber + "," + descriptiveTitle + "," + units;
+        return year + "," + term + "," + courseNumber + "," + descriptiveTitle + "," + units + "," + grade ;
     } // end of toString method
+
+    /**
+     * Concatenates the state of Course attributes.
+     * @return formatted values
+     */
+    public String toStringFormatted() {
+        if (grade ==  null)
+            grade = "Not Yet Taken";
+        return String.format("%-10s\t %-100s\t %-10.1f\t %-20s %n", courseNumber, descriptiveTitle, units, grade);
+    } // end of toStringFormatted method
+
+    /**
+     * Concatenates the state of Course attributes without the grade attribute.
+     * @return formatted values
+     */
+    public String toStringFormattedNoGrades() {
+        return String.format("%-10s\t %-" +
+                "100s\t %-10.1f\t %n", courseNumber, descriptiveTitle, units);
+    } // end of toStringFormattedNoGrades method
 } // end of class Course

@@ -30,6 +30,7 @@ public class ChecklistManagement extends JFrame {
 
     // Text Fields
     private JTextArea textArea;
+    private JTable table;
     private JComboBox<Integer> termComboBox;
     private JComboBox<Integer> yearComboBox;
 
@@ -100,7 +101,7 @@ public class ChecklistManagement extends JFrame {
             } // end of while
 
             for (int index = 0; index < courses.size(); index++)
-                System.out.println(courses.get(index) + "\n");
+                System.out.println(courses.get(index));
         } catch (NumberFormatException e) {
             System.out.println("Invalid byte value: " + e.getMessage());
             e.printStackTrace();
@@ -233,14 +234,11 @@ public class ChecklistManagement extends JFrame {
 
                 // Loop through the courses and display the courses that match the selected year and term
                 textArea.setText("");
-                for (Course course : courses) {
-                    if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
-                        textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\t"
-                                + course.getUnits() + "\n");
-                    }
-                }
-            }
-        });
+                for (Course course : courses)
+                    if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm)
+                        textArea.append(course.toStringFormattedNoGrades());
+            } // end of actionPerformed method
+        }); // end of actionListener for showSubjectsBtn
 
         showGradesBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -250,23 +248,11 @@ public class ChecklistManagement extends JFrame {
 
                 // Loop through the courses and display the courses that match the selected year and term
                 textArea.setText("");
-                for (Course course : courses) {
-                    if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
-                        textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\t"
-                                + course.getUnits() + "\n");
-                        // Loop through the students and display the grade for each student in the selected course
-                        for (Student student : students) {
-                            Grade grade = student.getGrades().get(course);
-                            if (grade != null) {
-                                textArea.append("\t" + student.getLastName() + ": " + grade.getGrade() + "\n");
-                            } else {
-                                textArea.append("\t" + student.getLastName() + ": Not yet taken\n");
-                            }
-                        }
-                    }
-                }
-            }
-        });
+                for (Course course : courses)
+                    if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm)
+                        textArea.append(course.toStringFormatted());
+            } // end of actionPerformed method
+        }); // end of actionListener for showGradesBtn
 
         enterGradesBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -278,12 +264,14 @@ public class ChecklistManagement extends JFrame {
                 textArea.setText("");
                 for (Course course : courses) {
                     if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
-                        textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\t"
-                                + course.getUnits() + "\n");
+                        textArea.append(course.toStringFormatted());
                         // Loop through the students and allow the user to enter or modify the grade for each student in the selected course
+
+                        /*
                         for (Student student : students) {
                             Grade grade = student.getGrades().get(course);
-                            String input = JOptionPane.showInputDialog(null,"Enter grade for " + student.getLastName() + " in " + course.getCourseNumber());
+                            String input = JOptionPane.showInputDialog(null,"Enter grade for "
+                                    + student.getLastName() + " in " + course.getCourseNumber());
                             if (input != null && !input.isEmpty()) {
                                 double gradeValue = Double.parseDouble(input);
                                 if (grade == null) {
@@ -291,13 +279,44 @@ public class ChecklistManagement extends JFrame {
                                     student.getGrades().put(course, grade);
                                 } else {
                                     grade.setGrade(gradeValue);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        });
+                                } // end of if-else
+                            } // end of if
+                        } // end of for
+                        */
+                    } // end of if
+                } // end of for
+
+                for (Course course: courses) {
+                    String[] courseNumber = new String[]{enterGradesForm(course.getCourseNumberToArray())};
+                    if (course instanceof Course && course.getCourseNumber().equals(courseNumber)) {
+                        try {
+                            boolean validInput = false;
+                            while (!validInput) {
+                                try {
+                                    double grade = Double.parseDouble(JOptionPane.showInputDialog("Enter grade:"));
+                                    if (grade > 99) {
+                                        course.setGrade(99);
+                                        validInput = true;
+                                    } else if (grade < 0) {
+                                        JOptionPane.showMessageDialog(null,
+                                                "Invalid grade. Grade cannot be negative. Try Again.");
+                                        validInput = false;
+                                    } else
+                                        course.setGrade(grade);
+                                    validInput = true;
+                                } catch (NumberFormatException exception) {
+                                    JOptionPane.showMessageDialog(null, "Invalid grade input. Try again.");
+                                    validInput = false;
+                                } // end of try-catch
+                            } // end of while
+                        } catch (Exception exception) {
+                            exception.printStackTrace();
+                        } // end of try-catch
+                    } // end of if
+                } // end of for
+            } // end of actionPerformed method
+        }); // end of addActionListener for enterGradesBtn
+
         editCourseBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Get the selected year and term
@@ -308,10 +327,9 @@ public class ChecklistManagement extends JFrame {
                 textArea.setText("");
                 for (Course course : courses) {
                     if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
-                        textArea.append(course.getCourseNumber() + "\t" + course.getDescriptiveTitle() + "\t"
-                                + course.getUnits() + "\n");
-                    }
-                }
+                        textArea.append(course.toStringFormatted());
+                    } // end of if
+                } // end of for
 
                 // Prompt the user to select a course to edit
                 String courseNumber = JOptionPane.showInputDialog(null, "Enter the course number of the course you would like to edit:");
@@ -320,14 +338,12 @@ public class ChecklistManagement extends JFrame {
                 for (Course course : courses) {
                     if (course instanceof Course && course.getCourseNumber().equals(courseNumber)) {
                         String input = JOptionPane.showInputDialog("Enter new course number:");
-                        if (input != null && !input.isEmpty()) {
+                        if (input != null && !input.isEmpty())
                             course.setCourseNumber(input);
-                        }
 
                         input = JOptionPane.showInputDialog("Enter new course title:");
-                        if (input != null && !input.isEmpty()) {
+                        if (input != null && !input.isEmpty())
                             course.setDescriptiveTitle(input);
-                        }
 
                         // Validate and set the course year
                         while (true) {
@@ -337,13 +353,11 @@ public class ChecklistManagement extends JFrame {
                                 if (year >= 1 && year <= 4) {
                                     course.setYear(year);
                                     break;
-                                } else {
+                                } else
                                     JOptionPane.showMessageDialog(null, "Invalid input. Year must be 1, 2, 3, or 4.");
-                                }
-                            } else {
+                            } else
                                 break;
-                            }
-                        }
+                        } // end of while
 
                         // Validate and set the course term
                         while (true) {
@@ -353,29 +367,26 @@ public class ChecklistManagement extends JFrame {
                                 if (term >= 1 && term <= 3) {
                                     course.setTerm(term);
                                     break;
-                                } else {
+                                } else
                                     JOptionPane.showMessageDialog(null, "Invalid input. Term must be 1, 2, or 3.");
-                                }
-                            } else {
+                            } else
                                 break;
-                            }
-                        }
-
+                        } // end of while
                         break;
-                    }
-                }
-            }
-        });
+                    } // end of if
+                } // end of for
+            } // end of actionPerformed method
+        }); // end of actionListener for editCourseBtn
+
         quitBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
-            }
-        });
+            } // end of actionPerformed method
+        }); // end of addActionListener for quitBtn
         frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
-    }
-
+    } // end of populateGUIComponents method
 
     /**
      * Shows the UI when a student is logging in the program.
@@ -461,17 +472,30 @@ public class ChecklistManagement extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int studentID = 0000000;
+                boolean validInput = false;
+
+                while (!validInput) {
+                    try {
+                        studentID = Integer.parseInt(loginTextField.getText());
+                        String inputString = String.valueOf(studentID);
+
+                        if (inputString.length() < 7) {
+                            JOptionPane.showMessageDialog(null,
+                                    "Invalid ID Number. SLU ID Number contains 7 integers. Try again");
+                            loginTextField.setText("");
+                            validInput = false;
+                        } else
+                            validInput = true;
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(null, "Invalid ID Number. Try again.");
+                        loginTextField.setText("");
+                        return;
+                    } // end of try-catch
+                } // end of while
                 try {
-                    studentID = Integer.parseInt(loginTextField.getText());
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Invalid ID Number. Try Again.");
-                    loginTextField.setText("");
-                    return;
-                } // end of try-catch
-                try {
-                    inputStream = new BufferedReader(new FileReader("Student Records/" + studentID + ".txt"));
+                    File studentFile = new File(studentID + ".txt");
+                    inputStream = new BufferedReader(new FileReader("Student Records/" + studentFile));
                     inputStream.close();
-                    loginFrame.dispose();
                     populateGUIComponents();
                 } catch (FileNotFoundException ex) {
                     loginFrame.dispose();
@@ -479,8 +503,8 @@ public class ChecklistManagement extends JFrame {
                 } catch (IOException exception) {
                     exception.printStackTrace();
                 } // end of try-catch
-            }
-        });
+            } // end of actionPerformed method
+        }); // end of addActionListener for loginButton
         quitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -494,6 +518,19 @@ public class ChecklistManagement extends JFrame {
         loginFrame.setLocationRelativeTo(null);
     } // end of loginFormComponents method
 
+    private String enterGradesForm(String[] courses) {
+        JDialog.setDefaultLookAndFeelDecorated(true);
+        Object[] courseOptions = {courses};
+        String initialOption = "Select Course";
+
+        Object selected = JOptionPane.showInputDialog(null,
+                "Enter grade for specific course" ,
+                "Grade Form",
+                JOptionPane.QUESTION_MESSAGE, null,
+                courseOptions, initialOption);
+
+        return (String) selected;
+    } // end of enterGradesForm method
 
     /**
      * Creates student record when no record has been found.
@@ -799,6 +836,7 @@ public class ChecklistManagement extends JFrame {
                             gender, courseProgram, (byte) yearLevel));
 
                     outputStream.println(students); // prints Student attributes a
+                    outputStream.println(courses); // prints courses to student record
                     outputStream.close();
 
                     populateGUIComponents();
