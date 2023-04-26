@@ -129,12 +129,6 @@ public class ChecklistManagement extends JFrame {
         JPanel headerPanel = new JPanel(new BorderLayout());
         headerPanel.setBackground(new Color(56, 79, 141));
 
-        // Add logo to header panel
-        ImageIcon logoIcon = new ImageIcon("logo.png");
-        JLabel logoLabel = new JLabel(logoIcon);
-        logoLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        headerPanel.add(logoLabel, BorderLayout.WEST);
-
         // Add title label to header panel
         JLabel titleLabel = new JLabel("Checklist Management System", SwingConstants.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
