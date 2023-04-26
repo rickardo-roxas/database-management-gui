@@ -27,10 +27,8 @@ import java.awt.*;
 
 public class ChecklistManagement extends JFrame {
     // GUI Components
-
     // Text Fields
     private JTextArea textArea;
-    private JTable table;
     private JComboBox<Integer> termComboBox;
     private JComboBox<Integer> yearComboBox;
 
