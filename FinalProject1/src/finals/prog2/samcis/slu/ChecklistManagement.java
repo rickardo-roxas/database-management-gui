@@ -153,8 +153,8 @@ public class ChecklistManagement extends JFrame {
         showGradesBtn.setBorder(BorderFactory.createLineBorder(new Color(128, 64, 0), 2));
 
         JButton showFinishedCoursesBtn = new JButton("Show Finished Courses");
-        showFinishedCoursesBtn.setPreferredSize(new Dimension(180, 50));
-        showFinishedCoursesBtn.setFont(new Font("Arial", Font.BOLD, 18));
+        showFinishedCoursesBtn.setPreferredSize(new Dimension(200, 50));
+        showFinishedCoursesBtn.setFont(new Font("Arial", Font.BOLD, 15));
         showFinishedCoursesBtn.setBorder(BorderFactory.createLineBorder(new Color(128, 128, 0), 2));
 
         JButton enterGradesBtn = new JButton("Enter Grades");
@@ -268,7 +268,6 @@ public class ChecklistManagement extends JFrame {
         showFinishedCoursesBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TO DO:
 
             }
         });
@@ -431,7 +430,7 @@ public class ChecklistManagement extends JFrame {
         constraints.insets = new Insets(10, 10, 10, 10);
         constraints.gridx = 0;
         constraints.gridy = 0;
-        constraints.anchor = GridBagConstraints.WEST;
+        constraints.anchor = GridBagConstraints.NORTH;
 
         // Load the image
         ImageIcon logoIcon = new ImageIcon("slu_school_logo.png");
