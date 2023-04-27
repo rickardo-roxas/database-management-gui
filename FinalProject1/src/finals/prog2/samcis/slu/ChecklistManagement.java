@@ -651,16 +651,16 @@ public class ChecklistManagement extends JFrame {
         signupTitleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         signupPanel.add(signupTitleLabel, constraints);
 
-        constraints.gridx = 1;
+        constraints.gridx = 0;
         constraints.gridy = 1;
-        constraints.gridwidth = 1;
+        constraints.gridwidth = 2;
         constraints.anchor = GridBagConstraints.CENTER;
 
         JSeparator separator = new JSeparator();
         separator.setPreferredSize(new Dimension(450, 2));
         signupPanel.add(separator, constraints);
 
-        constraints.gridx = 1;
+        constraints.gridx = 0;
         constraints.gridy = 2;
         constraints.gridwidth = 1;
         constraints.anchor = GridBagConstraints.WEST;
@@ -670,7 +670,7 @@ public class ChecklistManagement extends JFrame {
         signupPanel.add(idLabel, constraints);
 
         constraints.gridx = 1;
-        constraints.gridy = 3;
+        constraints.gridy = 2;
         constraints.anchor = GridBagConstraints.WEST;
 
         JTextField idTextField = new JTextField(20);
@@ -678,104 +678,55 @@ public class ChecklistManagement extends JFrame {
         idTextField.setEditable(false);
         signupPanel.add(idTextField, constraints);
 
-        constraints.gridx = 1;
-        constraints.gridy = 4;
-        constraints.gridwidth = 1;
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        constraints.anchor = GridBagConstraints.WEST;
 
         JLabel lastNameLabel = new JLabel("Last Name:");
         lastNameLabel.setFont(new Font("Arial", Font.BOLD, 14));
         signupPanel.add(lastNameLabel, constraints);
 
         constraints.gridx = 1;
-        constraints.gridy = 5;
+        constraints.gridy = 3;
         constraints.anchor = GridBagConstraints.WEST;
 
         JTextField lastNameTextField = new JTextField(20);
         signupPanel.add(lastNameTextField, constraints);
 
-        constraints.gridx = 1;
-        constraints.gridy = 6;
-        constraints.gridwidth = 1;
+        constraints.gridx = 0;
+        constraints.gridy = 4;
+        constraints.anchor = GridBagConstraints.WEST;
 
         JLabel firstNameLabel = new JLabel("First Name:");
         firstNameLabel.setFont(new Font("Arial", Font.BOLD, 14));
         signupPanel.add(firstNameLabel, constraints);
 
         constraints.gridx = 1;
-        constraints.gridy = 7;
+        constraints.gridy = 4;
         constraints.anchor = GridBagConstraints.WEST;
 
         JTextField firstNameTextField = new JTextField(20);
         signupPanel.add(firstNameTextField, constraints);
 
-        constraints.gridx = 1;
-        constraints.gridy = 8;
-        constraints.gridwidth = 1;
+        constraints.gridx = 0;
+        constraints.gridy = 5;
+        constraints.anchor = GridBagConstraints.WEST;
 
         JLabel ageLabel = new JLabel("Age:");
         ageLabel.setFont(new Font("Arial", Font.BOLD, 14));
         signupPanel.add(ageLabel, constraints);
 
         constraints.gridx = 1;
-        constraints.gridy = 9;
+        constraints.gridy = 5;
         constraints.anchor = GridBagConstraints.WEST;
 
         JTextField ageTextField = new JTextField(10);
         ageTextField.setDocument(new JTextFieldLimit(2));
         signupPanel.add(ageTextField, constraints);
 
-        constraints.gridx = 2;
-        constraints.gridy = 8;
-        constraints.gridwidth = 1;
-
-        JLabel genderLabel = new JLabel("Gender:");
-        genderLabel.setFont(new Font("Arial", Font.BOLD, 14));
-        signupPanel.add(genderLabel, constraints);
-
-        constraints.gridx = 2;
-        constraints.gridy = 9;
-        constraints.anchor = GridBagConstraints.WEST;
-
-        String[] genderOptions = {"Male" , "Female"};
-        JComboBox<String> genderComboBox = new JComboBox<>(genderOptions);
-        genderComboBox.setEditable(false);
-        signupPanel.add(genderComboBox, constraints);
-
         constraints.gridx = 1;
-        constraints.gridy = 10;
+        constraints.gridy = 6;
         constraints.gridwidth = 1;
-
-        JLabel programLabel = new JLabel("Program:");
-        programLabel.setFont(new Font("Arial", Font.BOLD, 14));
-        signupPanel.add(programLabel, constraints);
-
-        constraints.gridx = 1;
-        constraints.gridy = 11;
-        constraints.anchor = GridBagConstraints.WEST;
-
-        JTextField programTextField = new JTextField(20);
-        signupPanel.add(programTextField, constraints);
-
-        constraints.gridx = 2;
-        constraints.gridy = 10;
-        constraints.gridwidth = 1;
-
-        JLabel yearLabel = new JLabel("Year Level:");
-        yearLabel.setFont(new Font("Arial", Font.BOLD, 14));
-        signupPanel.add(yearLabel, constraints);
-
-        constraints.gridx = 2;
-        constraints.gridy = 11;
-        constraints.anchor = GridBagConstraints.WEST;
-
-        Integer[] yearOptions = {1,2,3,4};
-        JComboBox<Integer> yearComboBox2 = new JComboBox<>(yearOptions);
-        signupPanel.add(yearComboBox2, constraints);
-
-        constraints.gridx = 1;
-        constraints.gridy = 13;
-        constraints.gridwidth = 1;
-        constraints.anchor = GridBagConstraints.CENTER;
 
         JButton signupButton = new JButton("Create Record");
         signupButton.setPreferredSize(new Dimension(150, 40));
@@ -784,10 +735,10 @@ public class ChecklistManagement extends JFrame {
         signupButton.setFont(new Font("Arial", Font.BOLD, 14));
         signupPanel.add(signupButton, constraints);
 
-        constraints.gridx = 1;
+        constraints.gridx = 0;
         constraints.gridy = 14;
         constraints.gridwidth = 1;
-        constraints.anchor = GridBagConstraints.CENTER;
+        constraints.anchor = GridBagConstraints.EAST;
 
         JButton quitButton = new JButton("Cancel");
         quitButton.setPreferredSize(new Dimension(120, 40));
@@ -795,6 +746,11 @@ public class ChecklistManagement extends JFrame {
         quitButton.setForeground(Color.WHITE);
         quitButton.setFont(new Font("Arial", Font.BOLD, 14));
         signupPanel.add(quitButton, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 14;
+        constraints.gridwidth = 1;
+        constraints.anchor = GridBagConstraints.WEST;
 
         signupButton.addActionListener(new ActionListener() {
             @Override
@@ -830,28 +786,6 @@ public class ChecklistManagement extends JFrame {
                     } catch (NumberFormatException exception1) {
                         JOptionPane.showMessageDialog(null,"Invalid age. Try again");
                         ageTextField.setText("");
-                    }
-
-                    try {
-                        String chosenGender = (String) genderComboBox.getSelectedItem();
-                        if (chosenGender == "Male")
-                            gender = 'M';
-                        if (chosenGender == "Female")
-                            gender = 'F';
-                    } catch (Exception exception) {
-                        exception.printStackTrace();
-                    }
-
-                    try {
-                        courseProgram = programTextField.getText();
-                    } catch (InputMismatchException exception) {
-                        exception.printStackTrace();
-                    }
-
-                    try {
-                        yearLevel = (int) yearComboBox2.getSelectedItem();
-                    } catch (NumberFormatException exception) {
-                        exception.printStackTrace();
                     } // end of try-catch
 
                     students.add(new Student(lastName, firstName, idNumber, age,
