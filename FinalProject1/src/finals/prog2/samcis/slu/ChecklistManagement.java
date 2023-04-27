@@ -98,8 +98,7 @@ public class ChecklistManagement extends JFrame {
                 courses.add(newCourse);
             } // end of while
 
-            for (int index = 0; index < courses.size(); index++)
-                System.out.println(courses.get(index));
+
         } catch (NumberFormatException e) {
             System.out.println("Invalid byte value: " + e.getMessage());
             e.printStackTrace();
@@ -191,8 +190,8 @@ public class ChecklistManagement extends JFrame {
         formPanel.add(comboPanel, BorderLayout.NORTH);
 
         // Add text area to form panel
-        textArea = new JTextArea(20, 50);
-        Font font = new Font("Roboto", Font.PLAIN, 18);
+        textArea = new JTextArea(30, 250);
+        Font font = new Font("Lucida Console", Font.PLAIN, 12);
         textArea.setFont(font);
         textArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(textArea);
@@ -209,6 +208,7 @@ public class ChecklistManagement extends JFrame {
         // Set frame properties
         frame.pack();
         frame.setLocationRelativeTo(null);
+        frame.setResizable(false);
         frame.setVisible(true);
 
 
@@ -229,6 +229,8 @@ public class ChecklistManagement extends JFrame {
 
                 // Loop through the courses and display the courses that match the selected year and term
                 textArea.setText("");
+                textArea.append(String.format("%-15s\t%-120s\t%-5s\t%n", "Course Number", "Descriptive Title", "Units"));
+                textArea.append("-----------------------------------------------------------------------------------------------------------------------------------------------------\n");
                 for (Course course : courses)
                     if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm)
                         textArea.append(course.toStringFormattedNoGrades());
@@ -243,6 +245,8 @@ public class ChecklistManagement extends JFrame {
 
                 // Loop through the courses and display the courses that match the selected year and term
                 textArea.setText("");
+                textArea.append(String.format("%-15s\t%-120s\t%-5s\t%-20s\t%n", "Course Number", "Descriptive Title", "Units", "Grade"));
+                textArea.append("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
                 for (Course course : courses)
                     if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm)
                         textArea.append(course.toStringFormatted());
@@ -820,7 +824,12 @@ public class ChecklistManagement extends JFrame {
                             gender, courseProgram, (byte) yearLevel));
 
                     outputStream.println(students); // prints Student attributes a
-                    outputStream.println(courses); // prints courses to student record
+
+                    for (int index = 0; index < courses.size(); index++){
+                        outputStream.println(courses.get(index).toString());
+                        outputStream.println();
+                    }
+
                     outputStream.close();
 
                     populateGUIComponents();

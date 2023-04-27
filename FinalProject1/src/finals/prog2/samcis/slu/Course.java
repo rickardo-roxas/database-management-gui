@@ -173,7 +173,7 @@ public class Course {
      * @return comma-separated values
      */
     public String toString() {
-        return year + "," + term + "," + courseNumber + "," + descriptiveTitle + "," + units + "," + grade + "\n";
+        return year + "," + term + "," + courseNumber + "," + descriptiveTitle + "," + units + "," + grade;
     } // end of toString method
 
     /**
@@ -183,7 +183,7 @@ public class Course {
     public String toStringFormatted() {
         if (grade ==  null)
             grade = "Not Yet Taken";
-        return String.format("%-10s\t %-100s\t %-10.1f\t %-20s %n", courseNumber, descriptiveTitle, units, grade);
+        return String.format("%-15s\t%-120s\t%-5.1f\t%-20s\t%n", courseNumber, descriptiveTitle, units, grade);
     } // end of toStringFormatted method
 
     /**
@@ -191,7 +191,6 @@ public class Course {
      * @return formatted values
      */
     public String toStringFormattedNoGrades() {
-        return String.format("%-10s\t %-" +
-                "100s\t %-10.1f\t %n", courseNumber, descriptiveTitle, units);
+        return String.format("%-15s\t%-120s\t%-5.1f\t%n" , courseNumber, descriptiveTitle, units);
     } // end of toStringFormattedNoGrades method
 } // end of class Course
