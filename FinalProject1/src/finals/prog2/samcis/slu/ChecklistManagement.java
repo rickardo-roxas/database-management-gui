@@ -157,10 +157,10 @@ public class ChecklistManagement extends JFrame {
         enterGradesBtn.setFont(new Font("Arial", Font.BOLD, 18));
         enterGradesBtn.setBorder(BorderFactory.createLineBorder(new Color(128, 0, 32), 2));
 
-        JButton editCourseBtn = new JButton("Edit Course");
-        editCourseBtn.setPreferredSize(new Dimension(180, 50));
-        editCourseBtn.setFont(new Font("Arial", Font.BOLD, 18));
-        editCourseBtn.setBorder(BorderFactory.createLineBorder(new Color(128, 0, 128), 2));
+        JButton editRecordsBtn = new JButton("Edit Records");
+        editRecordsBtn.setPreferredSize(new Dimension(180, 50));
+        editRecordsBtn.setFont(new Font("Arial", Font.BOLD, 18));
+        editRecordsBtn.setBorder(BorderFactory.createLineBorder(new Color(128, 0, 128), 2));
 
         JButton quitBtn = new JButton("Quit");
         quitBtn.setPreferredSize(new Dimension(180, 50));
@@ -170,7 +170,7 @@ public class ChecklistManagement extends JFrame {
         buttonsPanel.add(showSubjectsBtn);
         buttonsPanel.add(showGradesBtn);
         buttonsPanel.add(enterGradesBtn);
-        buttonsPanel.add(editCourseBtn);
+        buttonsPanel.add(editRecordsBtn);
         buttonsPanel.add(quitBtn);
 
         // Create form panel
@@ -261,6 +261,8 @@ public class ChecklistManagement extends JFrame {
 
                 // Loop through the courses and display the courses that match the selected year and term, and allow the user to enter grades for each student in the selected courses
                 textArea.setText("");
+                textArea.append(String.format("%-15s\t%-120s\t%-5s\t%-20s\t%n", "Course Number", "Descriptive Title", "Units", "Grade"));
+                textArea.append("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
                 for (Course course : courses) {
                     if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
                         textArea.append(course.toStringFormatted());
@@ -319,7 +321,7 @@ public class ChecklistManagement extends JFrame {
             } // end of actionPerformed method
         }); // end of addActionListener for enterGradesBtn
 
-        editCourseBtn.addActionListener(new ActionListener() {
+        editRecordsBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Get the selected year and term
                 int selectedYear = (int) yearComboBox.getSelectedItem();
@@ -327,6 +329,8 @@ public class ChecklistManagement extends JFrame {
 
                 // Loop through the courses and display the courses that match the selected year and term
                 textArea.setText("");
+                textArea.append(String.format("%-15s\t%-120s\t%-5s\t%-20s\t%n", "Course Number", "Descriptive Title", "Units", "Grade"));
+                textArea.append("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
                 for (Course course : courses) {
                     if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
                         textArea.append(course.toStringFormatted());
@@ -378,7 +382,7 @@ public class ChecklistManagement extends JFrame {
                     } // end of if
                 } // end of for
             } // end of actionPerformed method
-        }); // end of actionListener for editCourseBtn
+        }); // end of actionListener for editRecordsBtn
 
         quitBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
