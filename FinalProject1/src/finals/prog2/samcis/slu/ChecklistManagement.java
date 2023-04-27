@@ -124,11 +124,11 @@ public class ChecklistManagement extends JFrame {
 
         // Create header panel
         JPanel headerPanel = new JPanel(new BorderLayout());
-        headerPanel.setBackground(new Color(56, 79, 141));
+        headerPanel.setBackground(new Color(13, 38, 75));
 
         // Add title label to header panel
-        JLabel titleLabel = new JLabel("Checklist Management System", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        JLabel titleLabel = new JLabel("CHECKLIST MANAGEMENT SYSTEM", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 26));
         titleLabel.setForeground(Color.WHITE);
         titleLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
         headerPanel.add(titleLabel, BorderLayout.CENTER);
@@ -136,46 +136,67 @@ public class ChecklistManagement extends JFrame {
         // Create main panel
         JPanel mainPanel = new JPanel(new BorderLayout());
 
+        // Create footer panel
+        JPanel footerPanel = new JPanel(new BorderLayout());
+        footerPanel.setBackground(new Color(13, 38, 75));
+
+        // Create footer panel
+        JLabel footerLabel = new JLabel("© 2023- CS 122 - GROUP 8. All rights reserved.", SwingConstants.CENTER);
+        footerLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        footerLabel.setForeground(Color.WHITE);
+        footerLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        footerPanel.add(footerLabel, BorderLayout.CENTER);
+
         // Create buttons panel
         JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
         buttonsPanel.setBorder(BorderFactory.createEmptyBorder(30, 0, 30, 0));
 
         // Add buttons to buttons panel
         // Create buttons
+        // Create buttons
         JButton showSubjectsBtn = new JButton("Show Subjects");
         showSubjectsBtn.setPreferredSize(new Dimension(180, 50));
         showSubjectsBtn.setFont(new Font("Arial", Font.BOLD, 18));
-        showSubjectsBtn.setBorder(BorderFactory.createLineBorder(new Color(0, 128, 128), 2));
+        showSubjectsBtn.setBorder(BorderFactory.createLineBorder(new Color(13, 38, 75), 2));
+        showSubjectsBtn.setForeground(new Color(13, 38, 75));
 
         JButton showGradesBtn = new JButton("Show Grades");
         showGradesBtn.setPreferredSize(new Dimension(180, 50));
         showGradesBtn.setFont(new Font("Arial", Font.BOLD, 18));
-        showGradesBtn.setBorder(BorderFactory.createLineBorder(new Color(128, 64, 0), 2));
+        showGradesBtn.setBorder(BorderFactory.createLineBorder(new Color(13, 38, 75), 2));
+        showGradesBtn.setForeground(new Color(13, 38, 75));
 
         JButton showFinishedCoursesBtn = new JButton("Show Finished Courses");
         showFinishedCoursesBtn.setPreferredSize(new Dimension(200, 50));
         showFinishedCoursesBtn.setFont(new Font("Arial", Font.BOLD, 15));
-        showFinishedCoursesBtn.setBorder(BorderFactory.createLineBorder(new Color(128, 128, 0), 2));
+        showFinishedCoursesBtn.setBorder(BorderFactory.createLineBorder(new Color(13, 38, 75), 2));
+        showFinishedCoursesBtn.setForeground(new Color(13, 38, 75));
 
         JButton enterGradesBtn = new JButton("Enter Grades");
         enterGradesBtn.setPreferredSize(new Dimension(180, 50));
         enterGradesBtn.setFont(new Font("Arial", Font.BOLD, 18));
-        enterGradesBtn.setBorder(BorderFactory.createLineBorder(new Color(128, 0, 32), 2));
+        enterGradesBtn.setBorder(BorderFactory.createLineBorder(new Color(13, 38, 75), 2));
+        enterGradesBtn.setForeground(new Color(13, 38, 75));
 
         JButton editRecordsBtn = new JButton("Edit Records");
         editRecordsBtn.setPreferredSize(new Dimension(180, 50));
         editRecordsBtn.setFont(new Font("Arial", Font.BOLD, 18));
-        editRecordsBtn.setBorder(BorderFactory.createLineBorder(new Color(128, 0, 128), 2));
+        editRecordsBtn.setBorder(BorderFactory.createLineBorder(new Color(13, 38, 75), 2));
+        editRecordsBtn.setForeground(new Color(13, 38, 75));
 
         JButton saveBtn = new JButton("Save Records");
         saveBtn.setPreferredSize(new Dimension(180, 50));
         saveBtn.setFont(new Font("Arial", Font.BOLD, 18));
-        saveBtn.setBorder(BorderFactory.createLineBorder(new Color(128, 128, 0), 2));
+        saveBtn.setBorder(BorderFactory.createLineBorder(new Color(13, 38, 75), 2));
+        saveBtn.setForeground(new Color(13, 38, 75));
+
 
         JButton quitBtn = new JButton("Quit");
         quitBtn.setPreferredSize(new Dimension(180, 50));
         quitBtn.setFont(new Font("Arial", Font.BOLD, 18));
-        quitBtn.setBorder(BorderFactory.createLineBorder(new Color(0, 128, 0), 2));
+        quitBtn.setBorder(BorderFactory.createLineBorder(new Color(13, 38, 75), 2));
+        quitBtn.setForeground(new Color(13, 38, 75));
+
 
         buttonsPanel.add(showSubjectsBtn);
         buttonsPanel.add(showGradesBtn);
@@ -213,9 +234,10 @@ public class ChecklistManagement extends JFrame {
         mainPanel.add(buttonsPanel, BorderLayout.NORTH);
         mainPanel.add(formPanel, BorderLayout.CENTER);
 
-        // Add header panel and main panel to frame
+        // Add header panel, main panel, and footer panel to frame
         frame.add(headerPanel, BorderLayout.NORTH);
         frame.add(mainPanel, BorderLayout.CENTER);
+        frame.add(footerPanel, BorderLayout.SOUTH);
 
         // Set frame properties
         frame.pack();
