@@ -152,6 +152,11 @@ public class ChecklistManagement extends JFrame {
         showGradesBtn.setFont(new Font("Arial", Font.BOLD, 18));
         showGradesBtn.setBorder(BorderFactory.createLineBorder(new Color(128, 64, 0), 2));
 
+        JButton showFinishedCoursesBtn = new JButton("Show Finished Courses");
+        showFinishedCoursesBtn.setPreferredSize(new Dimension(180, 50));
+        showFinishedCoursesBtn.setFont(new Font("Arial", Font.BOLD, 18));
+        showFinishedCoursesBtn.setBorder(BorderFactory.createLineBorder(new Color(128, 128, 0), 2));
+
         JButton enterGradesBtn = new JButton("Enter Grades");
         enterGradesBtn.setPreferredSize(new Dimension(180, 50));
         enterGradesBtn.setFont(new Font("Arial", Font.BOLD, 18));
