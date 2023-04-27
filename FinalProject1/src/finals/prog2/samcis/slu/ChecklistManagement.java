@@ -52,7 +52,6 @@ public class ChecklistManagement extends JFrame {
             checklistManagement = new ChecklistManagement();
             checklistManagement.run();
             checklistManagement.pack();
-            checklistManagement.setVisible(true);
         } catch (Exception exception) {
             exception.printStackTrace();
         } // end of try-catch
