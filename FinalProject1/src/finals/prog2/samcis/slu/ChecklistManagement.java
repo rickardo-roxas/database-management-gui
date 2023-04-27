@@ -19,6 +19,7 @@ import java.io.*;
 import java.lang.*;
 import java.util.*;
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
@@ -473,7 +474,12 @@ public class ChecklistManagement extends JFrame {
         quitButton.setForeground(Color.WHITE);
         quitButton.setFont(new Font("Arial", Font.BOLD, 14));
         loginPanel.add(quitButton, constraints);
-
+        loginTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loginButton.doClick();
+            }
+        });
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
