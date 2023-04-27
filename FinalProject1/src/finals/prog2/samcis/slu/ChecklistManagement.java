@@ -625,134 +625,129 @@ public class ChecklistManagement extends JFrame {
     private void signupFormComponents(int studentID) {
         JFrame signupFrame = new JFrame("Student Signup Form");
         JPanel signupPanel = new JPanel(new GridBagLayout());
-
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.insets = new Insets(10, 10, 10, 15);
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        constraints.anchor = GridBagConstraints.WEST;
 
         // Load the image
         ImageIcon logoIcon = new ImageIcon("slu_school_logo.png");
-
         // Scale the image to a smaller size
         Image logoImage = logoIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         ImageIcon scaledLogoIcon = new ImageIcon(logoImage);
-
         // Create the JLabel with the scaled image
         JLabel logoLabel = new JLabel(scaledLogoIcon);
-        signupPanel.add(logoLabel, constraints);
-
-        constraints.gridx = 1;
-        constraints.gridy = 0;
-        constraints.anchor = GridBagConstraints.WEST;
 
         JLabel signupTitleLabel = new JLabel("Student Signup");
         signupTitleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        signupPanel.add(signupTitleLabel, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 1;
-        constraints.gridwidth = 2;
-        constraints.anchor = GridBagConstraints.CENTER;
 
         JSeparator separator = new JSeparator();
         separator.setPreferredSize(new Dimension(450, 2));
-        signupPanel.add(separator, constraints);
 
-        constraints.gridx = 0;
-        constraints.gridy = 2;
-        constraints.gridwidth = 1;
-        constraints.anchor = GridBagConstraints.WEST;
+        JLabel programLabel = new JLabel("Program:");
+        programLabel.setFont(new Font("Arial", Font.BOLD, 14));
+
+        JTextField programTextField = new JTextField("BS Computer Science");
+        programTextField.setEditable(false);
 
         JLabel idLabel = new JLabel("SLU ID Number:");
         idLabel.setFont(new Font("Arial", Font.BOLD, 14));
-        signupPanel.add(idLabel, constraints);
-
-        constraints.gridx = 1;
-        constraints.gridy = 2;
-        constraints.anchor = GridBagConstraints.WEST;
 
         JTextField idTextField = new JTextField(20);
         idTextField.setText(String.valueOf(studentID));
         idTextField.setEditable(false);
-        signupPanel.add(idTextField, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 3;
-        constraints.anchor = GridBagConstraints.WEST;
 
         JLabel lastNameLabel = new JLabel("Last Name:");
         lastNameLabel.setFont(new Font("Arial", Font.BOLD, 14));
-        signupPanel.add(lastNameLabel, constraints);
-
-        constraints.gridx = 1;
-        constraints.gridy = 3;
-        constraints.anchor = GridBagConstraints.WEST;
 
         JTextField lastNameTextField = new JTextField(20);
-        signupPanel.add(lastNameTextField, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 4;
-        constraints.anchor = GridBagConstraints.WEST;
 
         JLabel firstNameLabel = new JLabel("First Name:");
         firstNameLabel.setFont(new Font("Arial", Font.BOLD, 14));
-        signupPanel.add(firstNameLabel, constraints);
-
-        constraints.gridx = 1;
-        constraints.gridy = 4;
-        constraints.anchor = GridBagConstraints.WEST;
 
         JTextField firstNameTextField = new JTextField(20);
-        signupPanel.add(firstNameTextField, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 5;
-        constraints.anchor = GridBagConstraints.WEST;
 
         JLabel ageLabel = new JLabel("Age:");
         ageLabel.setFont(new Font("Arial", Font.BOLD, 14));
-        signupPanel.add(ageLabel, constraints);
-
-        constraints.gridx = 1;
-        constraints.gridy = 5;
-        constraints.anchor = GridBagConstraints.WEST;
 
         JTextField ageTextField = new JTextField(10);
         ageTextField.setDocument(new JTextFieldLimit(2));
-        signupPanel.add(ageTextField, constraints);
-
-        constraints.gridx = 1;
-        constraints.gridy = 6;
-        constraints.gridwidth = 1;
 
         JButton signupButton = new JButton("Create Record");
         signupButton.setPreferredSize(new Dimension(150, 40));
         signupButton.setBackground(Color.BLUE);
         signupButton.setForeground(Color.WHITE);
         signupButton.setFont(new Font("Arial", Font.BOLD, 14));
-        signupPanel.add(signupButton, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 14;
-        constraints.gridwidth = 1;
-        constraints.anchor = GridBagConstraints.EAST;
 
         JButton quitButton = new JButton("Cancel");
         quitButton.setPreferredSize(new Dimension(120, 40));
         quitButton.setBackground(Color.RED);
         quitButton.setForeground(Color.WHITE);
         quitButton.setFont(new Font("Arial", Font.BOLD, 14));
-        signupPanel.add(quitButton, constraints);
+
+        // Add components to the panel with constraints
+        constraints.insets = new Insets(10, 10, 10, 15);
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.anchor = GridBagConstraints.WEST;
+        signupPanel.add(logoLabel, constraints);
 
         constraints.gridx = 1;
-        constraints.gridy = 14;
+        signupPanel.add(signupTitleLabel, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        constraints.gridwidth = 2;
+        constraints.anchor = GridBagConstraints.CENTER;
+        signupPanel.add(separator, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 2;
         constraints.gridwidth = 1;
         constraints.anchor = GridBagConstraints.WEST;
+        signupPanel.add(programLabel, constraints);
 
-        signupButton.addActionListener(new ActionListener() {
+        constraints.gridx = 1;
+        signupPanel.add(programTextField, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        signupPanel.add(idLabel, constraints);
+
+        constraints.gridx = 1;
+        signupPanel.add(idTextField, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 4;
+        signupPanel.add(lastNameLabel, constraints);
+
+        constraints.gridx = 1;
+        signupPanel.add(lastNameTextField, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 5;
+        signupPanel.add(firstNameLabel, constraints);
+
+        constraints.gridx = 1;
+        signupPanel.add(firstNameTextField, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 6;
+        signupPanel.add(ageLabel, constraints);
+
+        constraints.gridx = 1;
+        signupPanel.add(ageTextField, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 7;
+        constraints.gridwidth = 2;
+        constraints.anchor = GridBagConstraints.CENTER;
+        signupPanel.add(signupButton, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 8;
+        constraints.gridwidth = 2;
+        constraints.anchor = GridBagConstraints.CENTER;
+        signupPanel.add(quitButton, constraints);
+
+            signupButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
