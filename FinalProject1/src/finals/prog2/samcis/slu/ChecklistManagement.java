@@ -265,6 +265,14 @@ public class ChecklistManagement extends JFrame {
             } // end of actionPerformed method
         }); // end of actionListener for showGradesBtn
 
+        showFinishedCoursesBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //TO DO:
+
+            }
+        });
+
         enterGradesBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Get the selected year and term
