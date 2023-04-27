@@ -163,6 +163,11 @@ public class ChecklistManagement extends JFrame {
         editRecordsBtn.setFont(new Font("Arial", Font.BOLD, 18));
         editRecordsBtn.setBorder(BorderFactory.createLineBorder(new Color(128, 0, 128), 2));
 
+        JButton saveBtn = new JButton("Save Records");
+        saveBtn.setPreferredSize(new Dimension(180, 50));
+        saveBtn.setFont(new Font("Arial", Font.BOLD, 18));
+        saveBtn.setBorder(BorderFactory.createLineBorder(new Color(128, 128, 0), 2));
+
         JButton quitBtn = new JButton("Quit");
         quitBtn.setPreferredSize(new Dimension(180, 50));
         quitBtn.setFont(new Font("Arial", Font.BOLD, 18));
@@ -172,6 +177,7 @@ public class ChecklistManagement extends JFrame {
         buttonsPanel.add(showGradesBtn);
         buttonsPanel.add(enterGradesBtn);
         buttonsPanel.add(editRecordsBtn);
+        buttonsPanel.add(saveBtn);
         buttonsPanel.add(quitBtn);
 
         // Create form panel
@@ -384,6 +390,12 @@ public class ChecklistManagement extends JFrame {
                 } // end of for
             } // end of actionPerformed method
         }); // end of actionListener for editRecordsBtn
+
+        saveBtn.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TO DO: save records
+            }
+        });
 
         quitBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
