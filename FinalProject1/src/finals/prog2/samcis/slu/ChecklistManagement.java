@@ -153,7 +153,6 @@ public class ChecklistManagement extends JFrame {
 
         // Add buttons to buttons panel
         // Create buttons
-        // Create buttons
         JButton showSubjectsBtn = new JButton("Show Subjects");
         showSubjectsBtn.setPreferredSize(new Dimension(180, 50));
         showSubjectsBtn.setFont(new Font("Arial", Font.BOLD, 18));
@@ -224,9 +223,11 @@ public class ChecklistManagement extends JFrame {
 
         // Add text area to form panel
         textArea = new JTextArea(30, 200);
-        Font font = new Font("Lucida Console", Font.PLAIN, 12);
+        Font font = new Font("Lucida Console", Font.PLAIN, 14);
         textArea.setFont(font);
         textArea.setEditable(false);
+        textArea.setMargin(new Insets(10, 10, 10, 10));
+        textArea.setAlignmentX(JTextArea.CENTER_ALIGNMENT);
         JScrollPane scrollPane = new JScrollPane(textArea);
         formPanel.add(scrollPane, BorderLayout.CENTER);
 
@@ -245,7 +246,6 @@ public class ChecklistManagement extends JFrame {
         frame.setResizable(false);
         frame.setVisible(true);
 
-
         // Initialize combo boxes
         for (int i = 1; i <= 4; i++) {
             yearComboBox.addItem(i);
@@ -263,6 +263,7 @@ public class ChecklistManagement extends JFrame {
 
                 // Loop through the courses and display the courses that match the selected year and term
                 textArea.setText("");
+                textArea.setAlignmentX(Component.CENTER_ALIGNMENT); // center the text
                 textArea.append(String.format("%-15s\t%-120s\t%-5s\t%n", "Course Number", "Descriptive Title", "Units"));
                 textArea.append("-----------------------------------------------------------------------------------------------------------------------------------------------------\n");
                 for (Course course : courses)
@@ -279,6 +280,7 @@ public class ChecklistManagement extends JFrame {
 
                 // Loop through the courses and display the courses that match the selected year and term
                 textArea.setText("");
+                textArea.setAlignmentX(Component.CENTER_ALIGNMENT); // center the text
                 textArea.append(String.format("%-15s\t%-120s\t%-5s\t%-20s\t%n", "Course Number", "Descriptive Title", "Units", "Grade"));
                 textArea.append("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
                 for (Course course : courses)
