@@ -190,7 +190,7 @@ public class ChecklistManagement extends JFrame {
         formPanel.add(comboPanel, BorderLayout.NORTH);
 
         // Add text area to form panel
-        textArea = new JTextArea(30, 250);
+        textArea = new JTextArea(30, 200);
         Font font = new Font("Lucida Console", Font.PLAIN, 12);
         textArea.setFont(font);
         textArea.setEditable(false);
