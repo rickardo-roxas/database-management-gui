@@ -761,17 +761,23 @@ public class ChecklistManagement extends JFrame {
                     int yearLevel = 0;
 
                     try {
-                        lastName = lastNameTextField.getText();
-                        if (lastNameTextField.getText() == "")
-                            JOptionPane.showMessageDialog(null, "No Last Name given. Try again.");
+                        String lastNameInput = lastNameTextField.getText();
+                        if (lastNameInput.isEmpty() || !lastNameInput.matches("^[a-zA-Z ]+$")) {
+                            JOptionPane.showMessageDialog(null, "Invalid last name. Please enter a valid name.");
+                            return;
+                        }
+                        lastName = lastNameInput;
                     } catch (Exception exception1) {
                         exception1.printStackTrace();
                     }
 
                     try {
-                        firstName = firstNameTextField.getText();
-                        if (firstNameTextField.getText() == "")
-                            JOptionPane.showMessageDialog(null, "No First Name given. Try again.");
+                        String firstNameInput = firstNameTextField.getText();
+                        if (firstNameInput.isEmpty() || !firstNameInput.matches("^[a-zA-Z ]+$")) {
+                            JOptionPane.showMessageDialog(null, "Invalid first name. Please enter a valid name.");
+                            return;
+                        }
+                        firstName = firstNameInput;
                     } catch (Exception exception1) {
                         exception1.printStackTrace();
                     }
@@ -794,7 +800,7 @@ public class ChecklistManagement extends JFrame {
                     }
 
                     outputStream.close();
-
+                    JOptionPane.showMessageDialog(null, "Student Record saved successfully!");
                     populateGUIComponents();
                     signupFrame.dispose();
                 } catch (FileNotFoundException exception1) {
