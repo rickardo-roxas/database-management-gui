@@ -591,7 +591,7 @@ public class ChecklistManagement extends JFrame {
         constraints.gridy = 0;
         constraints.anchor = GridBagConstraints.CENTER;
 
-        JLabel loginLabel = new JLabel("No student record found. Default record has been created.");
+        JLabel loginLabel = new JLabel("No student record found. Create new record.");
         loginLabel.setFont(new Font("Arial", Font.BOLD, 14));
         recordPanel.add(loginLabel, constraints);
 
@@ -649,6 +649,7 @@ public class ChecklistManagement extends JFrame {
         JPanel signupPanel = new JPanel(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
 
+
         // Load the image
         ImageIcon logoIcon = new ImageIcon("slu_school_logo.png");
         // Scale the image to a smaller size
@@ -703,6 +704,13 @@ public class ChecklistManagement extends JFrame {
         quitButton.setBackground(Color.RED);
         quitButton.setForeground(Color.WHITE);
         quitButton.setFont(new Font("Arial", Font.BOLD, 14));
+
+        ageTextField.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                signupButton.doClick();
+            }
+        });
 
         // Add components to the panel with constraints
         constraints.insets = new Insets(10, 10, 10, 15);
