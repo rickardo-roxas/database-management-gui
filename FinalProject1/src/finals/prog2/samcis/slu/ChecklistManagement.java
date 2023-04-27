@@ -179,6 +179,7 @@ public class ChecklistManagement extends JFrame {
 
         buttonsPanel.add(showSubjectsBtn);
         buttonsPanel.add(showGradesBtn);
+        buttonsPanel.add(showFinishedCoursesBtn);
         buttonsPanel.add(enterGradesBtn);
         buttonsPanel.add(editRecordsBtn);
         buttonsPanel.add(saveBtn);
