@@ -569,7 +569,7 @@ public class ChecklistManagement extends JFrame {
         constraints.gridy = 0;
         constraints.anchor = GridBagConstraints.CENTER;
 
-        JLabel loginLabel = new JLabel("No student record found. Default record has been created.");
+        JLabel loginLabel = new JLabel("No student record found. Create new record.");
         loginLabel.setFont(new Font("Arial", Font.BOLD, 14));
         recordPanel.add(loginLabel, constraints);
 
