@@ -113,16 +113,23 @@ public class ChecklistManagement extends JFrame {
         } // end of try-catch
     } // end of populateCourse method
 
+    /**
+     * Writes data to student file
+     * @param studentFile
+     * @throws IOException
+     */
     private void populateStudentFile(File studentFile) throws IOException {
         try {
             inputStream = new BufferedReader(new FileReader("Student Records/" + studentFile));
             outputStream = new PrintWriter(new FileWriter("Student Records/" + studentFile));
             String currentLine;
-            int line = 2; // Writes on second line
+            int line = 1; // Writes on second line
             while ((currentLine = inputStream.readLine()) != null) {
-                for (int index = 0;  index < courses.size(); index++) {
-                    outputStream.write(studentRecord.get(index).toString());
-                } // end of for
+                if (line == 2) {
+                    for (int index = 0;  index < courses.size(); index++) {
+                        outputStream.write(studentRecord.get(index).toString());
+                    } // end of for
+                } // end of if
                 outputStream.write(currentLine);
                 outputStream.println();
                 line++;
@@ -149,9 +156,9 @@ public class ChecklistManagement extends JFrame {
 
     private void readStudentFile(File studentFile) throws FileNotFoundException {
         try {
-            inputStream = new BufferedReader(new FileReader(studentFile));
+            inputStream = new BufferedReader(new FileReader("Student Records/" + studentFile));
             String line;
-            int lineCount = 2;
+            int lineCount = 1;
 
             while ((line = inputStream.readLine()) != null) {
                 if (lineCount == 2) {
@@ -167,8 +174,8 @@ public class ChecklistManagement extends JFrame {
                     Course newCourse = new Course(courseYear, courseTerm, courseNumber,
                             courseDescriptiveTitle, units, grade);
                     studentRecord.add(newCourse);
-                    lineCount++;
                 } // end of if
+                lineCount++;
             } // end of while
         } catch (FileNotFoundException exception1) {
             studentFile.delete();
@@ -347,7 +354,7 @@ public class ChecklistManagement extends JFrame {
                 textArea.setAlignmentX(Component.CENTER_ALIGNMENT); // center the text
                 textArea.append(String.format("%-15s\t%-120s\t%-5s\t%-20s\t%n", "Course Number", "Descriptive Title", "Units", "Grade"));
                 textArea.append("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-                for (Course course : courses)
+                for (Course course : studentRecord)
                     if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm)
                         textArea.append(course.toStringFormatted());
             } // end of actionPerformed method
@@ -364,7 +371,7 @@ public class ChecklistManagement extends JFrame {
                 textArea.append(String.format("%-15s\t%-120s\t%-5s\t%-20s\t%n",
                         "Course Number", "Descriptive Title", "Units", "Grade"));
                 textArea.append("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-                for (Course course: courses) {
+                for (Course course: studentRecord) {
                     if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm
                             && (course.getGrade() != null
                             && course.getGrade() != "Not Yet Taken")) {
@@ -384,7 +391,7 @@ public class ChecklistManagement extends JFrame {
                 textArea.setText("");
                 textArea.append(String.format("%-15s\t%-120s\t%-5s\t%-20s\t%n", "Course Number", "Descriptive Title", "Units", "Grade"));
                 textArea.append("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-                for (Course course : courses) {
+                for (Course course : studentRecord) {
                     if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
                         textArea.append(course.toStringFormatted());
                         // Loop through the students and allow the user to enter or modify the grade for each student in the selected course
@@ -394,7 +401,7 @@ public class ChecklistManagement extends JFrame {
                 String courseNumber = JOptionPane.showInputDialog(null,
                         "Enter the course number for grade input.");
 
-                for (Course course: courses) {
+                for (Course course: studentRecord) {
                     if (course instanceof Course && course.getCourseNumber().equals(courseNumber)) {
                         try {
                             boolean validInput = false;
@@ -883,7 +890,7 @@ public class ChecklistManagement extends JFrame {
         constraints.anchor = GridBagConstraints.CENTER;
         signupPanel.add(quitButton, constraints);
 
-            signupButton.addActionListener(new ActionListener() {
+        signupButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -934,6 +941,8 @@ public class ChecklistManagement extends JFrame {
                     for (int index = 0; index < courses.size(); index++){
                         outputStream.println(courses.get(index).toString());
                     } // end of for
+
+                    studentRecord.addAll(courses); // studentRecord will contain elements of courses
 
                     outputStream.close();
                     JOptionPane.showMessageDialog(null, "Student Record saved successfully!");
