@@ -164,10 +164,10 @@ public class ChecklistManagement extends JFrame {
         try {
             inputStream = new BufferedReader(new FileReader("Student Records/" + studentFile));
             String line;
-            int lineCount = 1;
+            int lineCount = 0;
 
             while ((line = inputStream.readLine()) != null) {
-                if (lineCount == 2) {
+                if (lineCount > 0) {
                     String[] courseData = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
 
                     int courseYear = Integer.parseInt(courseData[0]);
@@ -541,7 +541,6 @@ public class ChecklistManagement extends JFrame {
         saveBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
-
                     populateStudentFile(studentFile);
                 } catch (IOException exception) {
                     exception.printStackTrace();
