@@ -120,22 +120,28 @@ public class ChecklistManagement extends JFrame {
      */
     private void populateStudentFile(File studentFile) throws IOException {
         try {
-            inputStream = new BufferedReader(new FileReader("Student Records/" + studentFile));
-            outputStream = new PrintWriter(new FileWriter("Student Records/" + studentFile));
-            String currentLine;
-            int line = 1; // Writes on second line
-            while ((currentLine = inputStream.readLine()) != null) {
-                if (line == 2) {
-                    for (int index = 0;  index < courses.size(); index++) {
-                        outputStream.write(studentRecord.get(index).toString());
-                    } // end of for
-                } // end of if
-                outputStream.write(currentLine);
-                outputStream.println();
-                line++;
+            RandomAccessFile overwrite = new RandomAccessFile("Student Records/" + studentFile, "rw");
+
+            int lineCount = 0;
+            while (lineCount < 1) {
+                String line = overwrite.readLine();
+                if (line == null)
+                    break;
+                lineCount++;
             } // end of while
-            inputStream.close();
-            outputStream.close();
+
+            for (int index = 0; index < studentRecord.size(); index++) {
+                overwrite.writeBytes(studentRecord.get(index).toString() + "\n");
+            } // end of for
+
+            overwrite.seek(overwrite.getFilePointer() + 1);
+
+            String line;
+            while ((line = overwrite.readLine()) != null) {
+                overwrite.seek(overwrite.getFilePointer() - line.length() - 2);
+                overwrite.writeBytes("\n" + line);
+            } // end of while
+            overwrite.close();
         } catch (FileNotFoundException exception1) {
             exception1.getMessage();
             exception1.printStackTrace();
