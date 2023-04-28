@@ -164,10 +164,10 @@ public class ChecklistManagement extends JFrame {
         try {
             inputStream = new BufferedReader(new FileReader("Student Records/" + studentFile));
             String line;
-            int lineCount = 0;
+            int lineCount = 1;
 
             while ((line = inputStream.readLine()) != null) {
-                if (lineCount > 0) {
+                if (lineCount == 2) {
                     String[] courseData = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
 
                     int courseYear = Integer.parseInt(courseData[0]);
@@ -379,8 +379,7 @@ public class ChecklistManagement extends JFrame {
                 textArea.append("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
                 for (Course course: studentRecord) {
                     if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm
-                            && (course.getGrade() != null
-                            && course.getGrade() != "Not Yet Taken")) {
+                            && course.getGrade() != "Not Yet Taken") {
                         textArea.append(course.toStringFormatted());
                     } // end of if
                 } // end of for
@@ -467,7 +466,7 @@ public class ChecklistManagement extends JFrame {
                 textArea.setText("");
                 textArea.append(String.format("%-15s\t%-120s\t%-5s\t%-20s\t%n", "Course Number", "Descriptive Title", "Units", "Grade"));
                 textArea.append("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
-                for (Course course : courses) {
+                for (Course course : studentRecord) {
                     if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
                         textArea.append(course.toStringFormatted());
                     } // end of if
@@ -477,7 +476,7 @@ public class ChecklistManagement extends JFrame {
                 String courseNumber = JOptionPane.showInputDialog(null, "Enter the course number of the course you would like to edit:");
 
                 // Find the course with the given course number and display its details
-                for (Course course : courses) {
+                for (Course course : studentRecord) {
                     if (course instanceof Course && course.getCourseNumber().equals(courseNumber)) {
                         String input = JOptionPane.showInputDialog("Enter new course number:");
                         if (input != null && !input.isEmpty())
@@ -905,7 +904,6 @@ public class ChecklistManagement extends JFrame {
                     String firstName = "";
                     int idNumber = studentID;
                     int age = 0;
-                    char gender = 'x';
                     String courseProgram = "";
                     int yearLevel = 0;
 
@@ -939,7 +937,7 @@ public class ChecklistManagement extends JFrame {
                     } // end of try-catch
 
                     students.add(new Student(lastName, firstName, idNumber, age,
-                            gender, courseProgram, (byte) yearLevel));
+                         courseProgram, (byte) yearLevel));
 
                     outputStream.println(students); // prints Student attributes to studentFile
 

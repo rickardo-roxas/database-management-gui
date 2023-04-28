@@ -23,7 +23,6 @@ public class Student {
     private String firstName; // The first name of the student
     private int idNumber; // The ID number of the student
     private int age; // The age of the student
-    private char gender; // The gender of the student (M or F)
     private String courseProgram; // The course program of the student
     private byte yearLevel; // The year level of the student
     private HashMap<Course, Grade> grades; // A HashMap of the student's grades for each course
@@ -35,7 +34,6 @@ public class Student {
         firstName = "Scheherazade";
         idNumber = 2233444;
         age = 19;
-        gender = 'M';
         courseProgram = "BS Computer Science";
         yearLevel = 1;
         grades = new HashMap<Course, Grade>();
@@ -48,18 +46,14 @@ public class Student {
      * @param firstName     The first name of the student
      * @param idNumber      The ID number of the student
      * @param age           The age of the student
-     * @param gender        The gender of the student (M or F)
      * @param courseProgram The course program of the student
      * @param yearLevel     The year level of the student
-     * @param grade         The grade of the student
      */
-    public Student(String lastName, String firstName, int idNumber, int age, char gender, String courseProgram,
-                   byte yearLevel) {
+    public Student(String lastName, String firstName, int idNumber, int age, String courseProgram, byte yearLevel) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.idNumber = idNumber;
         this.age = age;
-        this.gender = gender;
         this.courseProgram = courseProgram;
         this.yearLevel = yearLevel;
     } // end of Student constructor
@@ -112,14 +106,6 @@ public class Student {
     } // end of setAge mutator method
 
     /**
-     * Mutator method for the gender attribute.
-     * @param gender The new gender of the student (M or F)
-     */
-    public void setGender(char gender) {
-        this.gender = gender;
-    } // end of setGender mutator method
-
-    /**
      * Mutator method for the course program attribute.
      * @param courseProgram The new course program of the student
      */
@@ -168,14 +154,6 @@ public class Student {
     } // end of getAge accessor method
 
     /**
-     * Accessor method for the gender attribute.
-     * @return The gender of the student
-     */
-    public char getGender() {
-        return gender;
-    } // end of getGender accessor method
-
-    /**
      * Accessor method for the course program attribute.
      * @return The course program of the student
      */
@@ -205,7 +183,7 @@ public class Student {
      * @return A string representation of the Student object
      */
     public String toString() {
-        return firstName + " " + lastName + ", ID number: " + idNumber + ", age: " + age + ", gender: " + gender
+        return firstName + " " + lastName + ", ID number: " + idNumber + ", age: " + age
                 + ", course program: " + courseProgram + ", year level: " + yearLevel;
     }// end of toString method
 } // end of Student Class
