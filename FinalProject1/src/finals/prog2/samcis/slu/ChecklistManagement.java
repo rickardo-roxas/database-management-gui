@@ -183,6 +183,7 @@ public class ChecklistManagement extends JFrame {
                 } // end of if
                 lineCount++;
             } // end of while
+            inputStream.close();
         } catch (FileNotFoundException exception1) {
             studentFile.delete();
         } catch (IOException exception2) {
@@ -448,8 +449,7 @@ public class ChecklistManagement extends JFrame {
 
                             studentRecord.add(index, gradedCourse);
                         } // end of if
-                        populateStudentFile(studentFile);
-                    } catch (IOException exception) {
+                    } catch (Exception exception) {
                         exception.printStackTrace();
                     } // end of try-catch
                 } // end of for
