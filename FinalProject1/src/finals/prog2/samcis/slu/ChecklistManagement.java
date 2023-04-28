@@ -292,9 +292,18 @@ public class ChecklistManagement extends JFrame {
         showFinishedCoursesBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-            }
-        });
+                textArea.setText("");
+                for (Course course: courses) {
+                    if (course instanceof Course && (course.getGrade() != null
+                            && course.getGrade() != "Not Yet Taken")) {
+                        textArea.append(String.format("%-15s\t%-120s\t%-5s\t%-20s\t%n",
+                                "Course Number", "Descriptive Title", "Units", "Grade"));
+                        textArea.append("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+                        textArea.append(course.toStringFormatted());
+                    } // end of if
+                } // end of for
+            } // end of actionPerformed method
+        }); // end of addActionListener for showFinishedCoursesBtn
 
         enterGradesBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
