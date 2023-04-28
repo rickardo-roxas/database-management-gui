@@ -34,12 +34,14 @@ public class ChecklistManagement extends JFrame {
     private JComboBox<Integer> yearComboBox;
 
     // ArrayLists
-    private ArrayList<Course> courses = new ArrayList<>();
+    private ArrayList<Course> courses = new ArrayList<>(); // Default courses with no grades used for showSubjectsBtn
+    private ArrayList<Course> studentRecord = new ArrayList<>(); // array list of courses with grades to be written in student file
     private ArrayList<Student> students = new ArrayList<>();
 
     // Input/Output objects
     private BufferedReader inputStream;
     private PrintWriter outputStream;
+    private File studentFile; // student file with student ID file name
 
     /**
      * Main entry point of the program
@@ -97,8 +99,6 @@ public class ChecklistManagement extends JFrame {
                 Course newCourse = new Course(courseYear, courseTerm, courseNumber, courseDescriptiveTitle, units);
                 courses.add(newCourse);
             } // end of while
-
-
         } catch (NumberFormatException e) {
             System.out.println("Invalid byte value: " + e.getMessage());
             e.printStackTrace();
@@ -113,10 +113,74 @@ public class ChecklistManagement extends JFrame {
         } // end of try-catch
     } // end of populateCourse method
 
+    private void populateStudentFile(File studentFile) throws IOException {
+        try {
+            inputStream = new BufferedReader(new FileReader("Student Records/" + studentFile));
+            outputStream = new PrintWriter(new FileWriter("Student Records/" + studentFile));
+            String currentLine;
+            int line = 2; // Writes on second line
+            while ((currentLine = inputStream.readLine()) != null) {
+                for (int index = 0;  index < courses.size(); index++) {
+                    outputStream.write(studentRecord.get(index).toString());
+                } // end of for
+                outputStream.write(currentLine);
+                outputStream.println();
+                line++;
+            } // end of while
+            inputStream.close();
+            outputStream.close();
+        } catch (FileNotFoundException exception1) {
+            exception1.getMessage();
+            exception1.printStackTrace();
+        } catch (NumberFormatException exception2) {
+            exception2.getMessage();
+            exception2.printStackTrace();
+        } catch (IOException exception3) {
+            exception3.getMessage();
+            exception3.printStackTrace();
+        } finally {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                System.out.println("Error closing file: " + e.getMessage());
+            } // end of try-catch
+        } // end of try-catch
+    }  // end of populateStudentFile
+
+    private void readStudentFile(File studentFile) throws FileNotFoundException {
+        try {
+            inputStream = new BufferedReader(new FileReader(studentFile));
+            String line;
+            int lineCount = 2;
+
+            while ((line = inputStream.readLine()) != null) {
+                if (lineCount == 2) {
+                    String[] courseData = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+
+                    int courseYear = Integer.parseInt(courseData[0]);
+                    int courseTerm = Integer.parseInt(courseData[1]);
+                    String courseNumber = courseData[2];
+                    String courseDescriptiveTitle = courseData[3];
+                    double units = Double.parseDouble(courseData[4]);
+                    String grade = courseData[5];
+
+                    Course newCourse = new Course(courseYear, courseTerm, courseNumber,
+                            courseDescriptiveTitle, units, grade);
+                    studentRecord.add(newCourse);
+                    lineCount++;
+                } // end of if
+            } // end of while
+        } catch (FileNotFoundException exception1) {
+            studentFile.delete();
+        } catch (IOException exception2) {
+            exception2.printStackTrace();
+        } // end of try-catch
+    } // end of readStudentFile method
+
     // TO-DO
     // SAVE BUTTON FOR EDIT COURSE AND ENTER GRADES
     // REPLACE QUIT WITH SAVE
-    private void populateGUIComponents() {
+    private void populateGUIComponents(File studentFile) {
         // Create main frame
         JFrame frame = new JFrame("Checklist Management System");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -292,13 +356,18 @@ public class ChecklistManagement extends JFrame {
         showFinishedCoursesBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int selectedYear = (int) yearComboBox.getSelectedItem();
+                int selectedTerm = (int) termComboBox.getSelectedItem();
+
                 textArea.setText("");
+                textArea.setAlignmentX(Component.CENTER_ALIGNMENT); // center the text
+                textArea.append(String.format("%-15s\t%-120s\t%-5s\t%-20s\t%n",
+                        "Course Number", "Descriptive Title", "Units", "Grade"));
+                textArea.append("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
                 for (Course course: courses) {
-                    if (course instanceof Course && (course.getGrade() != null
+                    if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm
+                            && (course.getGrade() != null
                             && course.getGrade() != "Not Yet Taken")) {
-                        textArea.append(String.format("%-15s\t%-120s\t%-5s\t%-20s\t%n",
-                                "Course Number", "Descriptive Title", "Units", "Grade"));
-                        textArea.append("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
                         textArea.append(course.toStringFormatted());
                     } // end of if
                 } // end of for
@@ -319,23 +388,6 @@ public class ChecklistManagement extends JFrame {
                     if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm) {
                         textArea.append(course.toStringFormatted());
                         // Loop through the students and allow the user to enter or modify the grade for each student in the selected course
-
-                        /*
-                        for (Student student : students) {
-                            Grade grade = student.getGrades().get(course);
-                            String input = JOptionPane.showInputDialog(null,"Enter grade for "
-                                    + student.getLastName() + " in " + course.getCourseNumber());
-                            if (input != null && !input.isEmpty()) {
-                                double gradeValue = Double.parseDouble(input);
-                                if (grade == null) {
-                                    grade = new Grade(gradeValue);
-                                    student.getGrades().put(course, grade);
-                                } else {
-                                    grade.setGrade(gradeValue);
-                                } // end of if-else
-                            } // end of if
-                        } // end of for
-                        */
                     } // end of if
                 } // end of for
 
@@ -369,6 +421,25 @@ public class ChecklistManagement extends JFrame {
                             exception.printStackTrace();
                         } // end of try-catch
                     } // end of if
+                    try {
+                        if (studentRecord.contains(courseNumber)) {
+                            int index = studentRecord.indexOf(courseNumber);
+
+                            int courseYear = course.getYear();
+                            int courseTerm = course.getTerm();
+                            String descriptiveTitle = course.getDescriptiveTitle();
+                            double units = course.getYear();
+                            String gradeInput = course.getGrade();
+
+                            Course gradedCourse = new Course(courseYear, courseTerm, courseNumber, descriptiveTitle,
+                                    units, gradeInput);
+
+                            studentRecord.add(index, gradedCourse);
+                        } // end of if
+                        populateStudentFile(studentFile);
+                    } catch (IOException exception) {
+                        exception.printStackTrace();
+                    } // end of try-catch
                 } // end of for
             } // end of actionPerformed method
         }); // end of addActionListener for enterGradesBtn
@@ -432,15 +503,38 @@ public class ChecklistManagement extends JFrame {
                         } // end of while
                         break;
                     } // end of if
+                    try {
+                        if (studentRecord.contains(courseNumber)) {
+                            int index = studentRecord.indexOf(courseNumber);
+
+                            int courseYear = course.getYear();
+                            int courseTerm = course.getTerm();
+                            String courseNumberInput = course.getCourseNumber();
+                            String descriptiveTitle = course.getDescriptiveTitle();
+                            double units = course.getUnits();
+                            String grade = course.getGrade();
+
+                            Course editedCourse = new Course(courseYear, courseTerm, courseNumber, descriptiveTitle,
+                                    units, grade);
+                            studentRecord.add(index, editedCourse);
+                        } // end of if
+                    } catch (Exception exception) {
+                        exception.printStackTrace();
+                    } // end of try-catch
                 } // end of for
             } // end of actionPerformed method
         }); // end of actionListener for editRecordsBtn
 
         saveBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // TO DO: save records
-            }
-        });
+                try {
+
+                    populateStudentFile(studentFile);
+                } catch (IOException exception) {
+                    exception.printStackTrace();
+                } // end of try-catch
+            } // end of actionPerformed method
+        }); // end of addActionListener for saveBtn
 
         quitBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -562,10 +656,11 @@ public class ChecklistManagement extends JFrame {
                     } // end of try-catch
                 } // end of while
                 try {
-                    File studentFile = new File(studentID + ".txt");
+                    studentFile = new File(studentID + ".txt");
                     inputStream = new BufferedReader(new FileReader("Student Records/" + studentFile));
                     inputStream.close();
-                    populateGUIComponents();
+                    readStudentFile(studentFile);
+                    populateGUIComponents(studentFile);
                 } catch (FileNotFoundException ex) {
                     loginFrame.dispose();
                     createRecordComponents(studentID);
@@ -792,7 +887,8 @@ public class ChecklistManagement extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    outputStream = new PrintWriter(new FileWriter("Student Records/" + studentID + ".txt"));
+                    studentFile = new File(studentID + ".txt");
+                    outputStream = new PrintWriter(new FileWriter("Student Records/" + studentFile));
                     String lastName = "";
                     String firstName = "";
                     int idNumber = studentID;
@@ -833,16 +929,15 @@ public class ChecklistManagement extends JFrame {
                     students.add(new Student(lastName, firstName, idNumber, age,
                             gender, courseProgram, (byte) yearLevel));
 
-                    outputStream.println(students); // prints Student attributes a
+                    outputStream.println(students); // prints Student attributes to studentFile
 
                     for (int index = 0; index < courses.size(); index++){
                         outputStream.println(courses.get(index).toString());
-                        outputStream.println();
-                    }
+                    } // end of for
 
                     outputStream.close();
                     JOptionPane.showMessageDialog(null, "Student Record saved successfully!");
-                    populateGUIComponents();
+                    populateGUIComponents(studentFile);
                     signupFrame.dispose();
                 } catch (FileNotFoundException exception1) {
                     exception1.getMessage();
