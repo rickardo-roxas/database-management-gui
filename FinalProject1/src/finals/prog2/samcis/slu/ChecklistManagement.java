@@ -740,7 +740,6 @@ public class ChecklistManagement extends JFrame {
         loginLabel.setForeground(new Color(0, 24, 66)); // set font color to 0, 24, 66
         recordPanel.add(loginLabel, constraints);
 
-
         constraints.gridx = 0;
         constraints.gridy = 1;
         constraints.anchor = GridBagConstraints.CENTER;
@@ -801,61 +800,187 @@ public class ChecklistManagement extends JFrame {
         JPanel signupPanel = new JPanel(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
 
-
         // Load the image
         ImageIcon logoIcon = new ImageIcon("slu_school_logo.png");
+
         // Scale the image to a smaller size
         Image logoImage = logoIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         ImageIcon scaledLogoIcon = new ImageIcon(logoImage);
+
         // Create the JLabel with the scaled image
         JLabel logoLabel = new JLabel(scaledLogoIcon);
 
         JLabel signupTitleLabel = new JLabel("Student Signup");
         signupTitleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        signupTitleLabel.setForeground(new Color(20, 50, 100));
 
         JSeparator separator = new JSeparator();
         separator.setPreferredSize(new Dimension(450, 2));
 
         JLabel programLabel = new JLabel("Program:");
         programLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        programLabel.setForeground(new Color(0, 24, 66));
 
-        JTextField programTextField = new JTextField("BS Computer Science");
+        JTextField programTextField = new JTextField("BS Computer Science", 20);
         programTextField.setEditable(false);
+        programTextField.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(20, 50, 100)),
+                BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
         JLabel idLabel = new JLabel("SLU ID Number:");
         idLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        idLabel.setForeground(new Color(0, 24, 66));
 
         JTextField idTextField = new JTextField(20);
         idTextField.setText(String.valueOf(studentID));
         idTextField.setEditable(false);
+        idTextField.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(20, 50, 100)),
+                BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
         JLabel lastNameLabel = new JLabel("Last Name:");
         lastNameLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        lastNameLabel.setForeground(new Color(0, 24, 66));
 
         JTextField lastNameTextField = new JTextField(20);
+        lastNameTextField.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(20, 50, 100)),
+                BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
         JLabel firstNameLabel = new JLabel("First Name:");
         firstNameLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        firstNameLabel.setForeground(new Color(0, 24, 66));
 
         JTextField firstNameTextField = new JTextField(20);
+        firstNameTextField.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(20, 50, 100)),
+                BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
         JLabel ageLabel = new JLabel("Age:");
         ageLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        ageLabel.setForeground(new Color(0, 24, 66));
 
-        JTextField ageTextField = new JTextField(10);
+        JTextField ageTextField = new JTextField(20);
         ageTextField.setDocument(new JTextFieldLimit(2));
+        ageTextField.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(20, 50, 100)),
+                BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
         JButton signupButton = new JButton("Create Record");
         signupButton.setPreferredSize(new Dimension(150, 40));
-        signupButton.setBackground(Color.BLUE);
+        signupButton.setBackground(new Color(12, 60, 128));
         signupButton.setForeground(Color.WHITE);
         signupButton.setFont(new Font("Arial", Font.BOLD, 14));
 
         JButton quitButton = new JButton("Cancel");
-        quitButton.setPreferredSize(new Dimension(120, 40));
-        quitButton.setBackground(Color.RED);
-        quitButton.setForeground(Color.WHITE);
-        quitButton.setFont(new Font("Arial", Font.BOLD, 14));
+        quitButton.setPreferredSize(new Dimension(150, 40));
+        quitButton.setBackground(null); // set background color to null
+        quitButton.setForeground(new Color(31, 82, 153));
+        quitButton.setFont(new Font("Arial", Font.BOLD, 16));
+        quitButton.setBorder(BorderFactory.createLineBorder(new Color(31, 82, 153), 3));
+
+        // Add components to the signup panel using a GridBagLayout
+        constraints.insets = new Insets(10, 10, 10, 10);
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.gridwidth = 2;
+        constraints.anchor = GridBagConstraints.CENTER;
+
+        signupPanel.add(logoLabel, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        constraints.gridwidth = 2;
+        constraints.anchor = GridBagConstraints.CENTER;
+
+        signupPanel.add(signupTitleLabel, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 2;
+        constraints.gridwidth = 2;
+        constraints.anchor = GridBagConstraints.CENTER;
+
+        signupPanel.add(separator, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        constraints.gridwidth = 1;
+        constraints.anchor = GridBagConstraints.WEST;
+
+        signupPanel.add(programLabel, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 3;
+        constraints.anchor = GridBagConstraints.EAST;
+
+        signupPanel.add(programTextField, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 4;
+        constraints.anchor = GridBagConstraints.WEST;
+
+        signupPanel.add(idLabel, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 4;
+        constraints.anchor = GridBagConstraints.EAST;
+
+        signupPanel.add(idTextField, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 5;
+        constraints.anchor = GridBagConstraints.WEST;
+
+        signupPanel.add(lastNameLabel, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 5;
+        constraints.anchor = GridBagConstraints.EAST;
+
+        signupPanel.add(lastNameTextField, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 6;
+        constraints.anchor = GridBagConstraints.WEST;
+
+        signupPanel.add(firstNameLabel, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 6;
+        constraints.anchor = GridBagConstraints.EAST;
+
+        signupPanel.add(firstNameTextField, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 7;
+        constraints.anchor = GridBagConstraints.WEST;
+
+        signupPanel.add(ageLabel, constraints);
+
+        constraints.gridx = 1;
+        constraints.gridy = 7;
+        constraints.anchor = GridBagConstraints.EAST;
+
+        signupPanel.add(ageTextField, constraints);
+
+        constraints.gridx = 0;
+        constraints.gridy = 8;
+        constraints.gridwidth = 2;
+        constraints.anchor = GridBagConstraints.CENTER;
+        constraints.insets = new Insets(20, 0, 10, 0);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setBackground(new Color(255, 255, 255));
+        buttonPanel.add(signupButton);
+        buttonPanel.add(Box.createHorizontalStrut(20));
+        buttonPanel.add(quitButton);
+        signupPanel.add(buttonPanel, constraints);
+
+        signupPanel.setBackground(new Color(255, 255, 255));
+        signupFrame.add(signupPanel);
+        signupFrame.pack();
+        signupFrame.setLocationRelativeTo(null);
+        signupFrame.setVisible(true);
 
         ageTextField.addActionListener(new ActionListener() {
             @Override
