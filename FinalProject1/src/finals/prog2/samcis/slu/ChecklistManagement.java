@@ -20,6 +20,7 @@ import java.lang.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
@@ -604,7 +605,7 @@ public class ChecklistManagement extends JFrame {
         constraints.gridy = 0;
         constraints.anchor = GridBagConstraints.WEST;
 
-        JLabel loginLabel = new JLabel("Enter your student ID:");
+        JLabel loginLabel = new JLabel("Enter your SLU ID Number:");
         loginLabel.setFont(new Font("Arial", Font.BOLD, 16));
         loginLabel.setForeground(new Color(0, 24, 66));
         centerPanel.add(loginLabel, constraints);
@@ -613,10 +614,11 @@ public class ChecklistManagement extends JFrame {
         constraints.gridy = 0;
         constraints.anchor = GridBagConstraints.CENTER;
 
-        JTextField loginTextField = new JTextField(14);
+        JTextField loginTextField = new JTextField(10);
         loginTextField.setDocument(new JTextFieldLimit(7));
-        loginTextField.setFont(new Font("Arial", Font.BOLD, 14));
+        loginTextField.setFont(new Font("Arial", Font.BOLD, 16));
         loginTextField.setForeground(new Color(0, 24, 66));
+        loginTextField.setBorder(new LineBorder(new Color(20, 50, 100), 1));
         centerPanel.add(loginTextField, constraints);
 
         constraints.gridx = 0;
@@ -624,8 +626,9 @@ public class ChecklistManagement extends JFrame {
         constraints.gridwidth = 2;
         constraints.anchor = GridBagConstraints.CENTER;
 
-        JSeparator separator = new JSeparator();
-        separator.setPreferredSize(new Dimension(400, 2));
+        JSeparator separator = new JSeparator(SwingConstants.HORIZONTAL);
+        separator.setPreferredSize(new Dimension(400, 4));
+        separator.setForeground(new Color(20, 50, 100));
         centerPanel.add(separator, constraints);
 
         constraints.gridx = 0;
@@ -645,10 +648,11 @@ public class ChecklistManagement extends JFrame {
         constraints.anchor = GridBagConstraints.CENTER;
 
         JButton quitButton = new JButton("Quit");
-        quitButton.setPreferredSize(new Dimension(125, 40));
-        quitButton.setBackground(new Color(12, 60, 128));
-        quitButton.setForeground(Color.WHITE);
+        quitButton.setPreferredSize(new Dimension(120, 40));
+        quitButton.setBackground(null); // set background color to null
+        quitButton.setForeground(new Color(31, 82, 153));
         quitButton.setFont(new Font("Arial", Font.BOLD, 16));
+        quitButton.setBorder(BorderFactory.createLineBorder(new Color(31, 82, 153), 3));
         centerPanel.add(quitButton, constraints);
 
         // Add the header and center panels to the frame using BorderLayout
@@ -732,8 +736,10 @@ public class ChecklistManagement extends JFrame {
         constraints.anchor = GridBagConstraints.CENTER;
 
         JLabel loginLabel = new JLabel("No student record found. Create new record.");
-        loginLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        loginLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        loginLabel.setForeground(new Color(0, 24, 66)); // set font color to 0, 24, 66
         recordPanel.add(loginLabel, constraints);
+
 
         constraints.gridx = 0;
         constraints.gridy = 1;
@@ -741,9 +747,9 @@ public class ChecklistManagement extends JFrame {
 
         JButton createButton = new JButton("Create");
         createButton.setPreferredSize(new Dimension(120, 40));
-        createButton.setBackground(Color.BLUE);
+        createButton.setBackground(new Color(31, 82, 153));
         createButton.setForeground(Color.WHITE);
-        createButton.setFont(new Font("Arial", Font.BOLD, 14));
+        createButton.setFont(new Font("Arial", Font.BOLD, 16));
         recordPanel.add(createButton, constraints);
 
         constraints.gridx = 0;
@@ -752,15 +758,21 @@ public class ChecklistManagement extends JFrame {
 
         JButton quitButton = new JButton("Quit");
         quitButton.setPreferredSize(new Dimension(120, 40));
-        quitButton.setBackground(Color.RED);
-        quitButton.setForeground(Color.WHITE);
-        quitButton.setFont(new Font("Arial", Font.BOLD, 14));
+        quitButton.setBackground(null); // set background color to null
+        quitButton.setForeground(new Color(31, 82, 153));
+        quitButton.setFont(new Font("Arial", Font.BOLD, 16));
+        quitButton.setBorder(BorderFactory.createLineBorder(new Color(31, 82, 153), 3));
         recordPanel.add(quitButton, constraints);
+
+
+        // Set the background color of the record panel to the same color as the center panel
+        recordPanel.setBackground(new Color(255, 255, 255));
 
         recordFrame.add(recordPanel);
         recordFrame.pack();
-        recordFrame.setLocationRelativeTo(null); // center the frame on the screen
+        recordFrame.setLocationRelativeTo(null);
         recordFrame.setVisible(true);
+
 
         createButton.addActionListener(new ActionListener() {
             @Override
