@@ -562,32 +562,62 @@ public class ChecklistManagement extends JFrame {
      */
     private void loginFormComponents() {
         JFrame loginFrame = new JFrame("Student Login Form");
-        JPanel loginPanel = new JPanel(new GridBagLayout());
+        JPanel headerPanel = new JPanel();
+        JPanel centerPanel = new JPanel(new GridBagLayout());
 
+        // Set the background color of the panels
+        headerPanel.setBackground(new Color(12, 60, 128));
+        centerPanel.setBackground(new Color(255, 255, 255));
+
+        // Add components to the header panel
+        ImageIcon logoIcon = new ImageIcon("slu_school_logo.png");
+        Image logoImage = logoIcon.getImage().getScaledInstance(100, 100, Image.SCALE_AREA_AVERAGING);
+        ImageIcon scaledLogoIcon = new ImageIcon(logoImage);
+
+        JLabel logoLabel = new JLabel(scaledLogoIcon);
+        JLabel loginTitleLabel = new JLabel("Student Login");
+        loginTitleLabel.setFont(new Font("Arial", Font.BOLD, 26));
+        loginTitleLabel.setForeground(Color.WHITE);
+
+        // Create a panel to center the logo and login title horizontally
+        JPanel headerCenterPanel = new JPanel();
+        headerCenterPanel.setBackground(new Color(0, 24, 66));
+        BoxLayout headerCenterLayout = new BoxLayout(headerCenterPanel, BoxLayout.X_AXIS);
+        headerCenterPanel.setLayout(headerCenterLayout);
+        headerCenterPanel.add(Box.createHorizontalGlue());
+        headerCenterPanel.add(logoLabel);
+        headerCenterPanel.add(Box.createHorizontalStrut(20));
+        headerCenterPanel.add(loginTitleLabel);
+        headerCenterPanel.add(Box.createHorizontalGlue());
+
+        // Use a BoxLayout to vertically align the components in the header panel
+        BoxLayout headerLayout = new BoxLayout(headerPanel, BoxLayout.Y_AXIS);
+        headerPanel.setLayout(headerLayout);
+        headerPanel.add(Box.createVerticalStrut(20));
+        headerPanel.add(headerCenterPanel);
+        headerPanel.add(Box.createVerticalStrut(20));
+
+        // Add components to the center panel using a GridBagLayout
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets(10, 10, 10, 10);
         constraints.gridx = 0;
         constraints.gridy = 0;
-        constraints.anchor = GridBagConstraints.NORTH;
+        constraints.anchor = GridBagConstraints.WEST;
 
-        // Load the image
-        ImageIcon logoIcon = new ImageIcon("slu_school_logo.png");
-
-        // Scale the image to a smaller size
-        Image logoImage = logoIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-        ImageIcon scaledLogoIcon = new ImageIcon(logoImage);
-
-        // Create the JLabel with the scaled image
-        JLabel logoLabel = new JLabel(scaledLogoIcon);
-        loginPanel.add(logoLabel, constraints);
+        JLabel loginLabel = new JLabel("Enter your student ID:");
+        loginLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        loginLabel.setForeground(new Color(0, 24, 66));
+        centerPanel.add(loginLabel, constraints);
 
         constraints.gridx = 1;
         constraints.gridy = 0;
-        constraints.anchor = GridBagConstraints.WEST;
+        constraints.anchor = GridBagConstraints.CENTER;
 
-        JLabel loginTitleLabel = new JLabel("Student Login");
-        loginTitleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        loginPanel.add(loginTitleLabel, constraints);
+        JTextField loginTextField = new JTextField(14);
+        loginTextField.setDocument(new JTextFieldLimit(7));
+        loginTextField.setFont(new Font("Arial", Font.BOLD, 14));
+        loginTextField.setForeground(new Color(0, 24, 66));
+        centerPanel.add(loginTextField, constraints);
 
         constraints.gridx = 0;
         constraints.gridy = 1;
@@ -596,46 +626,35 @@ public class ChecklistManagement extends JFrame {
 
         JSeparator separator = new JSeparator();
         separator.setPreferredSize(new Dimension(400, 2));
-        loginPanel.add(separator, constraints);
+        centerPanel.add(separator, constraints);
 
         constraints.gridx = 0;
         constraints.gridy = 2;
         constraints.gridwidth = 1;
-
-        JLabel loginLabel = new JLabel("Enter your SLU ID Number:");
-        loginLabel.setFont(new Font("Arial", Font.BOLD, 14));
-        loginPanel.add(loginLabel, constraints);
-
-        constraints.gridx = 1;
-        constraints.gridy = 2;
-
-        JTextField loginTextField = new JTextField(10);
-        loginTextField.setDocument(new JTextFieldLimit(7)); // limit to 7 characters
-        loginPanel.add(loginTextField, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 3;
-        constraints.gridwidth = 2;
         constraints.anchor = GridBagConstraints.CENTER;
 
         JButton loginButton = new JButton("Login");
-        loginButton.setPreferredSize(new Dimension(120, 40));
-        loginButton.setBackground(Color.BLUE);
+        loginButton.setPreferredSize(new Dimension(125, 40));
+        loginButton.setBackground(new Color(12, 60, 128));
         loginButton.setForeground(Color.WHITE);
-        loginButton.setFont(new Font("Arial", Font.BOLD, 14));
-        loginPanel.add(loginButton, constraints);
+        loginButton.setFont(new Font("Arial", Font.BOLD, 16));
+        centerPanel.add(loginButton, constraints);
 
-        constraints.gridx = 0;
-        constraints.gridy = 4;
-        constraints.gridwidth = 2;
+        constraints.gridx = 1;
+        constraints.gridy = 2;
         constraints.anchor = GridBagConstraints.CENTER;
 
         JButton quitButton = new JButton("Quit");
-        quitButton.setPreferredSize(new Dimension(120, 40));
-        quitButton.setBackground(Color.RED);
+        quitButton.setPreferredSize(new Dimension(125, 40));
+        quitButton.setBackground(new Color(12, 60, 128));
         quitButton.setForeground(Color.WHITE);
-        quitButton.setFont(new Font("Arial", Font.BOLD, 14));
-        loginPanel.add(quitButton, constraints);
+        quitButton.setFont(new Font("Arial", Font.BOLD, 16));
+        centerPanel.add(quitButton, constraints);
+
+        // Add the header and center panels to the frame using BorderLayout
+        loginFrame.add(headerPanel, BorderLayout.NORTH);
+        loginFrame.add(centerPanel, BorderLayout.CENTER);
+
         loginTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -645,7 +664,7 @@ public class ChecklistManagement extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int studentID = 0000000;
+                int studentID = 0;
                 boolean validInput = false;
 
                 while (!validInput) {
@@ -666,9 +685,10 @@ public class ChecklistManagement extends JFrame {
                         return;
                     } // end of try-catch
                 } // end of while
+
                 try {
-                    studentFile = new File(studentID + ".txt");
-                    inputStream = new BufferedReader(new FileReader("Student Records/" + studentFile));
+                    File studentFile = new File(studentID + ".txt");
+                    BufferedReader inputStream = new BufferedReader(new FileReader("Student Records/" + studentFile));
                     inputStream.close();
                     readStudentFile(studentFile);
                     populateGUIComponents(studentFile);
@@ -680,17 +700,20 @@ public class ChecklistManagement extends JFrame {
                 } // end of try-catch
             } // end of actionPerformed method
         }); // end of addActionListener for loginButton
+
         quitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         });
-        loginFrame.add(loginPanel);
-        loginFrame.pack();
-        loginFrame.setVisible(true);
-        loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Set the size and position of the frame
+        loginFrame.setSize(500, 400);
         loginFrame.setLocationRelativeTo(null);
+        loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        loginFrame.setVisible(true);
+
     } // end of loginFormComponents method
 
     /**
