@@ -12,11 +12,9 @@
  * </p>
  */
 package finals.prog2.samcis.slu;
-import java.util.HashMap;
 
 /**
-
- Class representing a student.
+ * Class respresenting a Student. Add documentation to what this class is.
  */
 public class Student {
     private String lastName; // The last name of the student

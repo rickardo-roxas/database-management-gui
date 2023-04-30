@@ -26,7 +26,9 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.PlainDocument;
 import java.awt.*;
 
-
+/**
+ * Add documentation. Explain what this class is about.
+ */
 public class ChecklistManagement extends JFrame {
     // GUI Components
     // Text Fields
@@ -83,7 +85,6 @@ public class ChecklistManagement extends JFrame {
      *
      * @throws FileNotFoundException TO-DO...
      */
-
     private void populateCourse() throws FileNotFoundException {
         try {
             inputStream = new BufferedReader(new FileReader("BSCSCurriculumData1.txt"));
@@ -115,31 +116,38 @@ public class ChecklistManagement extends JFrame {
     } // end of populateCourse method
 
     /**
-     * Writes data to student file
-     * @param studentFile
-     * @throws IOException
+     * Writes data to student file. This method writes and overwrites courses taken user-given grades.
+     * @param studentFile file that contains attributes of student (name, id number, age, course), and courses taken
+     *                    with respective grades.
+     * @throws IOException failed or interrupted operation.
      */
     private void populateStudentFile(File studentFile) throws IOException {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("Student Records/" + studentFile));
-            String oldContents = reader.readLine();
-            reader.close();
+            inputStream = new BufferedReader(new FileReader("Student Records/" + studentFile));
+            String studentMetadata = inputStream.readLine();
+            inputStream.close();
 
             // Write new contents to the file, starting with the old content
             FileOutputStream outputStream = new FileOutputStream("Student Records/" + studentFile, false);
             StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(oldContents).append("\n");
+            stringBuilder.append(studentMetadata).append("\n");
 
-            for (int index = 0; index < studentRecord.size(); index++) {
+            for (int index = 0; index < studentRecord.size(); index++) { // populates file with Courses with grades
                 stringBuilder.append(studentRecord.get(index).toString()).append("\n");
-            }
+            } // end of for
             outputStream.write(stringBuilder.toString().getBytes());
             outputStream.close();
         } catch (IOException exception) {
             exception.printStackTrace();
-        }
+        } // end of try-catch
     }  // end of populateStudentFile
 
+    /**
+     * Reads user metadata upon logging in from the Student Records folder.
+     * @param studentFile file that contains attributes of student (name, id number, age, course), and courses taken
+     *                    with respective grades.
+     * @throws FileNotFoundException if studentFile does not exist
+     */
     private void readStudentFile(File studentFile) throws FileNotFoundException {
         try {
             inputStream = new BufferedReader(new FileReader("Student Records/" + studentFile));
@@ -171,9 +179,11 @@ public class ChecklistManagement extends JFrame {
         } // end of try-catch
     } // end of readStudentFile method
 
-    // TO-DO
-    // SAVE BUTTON FOR EDIT COURSE AND ENTER GRADES
-    // REPLACE QUIT WITH SAVE
+    /**
+     * TO-DO
+     * @param studentFile file that contains attributes of student (name, id number, age, course), and courses taken
+     *                    with respective grades.
+     */
     private void populateGUIComponents(File studentFile) {
         // Create main frame
         JFrame frame = new JFrame("Checklist Management System");
@@ -329,6 +339,7 @@ public class ChecklistManagement extends JFrame {
             } // end of actionPerformed method
         }); // end of actionListener for showSubjectsBtn
 
+        // Add single-line documentation
         showGradesBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Get the selected year and term
@@ -346,6 +357,7 @@ public class ChecklistManagement extends JFrame {
             } // end of actionPerformed method
         }); // end of actionListener for showGradesBtn
 
+        // Add single-line documentation
         showFinishedCoursesBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -366,6 +378,7 @@ public class ChecklistManagement extends JFrame {
             } // end of actionPerformed method
         }); // end of addActionListener for showFinishedCoursesBtn
 
+        // Add single-line documentation
         enterGradesBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Get the selected year and term
@@ -435,6 +448,7 @@ public class ChecklistManagement extends JFrame {
             } // end of actionPerformed method
         }); // end of addActionListener for enterGradesBtn
 
+        // Add single-line documentation
         editRecordsBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Get the selected year and term
@@ -516,6 +530,7 @@ public class ChecklistManagement extends JFrame {
             } // end of actionPerformed method
         }); // end of actionListener for editRecordsBtn
 
+        // Add single-line documentation
         saveBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -526,6 +541,7 @@ public class ChecklistManagement extends JFrame {
             } // end of actionPerformed method
         }); // end of addActionListener for saveBtn
 
+        // Add single-line documentation
         quitBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
@@ -637,12 +653,15 @@ public class ChecklistManagement extends JFrame {
         loginFrame.add(headerPanel, BorderLayout.NORTH);
         loginFrame.add(centerPanel, BorderLayout.CENTER);
 
+        // Add single-line documentation
         loginTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 loginButton.doClick();
             }
         });
+
+        // Add single-line documentation
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -700,6 +719,8 @@ public class ChecklistManagement extends JFrame {
 
     /**
      * Creates student record when no record has been found.
+     * Add more documentation
+     * @param studentID 7-digit SLU student ID number.
      */
     private void createRecordComponents (int studentID) {
         JFrame recordFrame = new JFrame("Student Record Form");
@@ -750,6 +771,7 @@ public class ChecklistManagement extends JFrame {
         recordFrame.setLocationRelativeTo(null);
         recordFrame.setVisible(true);
 
+        // Add action listeners to buttons
         createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -764,6 +786,7 @@ public class ChecklistManagement extends JFrame {
             } // end of actionPerformed method
         }); // end of actionListener for createButton
 
+        // Add action listeners to buttons
         quitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -787,17 +810,21 @@ public class ChecklistManagement extends JFrame {
         // Create the JLabel with the scaled image
         JLabel logoLabel = new JLabel(scaledLogoIcon);
 
+        // Add action listeners to buttons
         JLabel signupTitleLabel = new JLabel("Student Signup");
         signupTitleLabel.setFont(new Font("Roboto", Font.BOLD, 24));
         signupTitleLabel.setForeground(new Color(20, 50, 100));
 
+        // Add single line documentation
         JSeparator separator = new JSeparator();
         separator.setPreferredSize(new Dimension(400, 2));
 
+        // Add single line documentation
         JLabel programLabel = new JLabel("Program:");
         programLabel.setFont(new Font("Roboto", Font.BOLD, 14));
         programLabel.setForeground(new Color(0, 24, 66));
 
+        // Add single line documentation
         JTextField programTextField = new JTextField("BS Computer Science", 20);
         programTextField.setFont(new Font("Roboto", Font.PLAIN, 14));
         programTextField.setEditable(false);
@@ -805,10 +832,12 @@ public class ChecklistManagement extends JFrame {
                 BorderFactory.createLineBorder(new Color(20, 50, 100)),
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
+        // Add single line documentation
         JLabel idLabel = new JLabel("SLU ID Number:");
         idLabel.setFont(new Font("Roboto", Font.BOLD, 14));
         idLabel.setForeground(new Color(0, 24, 66));
 
+        // Add single line documentation
         JTextField idTextField = new JTextField(20);
         idTextField.setFont(new Font("Roboto", Font.PLAIN, 14));
         idTextField.setText(String.valueOf(studentID));
@@ -817,30 +846,36 @@ public class ChecklistManagement extends JFrame {
                 BorderFactory.createLineBorder(new Color(20, 50, 100)),
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
+        // Add single line documentation
         JLabel lastNameLabel = new JLabel("Last Name:");
         lastNameLabel.setFont(new Font("Roboto", Font.BOLD, 14));
         lastNameLabel.setForeground(new Color(0, 24, 66));
 
+        // Add single line documentation
         JTextField lastNameTextField = new JTextField(20);
         lastNameTextField.setFont(new Font("Roboto", Font.PLAIN, 14));
         lastNameTextField.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(20, 50, 100)),
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
+        // Add single line documentation
         JLabel firstNameLabel = new JLabel("First Name:");
         firstNameLabel.setFont(new Font("Roboto", Font.BOLD, 14));
         firstNameLabel.setForeground(new Color(0, 24, 66));
 
+        // Add single line documentation
         JTextField firstNameTextField = new JTextField(20);
         firstNameTextField.setFont(new Font("Roboto", Font.PLAIN, 14));
         firstNameTextField.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(20, 50, 100)),
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
+        // Add single line documentation
         JLabel ageLabel = new JLabel("Age:");
         ageLabel.setFont(new Font("Roboto", Font.BOLD, 14));
         ageLabel.setForeground(new Color(0, 24, 66));
 
+        // Add single line documentation
         JTextField ageTextField = new JTextField(20);
         ageTextField.setFont(new Font("Roboto", Font.PLAIN, 14));
         ageTextField.setDocument(new JTextFieldLimit(2));
@@ -848,12 +883,14 @@ public class ChecklistManagement extends JFrame {
                 BorderFactory.createLineBorder(new Color(20, 50, 100)),
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
+        // Add single line documentation
         JButton signupButton = new JButton("Create Record");
         signupButton.setPreferredSize(new Dimension(140, 40));
         signupButton.setBackground(new Color(12, 60, 128));
         signupButton.setForeground(Color.WHITE);
         signupButton.setFont(new Font("Roboto", Font.BOLD, 14));
 
+        // Add single line documentation
         JButton quitButton = new JButton("Cancel");
         quitButton.setPreferredSize(new Dimension(115, 40));
         quitButton.setBackground(null); // set background color to null
@@ -861,6 +898,7 @@ public class ChecklistManagement extends JFrame {
         quitButton.setFont(new Font("Roboto", Font.BOLD, 14));
         quitButton.setBorder(BorderFactory.createLineBorder(new Color(31, 82, 153), 2));
 
+        // Add single line documentation
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(new Color(255, 255, 255));
         buttonPanel.add(signupButton);
@@ -868,12 +906,14 @@ public class ChecklistManagement extends JFrame {
         buttonPanel.add(quitButton);
         signupPanel.add(buttonPanel, constraints);
 
+        // Add single line documentation
         signupPanel.setBackground(new Color(255, 255, 255));
         signupFrame.add(signupPanel);
         signupFrame.pack();
         signupFrame.setLocationRelativeTo(null);
         signupFrame.setVisible(true);
 
+        // Add single line documentation
         ageTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -953,6 +993,7 @@ public class ChecklistManagement extends JFrame {
         constraints.anchor = GridBagConstraints.CENTER;
         signupPanel.add(buttonPanel, constraints);
 
+        // Add single line documentation
         signupButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1017,6 +1058,7 @@ public class ChecklistManagement extends JFrame {
             } // end of actionPerformed method
         });
 
+        // Add single line documentation
         quitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
