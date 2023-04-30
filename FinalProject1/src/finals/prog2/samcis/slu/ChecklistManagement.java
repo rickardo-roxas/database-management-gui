@@ -207,7 +207,7 @@ public class ChecklistManagement extends JFrame {
 
         // Add title label to header panel
         JLabel titleLabel = new JLabel("CHECKLIST MANAGEMENT SYSTEM", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 26));
+        titleLabel.setFont(new Font("", Font.BOLD, 26));
         titleLabel.setForeground(Color.WHITE);
         titleLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
         headerPanel.add(titleLabel, BorderLayout.CENTER);
@@ -221,7 +221,7 @@ public class ChecklistManagement extends JFrame {
 
         // Create footer panel
         JLabel footerLabel = new JLabel("© 2023- CS 122 - GROUP 8. All rights reserved.", SwingConstants.CENTER);
-        footerLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        footerLabel.setFont(new Font("Roboto", Font.BOLD, 14));
         footerLabel.setForeground(Color.WHITE);
         footerLabel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
         footerPanel.add(footerLabel, BorderLayout.CENTER);
@@ -234,47 +234,46 @@ public class ChecklistManagement extends JFrame {
         // Create buttons
         JButton showSubjectsBtn = new JButton("Show Subjects");
         showSubjectsBtn.setPreferredSize(new Dimension(180, 50));
-        showSubjectsBtn.setFont(new Font("Arial", Font.BOLD, 18));
+        showSubjectsBtn.setFont(new Font("Roboto", Font.BOLD, 18));
         showSubjectsBtn.setBorder(BorderFactory.createLineBorder(new Color(13, 38, 75), 2));
         showSubjectsBtn.setForeground(new Color(13, 38, 75));
 
         JButton showGradesBtn = new JButton("Show Grades");
         showGradesBtn.setPreferredSize(new Dimension(180, 50));
-        showGradesBtn.setFont(new Font("Arial", Font.BOLD, 18));
+        showGradesBtn.setFont(new Font("Roboto", Font.BOLD, 18));
         showGradesBtn.setBorder(BorderFactory.createLineBorder(new Color(13, 38, 75), 2));
         showGradesBtn.setForeground(new Color(13, 38, 75));
 
         JButton showFinishedCoursesBtn = new JButton("Show Finished Courses");
         showFinishedCoursesBtn.setPreferredSize(new Dimension(200, 50));
-        showFinishedCoursesBtn.setFont(new Font("Arial", Font.BOLD, 15));
+        showFinishedCoursesBtn.setFont(new Font("Roboto", Font.BOLD, 15));
         showFinishedCoursesBtn.setBorder(BorderFactory.createLineBorder(new Color(13, 38, 75), 2));
         showFinishedCoursesBtn.setForeground(new Color(13, 38, 75));
 
         JButton enterGradesBtn = new JButton("Enter Grades");
         enterGradesBtn.setPreferredSize(new Dimension(180, 50));
-        enterGradesBtn.setFont(new Font("Arial", Font.BOLD, 18));
+        enterGradesBtn.setFont(new Font("Roboto", Font.BOLD, 18));
         enterGradesBtn.setBorder(BorderFactory.createLineBorder(new Color(13, 38, 75), 2));
         enterGradesBtn.setForeground(new Color(13, 38, 75));
 
         JButton editRecordsBtn = new JButton("Edit Records");
         editRecordsBtn.setPreferredSize(new Dimension(180, 50));
-        editRecordsBtn.setFont(new Font("Arial", Font.BOLD, 18));
+        editRecordsBtn.setFont(new Font("Roboto", Font.BOLD, 18));
         editRecordsBtn.setBorder(BorderFactory.createLineBorder(new Color(13, 38, 75), 2));
         editRecordsBtn.setForeground(new Color(13, 38, 75));
 
         JButton saveBtn = new JButton("Save Records");
         saveBtn.setPreferredSize(new Dimension(180, 50));
-        saveBtn.setFont(new Font("Arial", Font.BOLD, 18));
+        saveBtn.setFont(new Font("Roboto", Font.BOLD, 18));
         saveBtn.setBorder(BorderFactory.createLineBorder(new Color(13, 38, 75), 2));
         saveBtn.setForeground(new Color(13, 38, 75));
 
 
         JButton quitBtn = new JButton("Quit");
         quitBtn.setPreferredSize(new Dimension(180, 50));
-        quitBtn.setFont(new Font("Arial", Font.BOLD, 18));
+        quitBtn.setFont(new Font("Roboto", Font.BOLD, 18));
         quitBtn.setBorder(BorderFactory.createLineBorder(new Color(13, 38, 75), 2));
         quitBtn.setForeground(new Color(13, 38, 75));
-
 
         buttonsPanel.add(showSubjectsBtn);
         buttonsPanel.add(showGradesBtn);
@@ -577,7 +576,7 @@ public class ChecklistManagement extends JFrame {
 
         JLabel logoLabel = new JLabel(scaledLogoIcon);
         JLabel loginTitleLabel = new JLabel("Student Login");
-        loginTitleLabel.setFont(new Font("Arial", Font.BOLD, 26));
+        loginTitleLabel.setFont(new Font("Roboto", Font.BOLD, 26));
         loginTitleLabel.setForeground(Color.WHITE);
 
         // Create a panel to center the logo and login title horizontally
@@ -606,7 +605,7 @@ public class ChecklistManagement extends JFrame {
         constraints.anchor = GridBagConstraints.WEST;
 
         JLabel loginLabel = new JLabel("Enter your SLU ID Number:");
-        loginLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        loginLabel.setFont(new Font("Roboto", Font.BOLD, 16));
         loginLabel.setForeground(new Color(0, 24, 66));
         centerPanel.add(loginLabel, constraints);
 
@@ -616,7 +615,7 @@ public class ChecklistManagement extends JFrame {
 
         JTextField loginTextField = new JTextField(10);
         loginTextField.setDocument(new JTextFieldLimit(7));
-        loginTextField.setFont(new Font("Arial", Font.BOLD, 16));
+        loginTextField.setFont(new Font("Roboto", Font.BOLD, 16));
         loginTextField.setForeground(new Color(0, 24, 66));
         loginTextField.setBorder(new LineBorder(new Color(20, 50, 100), 1));
         centerPanel.add(loginTextField, constraints);
@@ -640,7 +639,7 @@ public class ChecklistManagement extends JFrame {
         loginButton.setPreferredSize(new Dimension(125, 40));
         loginButton.setBackground(new Color(12, 60, 128));
         loginButton.setForeground(Color.WHITE);
-        loginButton.setFont(new Font("Arial", Font.BOLD, 16));
+        loginButton.setFont(new Font("Roboto", Font.BOLD, 16));
         centerPanel.add(loginButton, constraints);
 
         constraints.gridx = 1;
@@ -651,7 +650,7 @@ public class ChecklistManagement extends JFrame {
         quitButton.setPreferredSize(new Dimension(120, 40));
         quitButton.setBackground(null); // set background color to null
         quitButton.setForeground(new Color(31, 82, 153));
-        quitButton.setFont(new Font("Arial", Font.BOLD, 16));
+        quitButton.setFont(new Font("Roboto", Font.BOLD, 16));
         quitButton.setBorder(BorderFactory.createLineBorder(new Color(31, 82, 153), 3));
         centerPanel.add(quitButton, constraints);
 
@@ -736,7 +735,7 @@ public class ChecklistManagement extends JFrame {
         constraints.anchor = GridBagConstraints.CENTER;
 
         JLabel loginLabel = new JLabel("No student record found. Create new record.");
-        loginLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        loginLabel.setFont(new Font("Roboto", Font.BOLD, 16));
         loginLabel.setForeground(new Color(0, 24, 66)); // set font color to 0, 24, 66
         recordPanel.add(loginLabel, constraints);
 
@@ -748,7 +747,7 @@ public class ChecklistManagement extends JFrame {
         createButton.setPreferredSize(new Dimension(120, 40));
         createButton.setBackground(new Color(31, 82, 153));
         createButton.setForeground(Color.WHITE);
-        createButton.setFont(new Font("Arial", Font.BOLD, 16));
+        createButton.setFont(new Font("Roboto", Font.BOLD, 16));
         recordPanel.add(createButton, constraints);
 
         constraints.gridx = 0;
@@ -759,7 +758,7 @@ public class ChecklistManagement extends JFrame {
         quitButton.setPreferredSize(new Dimension(120, 40));
         quitButton.setBackground(null); // set background color to null
         quitButton.setForeground(new Color(31, 82, 153));
-        quitButton.setFont(new Font("Arial", Font.BOLD, 16));
+        quitButton.setFont(new Font("Roboto", Font.BOLD, 16));
         quitButton.setBorder(BorderFactory.createLineBorder(new Color(31, 82, 153), 3));
         recordPanel.add(quitButton, constraints);
 
@@ -771,7 +770,6 @@ public class ChecklistManagement extends JFrame {
         recordFrame.pack();
         recordFrame.setLocationRelativeTo(null);
         recordFrame.setVisible(true);
-
 
         createButton.addActionListener(new ActionListener() {
             @Override
@@ -811,27 +809,29 @@ public class ChecklistManagement extends JFrame {
         JLabel logoLabel = new JLabel(scaledLogoIcon);
 
         JLabel signupTitleLabel = new JLabel("Student Signup");
-        signupTitleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        signupTitleLabel.setFont(new Font("Roboto", Font.BOLD, 24));
         signupTitleLabel.setForeground(new Color(20, 50, 100));
 
         JSeparator separator = new JSeparator();
-        separator.setPreferredSize(new Dimension(450, 2));
+        separator.setPreferredSize(new Dimension(400, 2));
 
         JLabel programLabel = new JLabel("Program:");
-        programLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        programLabel.setFont(new Font("Roboto", Font.BOLD, 14));
         programLabel.setForeground(new Color(0, 24, 66));
 
         JTextField programTextField = new JTextField("BS Computer Science", 20);
+        programTextField.setFont(new Font("Roboto", Font.PLAIN, 14));
         programTextField.setEditable(false);
         programTextField.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(20, 50, 100)),
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
         JLabel idLabel = new JLabel("SLU ID Number:");
-        idLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        idLabel.setFont(new Font("Roboto", Font.BOLD, 14));
         idLabel.setForeground(new Color(0, 24, 66));
 
         JTextField idTextField = new JTextField(20);
+        idTextField.setFont(new Font("Roboto", Font.PLAIN, 14));
         idTextField.setText(String.valueOf(studentID));
         idTextField.setEditable(false);
         idTextField.setBorder(BorderFactory.createCompoundBorder(
@@ -839,28 +839,31 @@ public class ChecklistManagement extends JFrame {
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
         JLabel lastNameLabel = new JLabel("Last Name:");
-        lastNameLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        lastNameLabel.setFont(new Font("Roboto", Font.BOLD, 14));
         lastNameLabel.setForeground(new Color(0, 24, 66));
 
         JTextField lastNameTextField = new JTextField(20);
+        lastNameTextField.setFont(new Font("Roboto", Font.PLAIN, 14));
         lastNameTextField.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(20, 50, 100)),
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
         JLabel firstNameLabel = new JLabel("First Name:");
-        firstNameLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        firstNameLabel.setFont(new Font("Roboto", Font.BOLD, 14));
         firstNameLabel.setForeground(new Color(0, 24, 66));
 
         JTextField firstNameTextField = new JTextField(20);
+        firstNameTextField.setFont(new Font("Roboto", Font.PLAIN, 14));
         firstNameTextField.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(20, 50, 100)),
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
         JLabel ageLabel = new JLabel("Age:");
-        ageLabel.setFont(new Font("Arial", Font.BOLD, 14));
+        ageLabel.setFont(new Font("Roboto", Font.BOLD, 14));
         ageLabel.setForeground(new Color(0, 24, 66));
 
         JTextField ageTextField = new JTextField(20);
+        ageTextField.setFont(new Font("Roboto", Font.PLAIN, 14));
         ageTextField.setDocument(new JTextFieldLimit(2));
         ageTextField.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(20, 50, 100)),
@@ -870,14 +873,14 @@ public class ChecklistManagement extends JFrame {
         signupButton.setPreferredSize(new Dimension(150, 40));
         signupButton.setBackground(new Color(12, 60, 128));
         signupButton.setForeground(Color.WHITE);
-        signupButton.setFont(new Font("Arial", Font.BOLD, 14));
+        signupButton.setFont(new Font("Roboto", Font.BOLD, 14));
 
         JButton quitButton = new JButton("Cancel");
         quitButton.setPreferredSize(new Dimension(150, 40));
         quitButton.setBackground(null); // set background color to null
         quitButton.setForeground(new Color(31, 82, 153));
-        quitButton.setFont(new Font("Arial", Font.BOLD, 16));
-        quitButton.setBorder(BorderFactory.createLineBorder(new Color(31, 82, 153), 3));
+        quitButton.setFont(new Font("Roboto", Font.BOLD, 14));
+        quitButton.setBorder(BorderFactory.createLineBorder(new Color(31, 82, 153), 2));
 
         // Add components to the signup panel using a GridBagLayout
         constraints.insets = new Insets(10, 10, 10, 10);
