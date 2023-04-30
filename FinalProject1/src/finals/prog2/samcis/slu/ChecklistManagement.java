@@ -132,8 +132,8 @@ public class ChecklistManagement extends JFrame {
             StringBuilder stringBuilder = new StringBuilder();
             stringBuilder.append(studentMetadata).append("\n");
 
-            for (int index = 0; index < studentRecord.size(); index++) { // populates file with Courses with grades
-                stringBuilder.append(studentRecord.get(index).toString()).append("\n");
+            for (Course course : studentRecord) { // populates file with Courses with grades
+                stringBuilder.append(course.toString()).append("\n");
             } // end of for
             outputStream.write(stringBuilder.toString().getBytes());
             outputStream.close();
@@ -370,8 +370,9 @@ public class ChecklistManagement extends JFrame {
                         "Course Number", "Descriptive Title", "Units", "Grade"));
                 textArea.append("---------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
                 for (Course course: studentRecord) {
-                    if (course instanceof Course && course.getYear() == selectedYear && course.getTerm() == selectedTerm
-                            && course.getGrade() != "Not Yet Taken") {
+                    if ((course instanceof Course) && (course.getYear() == selectedYear) &&
+                            (course.getTerm() == selectedTerm) &&
+                            ((!course.getGrade().equals("Not Yet Taken")) && (course.getGrade() != null))) {
                         textArea.append(course.toStringFormatted());
                     } // end of if
                 } // end of for
@@ -678,8 +679,10 @@ public class ChecklistManagement extends JFrame {
                                     "Invalid ID Number. SLU ID Number contains 7 integers. Try again");
                             loginTextField.setText("");
                             validInput = false;
-                        } else
+                        } else {
                             validInput = true;
+                            loginFrame.dispose();
+                        }
                     } catch (NumberFormatException ex) {
                         JOptionPane.showMessageDialog(null, "Invalid ID Number. Try again.");
                         loginTextField.setText("");
@@ -1002,7 +1005,6 @@ public class ChecklistManagement extends JFrame {
                     outputStream = new PrintWriter(new FileWriter("Student Records/" + studentFile));
                     String lastName = "";
                     String firstName = "";
-                    int idNumber = studentID;
                     int age = 0;
                     String courseProgram = "BS Computer Science";
 
@@ -1035,13 +1037,13 @@ public class ChecklistManagement extends JFrame {
                         ageTextField.setText("");
                     } // end of try-catch
 
-                    students.add(new Student(lastName, firstName, idNumber, age,
+                    students.add(new Student(lastName, firstName, studentID, age,
                             courseProgram));
 
                     outputStream.println(students); // prints Student attributes to studentFile
 
-                    for (int index = 0; index < courses.size(); index++){
-                        outputStream.println(courses.get(index).toString());
+                    for (Course course : courses) {
+                        outputStream.println(course.toString());
                     } // end of for
 
                     studentRecord.addAll(courses); // studentRecord will contain elements of courses
