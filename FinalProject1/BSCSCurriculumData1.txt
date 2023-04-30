@@ -25,7 +25,7 @@
 2,1,CS 212,Operating Systems,2
 2,1,CS 212L,Operating Systems (Lab),1
 2,1,CS 213,Human Computer Interaction,3
-2,1,GSTS,"Science, Technology, and Society",3
+2,1,GSTS,"Science,Technology,and Society",3
 2,1,GRVA,Reading Visual Art,3
 2,1,NSTP-CWTS 1,Foundations of Service,3
 2,1,FIT OA,Physical Activity Towards Health and Fitness (Outdoor and Adventure Activities),2

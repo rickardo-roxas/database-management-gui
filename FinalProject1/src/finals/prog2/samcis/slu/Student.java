@@ -14,18 +14,14 @@
 package finals.prog2.samcis.slu;
 
 /**
-
- Class representing a student.
+ * Class respresenting a Student. Add documentation to what this class is.
  */
 public class Student {
     private String lastName; // The last name of the student
     private String firstName; // The first name of the student
     private int idNumber; // The ID number of the student
     private int age; // The age of the student
-    private char gender; // The gender of the student (M or F)
     private String courseProgram; // The course program of the student
-    private byte yearLevel; // The year level of the student
-
     /**
      * Constructs an object of Student with default values.
      */
@@ -34,9 +30,7 @@ public class Student {
         firstName = "Scheherazade";
         idNumber = 2233444;
         age = 19;
-        gender = 'M';
         courseProgram = "BS Computer Science";
-        yearLevel = 1;
     } // end of Student default constructor
 
     /**
@@ -46,19 +40,14 @@ public class Student {
      * @param firstName     The first name of the student
      * @param idNumber      The ID number of the student
      * @param age           The age of the student
-     * @param gender        The gender of the student (M or F)
      * @param courseProgram The course program of the student
-     * @param yearLevel     The year level of the student
      */
-    public Student(String lastName, String firstName, int idNumber, int age, char gender, String courseProgram,
-                   byte yearLevel) {
+    public Student(String lastName, String firstName, int idNumber, int age, String courseProgram) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.idNumber = idNumber;
         this.age = age;
-        this.gender = gender;
         this.courseProgram = courseProgram;
-        this.yearLevel = yearLevel;
     } // end of Student constructor
 
     /**
@@ -94,28 +83,12 @@ public class Student {
     } // end of setAge mutator method
 
     /**
-     * Mutator method for the gender attribute.
-     * @param gender The new gender of the student (M or F)
-     */
-    public void setGender(char gender) {
-        this.gender = gender;
-    } // end of setGender mutator method
-
-    /**
      * Mutator method for the course program attribute.
      * @param courseProgram The new course program of the student
      */
     public void setCourseProgram(String courseProgram) {
         this.courseProgram = courseProgram;
     } // end of setCourseProgram mutator method
-
-    /**
-     * Mutator method for the year level attribute.
-     * @param yearLevel The new year level of the student
-     */
-    public void setYearLevel(byte yearLevel) {
-        this.yearLevel = yearLevel;
-    } // end of setYearLevel mutator method
 
     /**
      * Accessor method for the last name attribute.
@@ -150,14 +123,6 @@ public class Student {
     } // end of getAge accessor method
 
     /**
-     * Accessor method for the gender attribute.
-     * @return The gender of the student
-     */
-    public char getGender() {
-        return gender;
-    } // end of getGender accessor method
-
-    /**
      * Accessor method for the course program attribute.
      * @return The course program of the student
      */
@@ -166,20 +131,12 @@ public class Student {
     } // end of getCourseProgram accessor method
 
     /**
-     * Accessor method for the year level attribute.
-     * @return The year level of the student
-     */
-    public byte getYearLevel() {
-        return yearLevel;
-    } // end of getYearLevel accessor method
-
-    /**
      * Returns a string representation of the Student object.
      * @return A string representation of the Student object
      */
     public String toString() {
-        return firstName + " " + lastName + ", ID number: " + idNumber + ", age: " + age + ", gender: " + gender
-                + ", course program: " + courseProgram + ", year level: " + yearLevel;
+        return "Name: " + firstName + " " + lastName + ", ID Number: " + idNumber + ", Age: " + age
+                + ", Program: " + courseProgram;
     }// end of toString method
 } // end of Student Class
 
