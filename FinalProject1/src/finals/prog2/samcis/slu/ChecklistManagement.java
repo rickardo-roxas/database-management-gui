@@ -121,44 +121,23 @@ public class ChecklistManagement extends JFrame {
      */
     private void populateStudentFile(File studentFile) throws IOException {
         try {
-            RandomAccessFile overwrite = new RandomAccessFile("Student Records/" + studentFile, "rw");
+            BufferedReader reader = new BufferedReader(new FileReader("Student Records/" + studentFile));
+            String oldContents = reader.readLine();
+            reader.close();
 
-            int lineCount = 0;
-            while (lineCount < 1) {
-                String line = overwrite.readLine();
-                if (line == null)
-                    break;
-                lineCount++;
-            } // end of while
+            // Write new contents to the file, starting with the old content
+            FileOutputStream outputStream = new FileOutputStream("Student Records/" + studentFile, false);
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(oldContents).append("\n");
 
             for (int index = 0; index < studentRecord.size(); index++) {
-                overwrite.writeBytes(studentRecord.get(index).toString() + "\n");
-            } // end of for
-
-            overwrite.seek(overwrite.getFilePointer() + 1);
-
-            String line;
-            while ((line = overwrite.readLine()) != null) {
-                overwrite.seek(overwrite.getFilePointer() - line.length() - 2);
-                overwrite.writeBytes("\n" + line);
-            } // end of while
-            overwrite.close();
-        } catch (FileNotFoundException exception1) {
-            exception1.getMessage();
-            exception1.printStackTrace();
-        } catch (NumberFormatException exception2) {
-            exception2.getMessage();
-            exception2.printStackTrace();
-        } catch (IOException exception3) {
-            exception3.getMessage();
-            exception3.printStackTrace();
-        } finally {
-            try {
-                inputStream.close();
-            } catch (IOException e) {
-                System.out.println("Error closing file: " + e.getMessage());
-            } // end of try-catch
-        } // end of try-catch
+                stringBuilder.append(studentRecord.get(index).toString()).append("\n");
+            }
+            outputStream.write(stringBuilder.toString().getBytes());
+            outputStream.close();
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
     }  // end of populateStudentFile
 
     private void readStudentFile(File studentFile) throws FileNotFoundException {
@@ -168,7 +147,7 @@ public class ChecklistManagement extends JFrame {
             int lineCount = 1;
 
             while ((line = inputStream.readLine()) != null) {
-                if (lineCount == 2) {
+                if (lineCount > 1) {
                     String[] courseData = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
 
                     int courseYear = Integer.parseInt(courseData[0]);
@@ -186,7 +165,7 @@ public class ChecklistManagement extends JFrame {
             } // end of while
             inputStream.close();
         } catch (FileNotFoundException exception1) {
-            studentFile.delete();
+            studentFile.delete(); // Deletes student file to sign up for another form
         } catch (IOException exception2) {
             exception2.printStackTrace();
         } // end of try-catch
@@ -526,7 +505,7 @@ public class ChecklistManagement extends JFrame {
                             double units = course.getUnits();
                             String grade = course.getGrade();
 
-                            Course editedCourse = new Course(courseYear, courseTerm, courseNumber, descriptiveTitle,
+                            Course editedCourse = new Course(courseYear, courseTerm, courseNumberInput, descriptiveTitle,
                                     units, grade);
                             studentRecord.add(index, editedCourse);
                         } // end of if
@@ -984,8 +963,7 @@ public class ChecklistManagement extends JFrame {
                     String firstName = "";
                     int idNumber = studentID;
                     int age = 0;
-                    String courseProgram = "";
-                    int yearLevel = 0;
+                    String courseProgram = "BS Computer Science";
 
                     try {
                         String lastNameInput = lastNameTextField.getText();
@@ -1017,7 +995,7 @@ public class ChecklistManagement extends JFrame {
                     } // end of try-catch
 
                     students.add(new Student(lastName, firstName, idNumber, age,
-                         courseProgram, (byte) yearLevel));
+                            courseProgram));
 
                     outputStream.println(students); // prints Student attributes to studentFile
 

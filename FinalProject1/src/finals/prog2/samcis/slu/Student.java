@@ -24,8 +24,6 @@ public class Student {
     private int idNumber; // The ID number of the student
     private int age; // The age of the student
     private String courseProgram; // The course program of the student
-    private byte yearLevel; // The year level of the student
-    private HashMap<Course, Grade> grades; // A HashMap of the student's grades for each course
     /**
      * Constructs an object of Student with default values.
      */
@@ -35,8 +33,6 @@ public class Student {
         idNumber = 2233444;
         age = 19;
         courseProgram = "BS Computer Science";
-        yearLevel = 1;
-        grades = new HashMap<Course, Grade>();
     } // end of Student default constructor
 
     /**
@@ -47,31 +43,14 @@ public class Student {
      * @param idNumber      The ID number of the student
      * @param age           The age of the student
      * @param courseProgram The course program of the student
-     * @param yearLevel     The year level of the student
      */
-    public Student(String lastName, String firstName, int idNumber, int age, String courseProgram, byte yearLevel) {
+    public Student(String lastName, String firstName, int idNumber, int age, String courseProgram) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.idNumber = idNumber;
         this.age = age;
         this.courseProgram = courseProgram;
-        this.yearLevel = yearLevel;
     } // end of Student constructor
-
-    /**
-
-     Accessor method for the HashMap of grades.
-     @return The HashMap of the student's grades for each course
-     */
-    public HashMap<Course, Grade> getGrades() {
-        return grades;
-    } // end of getGrades accessor method
-    /**
-
- Mutator method for a grade of a specific course.
- @param course The course to update the grade for
- @param grade The new grade for the specified course
- */
 
     /**
      * Mutator method for the last name attribute.
@@ -114,14 +93,6 @@ public class Student {
     } // end of setCourseProgram mutator method
 
     /**
-     * Mutator method for the year level attribute.
-     * @param yearLevel The new year level of the student
-     */
-    public void setYearLevel(byte yearLevel) {
-        this.yearLevel = yearLevel;
-    } // end of setYearLevel mutator method
-
-    /**
      * Accessor method for the last name attribute.
      * @return The last name of the student
      */
@@ -162,29 +133,12 @@ public class Student {
     } // end of getCourseProgram accessor method
 
     /**
-     * Accessor method for the year level attribute.
-     * @return The year level of the student
-     */
-    public byte getYearLevel() {
-        return yearLevel;
-    } // end of getYearLevel accessor method
-
-    /**
-     * Accessor method for the grade attribute.
-     * @return The grade of the student
-     */
-    public Grade getGrade(Course course) {
-        return grades.get(course);
-    } // end of getGrade accessor method
-     // end of getYearLevel accessor method
-
-    /**
      * Returns a string representation of the Student object.
      * @return A string representation of the Student object
      */
     public String toString() {
-        return firstName + " " + lastName + ", ID number: " + idNumber + ", age: " + age
-                + ", course program: " + courseProgram + ", year level: " + yearLevel;
+        return "Name: " + firstName + " " + lastName + ", ID Number: " + idNumber + ", Age: " + age
+                + ", Program: " + courseProgram;
     }// end of toString method
 } // end of Student Class
 
