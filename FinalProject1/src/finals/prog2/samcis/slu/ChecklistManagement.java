@@ -870,107 +870,17 @@ public class ChecklistManagement extends JFrame {
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
         JButton signupButton = new JButton("Create Record");
-        signupButton.setPreferredSize(new Dimension(150, 40));
+        signupButton.setPreferredSize(new Dimension(140, 40));
         signupButton.setBackground(new Color(12, 60, 128));
         signupButton.setForeground(Color.WHITE);
         signupButton.setFont(new Font("Roboto", Font.BOLD, 14));
 
         JButton quitButton = new JButton("Cancel");
-        quitButton.setPreferredSize(new Dimension(150, 40));
+        quitButton.setPreferredSize(new Dimension(115, 40));
         quitButton.setBackground(null); // set background color to null
         quitButton.setForeground(new Color(31, 82, 153));
         quitButton.setFont(new Font("Roboto", Font.BOLD, 14));
         quitButton.setBorder(BorderFactory.createLineBorder(new Color(31, 82, 153), 2));
-
-        // Add components to the signup panel using a GridBagLayout
-        constraints.insets = new Insets(10, 10, 10, 10);
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        constraints.gridwidth = 2;
-        constraints.anchor = GridBagConstraints.CENTER;
-
-        signupPanel.add(logoLabel, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 1;
-        constraints.gridwidth = 2;
-        constraints.anchor = GridBagConstraints.CENTER;
-
-        signupPanel.add(signupTitleLabel, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 2;
-        constraints.gridwidth = 2;
-        constraints.anchor = GridBagConstraints.CENTER;
-
-        signupPanel.add(separator, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 3;
-        constraints.gridwidth = 1;
-        constraints.anchor = GridBagConstraints.WEST;
-
-        signupPanel.add(programLabel, constraints);
-
-        constraints.gridx = 1;
-        constraints.gridy = 3;
-        constraints.anchor = GridBagConstraints.EAST;
-
-        signupPanel.add(programTextField, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 4;
-        constraints.anchor = GridBagConstraints.WEST;
-
-        signupPanel.add(idLabel, constraints);
-
-        constraints.gridx = 1;
-        constraints.gridy = 4;
-        constraints.anchor = GridBagConstraints.EAST;
-
-        signupPanel.add(idTextField, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 5;
-        constraints.anchor = GridBagConstraints.WEST;
-
-        signupPanel.add(lastNameLabel, constraints);
-
-        constraints.gridx = 1;
-        constraints.gridy = 5;
-        constraints.anchor = GridBagConstraints.EAST;
-
-        signupPanel.add(lastNameTextField, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 6;
-        constraints.anchor = GridBagConstraints.WEST;
-
-        signupPanel.add(firstNameLabel, constraints);
-
-        constraints.gridx = 1;
-        constraints.gridy = 6;
-        constraints.anchor = GridBagConstraints.EAST;
-
-        signupPanel.add(firstNameTextField, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 7;
-        constraints.anchor = GridBagConstraints.WEST;
-
-        signupPanel.add(ageLabel, constraints);
-
-        constraints.gridx = 1;
-        constraints.gridy = 7;
-        constraints.anchor = GridBagConstraints.EAST;
-
-        signupPanel.add(ageTextField, constraints);
-
-        constraints.gridx = 0;
-        constraints.gridy = 8;
-        constraints.gridwidth = 2;
-        constraints.anchor = GridBagConstraints.CENTER;
-        constraints.insets = new Insets(20, 0, 10, 0);
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(new Color(255, 255, 255));
@@ -1051,11 +961,18 @@ public class ChecklistManagement extends JFrame {
         constraints.anchor = GridBagConstraints.CENTER;
         signupPanel.add(signupButton, constraints);
 
+        constraints.gridx = 1;
+        constraints.gridy = 7;
+        constraints.gridwidth = 3;
+        constraints.anchor = GridBagConstraints.EAST;
+        signupPanel.add(quitButton, constraints);
+
+        // Add the buttonPanel after setting GridBagConstraints for all components
         constraints.gridx = 0;
         constraints.gridy = 8;
         constraints.gridwidth = 2;
         constraints.anchor = GridBagConstraints.CENTER;
-        signupPanel.add(quitButton, constraints);
+        signupPanel.add(buttonPanel, constraints);
 
         signupButton.addActionListener(new ActionListener() {
             @Override
