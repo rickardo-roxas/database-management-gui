@@ -341,7 +341,7 @@ public class ChecklistManagement extends JFrame {
             } // end of actionPerformed method
         }); // end of actionListener for showSubjectsBtn
 
-        // Add single-line documentation
+        // Display the student's grades for the selected year and term when the button is clicked
         showGradesBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Get the selected year and term
@@ -359,7 +359,7 @@ public class ChecklistManagement extends JFrame {
             } // end of actionPerformed method
         }); // end of actionListener for showGradesBtn
 
-        // Add single-line documentation
+        // Allows the user to enter grades for students in selected courses based on the selected year and term.
         showFinishedCoursesBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -451,7 +451,7 @@ public class ChecklistManagement extends JFrame {
             } // end of actionPerformed method
         }); // end of addActionListener for enterGradesBtn
 
-        // Add single-line documentation
+        // Displays a list of courses matching selected year and term, allowing the user to enter grades
         editRecordsBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Get the selected year and term
