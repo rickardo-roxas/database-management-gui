@@ -359,7 +359,7 @@ public class ChecklistManagement extends JFrame {
             } // end of actionPerformed method
         }); // end of actionListener for showGradesBtn
 
-        // Allows the user to enter grades for students in selected courses based on the selected year and term.
+        // Handles event for displaying courses and updating student grades by selected year and term.
         showFinishedCoursesBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -381,7 +381,7 @@ public class ChecklistManagement extends JFrame {
             } // end of actionPerformed method
         }); // end of addActionListener for showFinishedCoursesBtn
 
-        // Add single-line documentation
+        // Allows the student to enter grades and it displays a list of courses for the selected year and term.
         enterGradesBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Get the selected year and term
@@ -451,7 +451,7 @@ public class ChecklistManagement extends JFrame {
             } // end of actionPerformed method
         }); // end of addActionListener for enterGradesBtn
 
-        // Displays a list of courses matching selected year and term, allowing the user to enter grades
+        // Adds an ActionListener for editRecordsBtn to display and edit courses based on selected year and term.
         editRecordsBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Get the selected year and term
@@ -533,7 +533,7 @@ public class ChecklistManagement extends JFrame {
             } // end of actionPerformed method
         }); // end of actionListener for editRecordsBtn
 
-        // Add single-line documentation
+        // Adds an ActionListener to the saveBtn, which calls the populateStudentFile method and handles IOExceptions
         saveBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -544,7 +544,7 @@ public class ChecklistManagement extends JFrame {
             } // end of actionPerformed method
         }); // end of addActionListener for saveBtn
 
-        // Add single-line documentation
+        // Adds an ActionListener to quitBtn that terminates the application when the button is clicked.
         quitBtn.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
