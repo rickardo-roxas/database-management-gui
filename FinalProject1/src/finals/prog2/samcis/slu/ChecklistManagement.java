@@ -819,16 +819,16 @@ public class ChecklistManagement extends JFrame {
         signupTitleLabel.setFont(new Font("Roboto", Font.BOLD, 24));
         signupTitleLabel.setForeground(new Color(20, 50, 100));
 
-        // Add single line documentation
+        // Create a horizontal separator to visually separate UI components
         JSeparator separator = new JSeparator();
         separator.setPreferredSize(new Dimension(400, 2));
 
-        // Add single line documentation
+        // Create a JLabel component to display a program label
         JLabel programLabel = new JLabel("Program:");
         programLabel.setFont(new Font("Roboto", Font.BOLD, 14));
         programLabel.setForeground(new Color(0, 24, 66));
 
-        // Add single line documentation
+        // Create a text field to display a default value for a program
         JTextField programTextField = new JTextField("BS Computer Science", 20);
         programTextField.setFont(new Font("Roboto", Font.PLAIN, 14));
         programTextField.setEditable(false);
@@ -836,12 +836,12 @@ public class ChecklistManagement extends JFrame {
                 BorderFactory.createLineBorder(new Color(20, 50, 100)),
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
-        // Add single line documentation
+        // Create a JLabel to display a label for SLU ID number input
         JLabel idLabel = new JLabel("SLU ID Number:");
         idLabel.setFont(new Font("Roboto", Font.BOLD, 14));
         idLabel.setForeground(new Color(0, 24, 66));
 
-        // Add single line documentation
+        // Create a JTextField to display the student ID
         JTextField idTextField = new JTextField(20);
         idTextField.setFont(new Font("Roboto", Font.PLAIN, 14));
         idTextField.setText(String.valueOf(studentID));
@@ -850,36 +850,36 @@ public class ChecklistManagement extends JFrame {
                 BorderFactory.createLineBorder(new Color(20, 50, 100)),
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
-        // Add single line documentation
+        // Create a JLabel to display a label for the last name
         JLabel lastNameLabel = new JLabel("Last Name:");
         lastNameLabel.setFont(new Font("Roboto", Font.BOLD, 14));
         lastNameLabel.setForeground(new Color(0, 24, 66));
 
-        // Add single line documentation
+        // Create a JTextField to display the entered last name of the student
         JTextField lastNameTextField = new JTextField(20);
         lastNameTextField.setFont(new Font("Roboto", Font.PLAIN, 14));
         lastNameTextField.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(20, 50, 100)),
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
-        // Add single line documentation
+        // Create a JLabel to display a label for the first name
         JLabel firstNameLabel = new JLabel("First Name:");
         firstNameLabel.setFont(new Font("Roboto", Font.BOLD, 14));
         firstNameLabel.setForeground(new Color(0, 24, 66));
 
-        // Add single line documentation
+        // Create a JTextField to display the entered first name of the student
         JTextField firstNameTextField = new JTextField(20);
         firstNameTextField.setFont(new Font("Roboto", Font.PLAIN, 14));
         firstNameTextField.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(20, 50, 100)),
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
-        // Add single line documentation
+        // Create a JLabel to display a label for the age
         JLabel ageLabel = new JLabel("Age:");
         ageLabel.setFont(new Font("Roboto", Font.BOLD, 14));
         ageLabel.setForeground(new Color(0, 24, 66));
 
-        // Add single line documentation
+        // Create a JTextField to display the entered age of the student
         JTextField ageTextField = new JTextField(20);
         ageTextField.setFont(new Font("Roboto", Font.PLAIN, 14));
         ageTextField.setDocument(new JTextFieldLimit(2));
@@ -887,14 +887,14 @@ public class ChecklistManagement extends JFrame {
                 BorderFactory.createLineBorder(new Color(20, 50, 100)),
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
-        // Add single line documentation
+        // Create a styled JButton for creating a record
         JButton signupButton = new JButton("Create Record");
         signupButton.setPreferredSize(new Dimension(140, 40));
         signupButton.setBackground(new Color(12, 60, 128));
         signupButton.setForeground(Color.WHITE);
         signupButton.setFont(new Font("Roboto", Font.BOLD, 14));
 
-        // Add single line documentation
+        // Create a styled JButton for cancel
         JButton quitButton = new JButton("Cancel");
         quitButton.setPreferredSize(new Dimension(115, 40));
         quitButton.setBackground(null); // set background color to null
@@ -902,7 +902,7 @@ public class ChecklistManagement extends JFrame {
         quitButton.setFont(new Font("Roboto", Font.BOLD, 14));
         quitButton.setBorder(BorderFactory.createLineBorder(new Color(31, 82, 153), 2));
 
-        // Add single line documentation
+        // Creates a JPanel with signup and quit buttons
         JPanel buttonPanel = new JPanel();
         buttonPanel.setBackground(new Color(255, 255, 255));
         buttonPanel.add(signupButton);
@@ -910,14 +910,14 @@ public class ChecklistManagement extends JFrame {
         buttonPanel.add(quitButton);
         signupPanel.add(buttonPanel, constraints);
 
-        // Add single line documentation
+        // Display a signup frame
         signupPanel.setBackground(new Color(255, 255, 255));
         signupFrame.add(signupPanel);
         signupFrame.pack();
         signupFrame.setLocationRelativeTo(null);
         signupFrame.setVisible(true);
 
-        // Add single line documentation
+        // adds an ActionListener to an ageTextField that triggers the signupButton to be clicked
         ageTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -997,7 +997,7 @@ public class ChecklistManagement extends JFrame {
         constraints.anchor = GridBagConstraints.CENTER;
         signupPanel.add(buttonPanel, constraints);
 
-        // Add single line documentation
+        // Add an ActionListener to a sign-up button that triggers a series of actions when clicked
         signupButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -1061,7 +1061,7 @@ public class ChecklistManagement extends JFrame {
             } // end of actionPerformed method
         });
 
-        // Add single line documentation
+        // Add an Action listener to a quit button that closes the form and reopens the login form when clicked
         quitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
