@@ -656,7 +656,7 @@ public class ChecklistManagement extends JFrame {
         loginFrame.add(headerPanel, BorderLayout.NORTH);
         loginFrame.add(centerPanel, BorderLayout.CENTER);
 
-        // Add single-line documentation
+        // Triggers the login button click event when the Enter key is pressed in the login text field
         loginTextField.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -664,7 +664,7 @@ public class ChecklistManagement extends JFrame {
             }
         });
 
-        // Add single-line documentation
+        // Adds ActionListener to login button for student ID validation and record navigation
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -766,7 +766,6 @@ public class ChecklistManagement extends JFrame {
         quitButton.setFont(new Font("Roboto", Font.BOLD, 16));
         quitButton.setBorder(BorderFactory.createLineBorder(new Color(31, 82, 153), 3));
         recordPanel.add(quitButton, constraints);
-
 
         // Set the background color of the record panel to the same color as the center panel
         recordPanel.setBackground(new Color(255, 255, 255));
