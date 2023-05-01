@@ -14,7 +14,9 @@
 package finals.prog2.samcis.slu;
 
 /**
- * Class respresenting a Student. Add documentation to what this class is.
+ Class respresenting a Student.It has a default constructor and a user-defined constructor for setting attribute values.
+ Provides mutator and accessor methods for updating and retrieving attribute values.It also includes a toString method
+ for returning a string representation of the object.
  */
 public class Student {
     private String lastName; // The last name of the student

@@ -27,7 +27,9 @@ import javax.swing.text.PlainDocument;
 import java.awt.*;
 
 /**
- * Add documentation. Explain what this class is about.
+ This GUI class is a checklist management system for BSCS students at Saint Louis University.
+ It helps students track their progress by providing a list of required courses that can be marked as completed.
+ The interface is user-friendly and includes functionality to save and reset progress.
  */
 public class ChecklistManagement extends JFrame {
     // GUI Components
