@@ -37,6 +37,7 @@ public class ChecklistManagement extends JFrame {
     private JTextArea textArea;
     private JComboBox<Integer> termComboBox;
     private JComboBox<Integer> yearComboBox;
+    private JPanel footerPanel;
 
     // ArrayLists
     private ArrayList<Course> courses = new ArrayList<>(); // Default courses with no grades used for showSubjectsBtn
@@ -538,6 +539,9 @@ public class ChecklistManagement extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     populateStudentFile(studentFile);
+                    footerPanel.setBackground(new Color(3, 192, 60));
+                    footerLabel.setForeground(Color.WHITE);
+                    footerLabel.setText("SAVED SUCCESSFULLY!");
                 } catch (IOException exception) {
                     exception.printStackTrace();
                 } // end of try-catch
