@@ -1,6 +1,6 @@
 # CS122_9301Team8
-A group programming project for the course CS 122 - Computer Programming 2 (AY 2022-2023) - Midterms. 
-DeTorresDelizoLacanilaoLimbocRagudosRoxas9301
+A group programming project for the course CS 122 - Computer Programming 2 (AY 2022-2023).
+Midterm and Finals.
 
 ## Group Project 2 - MixedFractionArithmetic
 MixedFractionCalculator
