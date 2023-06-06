@@ -24,12 +24,8 @@ To use the MixedFractionArithmetic class, simply download the source code and ru
 
 To use the GUI, simply launch the program and input the mixed fractions you wish to perform arithmetic operations on. The program will display the output of the arithmetic operation in the result field.
 
-## Contributing Guidelines
-If you would like to contribute to the MixedFractionArithmetic program, we would be glad to receive your input. To contribute, please adhere to the following guidelines:
-
-1. First, make a copy of the project and establish a new branch for your contribution.
-2. Make certain that your contribution adheres to the program's coding practices and standards.
-3. Finally, send a pull request with the modifications you have made.
+## License 
+For academic purposes only. 
 
 ## Troubleshooting
 If you encounter any issues while using our project, please contact the project team for assistance.
