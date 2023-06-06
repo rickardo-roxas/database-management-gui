@@ -22,11 +22,11 @@ This project aims to apply the concepts of inheritance, interfaces, functional p
 **GROUP 8**
 
 1. **LACANILAO**, Marvin Patrick D. -2230153
-2. **DE TORRES**, John Rey I. -2234944
-3. **DELIZO**, John Marco -2234758
-4. **LIMBOC**, Trixie Mae W. - 2233674
-5. **RAGUDOS**, Hannah T. - 2233361
-6. **ROXAS**, Johan Rickardo A. - 2233375
+2. **ROXAS**, Johan Rickardo A. - 2233375
+3. **RAGUDOS**, Hannah T. - 2233361
+4. **DE TORRES**, John Rey I. -2234944
+5. **DELIZO**, John Marco -2234758
+6. **LIMBOC**, Trixie Mae W. - 2233674
 
 ## Installation and Usage
 To use the projects, simply download the source code and run the program on your computer. The program requires an IDE or a Java development environment to run. The program also includes a GUI class that allows for user input and output of mixed fraction arithmetic calculations.
