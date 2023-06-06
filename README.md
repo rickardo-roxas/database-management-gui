@@ -1,4 +1,4 @@
-# CS122_9301Team8
+# Midterm and Final Group Project
 A group programming project for the course CS 122 - Computer Programming 2 (AY 2022-2023).
 Midterm and Finals.
 
